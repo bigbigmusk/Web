@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Concord Trade">
   <rect width="100" height="100" rx="20" fill="#ffffff"/>
-  <path d="M18.3 63 A36 36 0 0 1 81.7 39" fill="none" stroke="#16335a" stroke-width="12" stroke-linecap="round"/>
-  <path d="M81.7 39 A36 36 0 0 1 18.3 63" fill="none" stroke="#98a2ad" stroke-width="12" stroke-linecap="round"/>
-  <path d="M48 44 L82 40.5 L78.5 51 L44.5 53 Z" fill="#16335a"/>
-  <path d="M52 56 L18 59.5 L21.5 49 L55.5 47 Z" fill="#98a2ad"/>
+  <path d="M17 68 A38 38 0 0 1 85 37" fill="none" stroke="#16335a" stroke-width="12"/>
+  <path d="M85 37 A38 38 0 0 1 17 68" fill="none" stroke="#98a2ad" stroke-width="12"/>
+  <path d="M43 47 L85 39 L80 51 L52 53 L47 57 Z" fill="#16335a"/>
+  <path d="M57 53 L15 61 L20 49 L48 47 L53 43 Z" fill="#98a2ad"/>
 </svg>

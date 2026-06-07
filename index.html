@@ -1,485 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Concord Trade — Global Sourcing &amp; Trade Solutions</title>
-  <meta name="description" content="Concord Trade is a B2B international sourcing and trade partner connecting global buyers with reliable manufacturers, quality products, OEM/ODM support, and efficient supply chain solutions." />
-  <meta name="keywords" content="international sourcing, B2B trading company, supplier coordination, OEM ODM, product sourcing, supply chain solutions, RFQ, global procurement" />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Concord Trade — Global Sourcing &amp; Trade Solutions" />
-  <meta property="og:description" content="Tell us what you need. We help you find, compare, verify, and source the right products from reliable suppliers." />
-  <meta property="og:site_name" content="Concord Trade" />
-  <meta property="og:url" content="https://www.concord-trade.com" />
-
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Concord Trade — Global Sourcing &amp; Trade Solutions</title>
+<meta name="description" content="Concord Trade is a B2B international sourcing and trade partner connecting global buyers with reliable manufacturers, quality products, OEM/ODM support, and efficient supply chain solutions." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Concord Trade — Global Sourcing &amp; Trade Solutions" />
+<meta property="og:description" content="Tell us what you need. We help you find, compare, verify, and source the right products from reliable suppliers." />
+<meta property="og:site_name" content="Concord Trade" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23fff'/%3E%3Cpath d='M18.3 63 A36 36 0 0 1 81.7 39' fill='none' stroke='%2316335a' stroke-width='12' stroke-linecap='round'/%3E%3Cpath d='M81.7 39 A36 36 0 0 1 18.3 63' fill='none' stroke='%2398a2ad' stroke-width='12' stroke-linecap='round'/%3E%3Cpath d='M48 44 L82 40.5 L78.5 51 L44.5 53 Z' fill='%2316335a'/%3E%3Cpath d='M52 56 L18 59.5 L21.5 49 L55.5 47 Z' fill='%2398a2ad'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --navy:#16335a; --navy-700:#1d3a63; --navy-900:#0f2647;
+  --silver:#8f99a5; --silver-300:#c5ccd4; --silver-100:#e6eaef;
+  --ink:#1b2735; --muted:#56657a; --bg:#fff; --bg-alt:#f4f7fb; --line:#e3e8ef;
+  --radius:14px; --radius-lg:20px;
+  --shadow-sm:0 1px 3px rgba(15,38,71,.06);
+  --shadow:0 12px 30px -12px rgba(15,38,71,.18);
+  --maxw:1180px; --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:.95rem;line-height:1;padding:14px 26px;border-radius:10px;border:1.5px solid transparent;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .2s,color .2s,border-color .2s;white-space:nowrap}
+.btn-sm{padding:10px 18px;font-size:.875rem}.btn-block{width:100%;padding:16px;font-size:1rem}
+.btn-primary{background:var(--navy);color:#fff;box-shadow:0 10px 22px -12px rgba(22,51,90,.7)}
+.btn-primary:hover{background:var(--navy-900);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--silver-300)}
+.btn-ghost:hover{border-color:var(--navy);background:rgba(22,51,90,.04);transform:translateY(-2px)}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);transition:box-shadow .3s}
+.site-header.scrolled{box-shadow:var(--shadow-sm)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:46px;height:46px;border-radius:8px;flex:none}
+.brand-text{display:flex;flex-direction:column;line-height:1.1}
+.brand-name{font-weight:800;letter-spacing:.14em;color:var(--navy);font-size:1.02rem}
+.brand-tag{font-size:.66rem;letter-spacing:.08em;color:var(--silver);text-transform:uppercase}
+.main-nav{display:flex;align-items:center;gap:30px}
+.main-nav a{font-size:.92rem;font-weight:500;color:var(--muted);transition:color .2s}
+.main-nav a:hover{color:var(--navy)}.main-nav .nav-cta,.main-nav .nav-cta:hover{color:#fff}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+.nav-toggle span{width:24px;height:2px;background:var(--navy);border-radius:2px;transition:.3s}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#fbfcfe,var(--bg-alt))}
+.hero-bg{position:absolute;inset:0;z-index:0}.world-net{width:100%;height:100%}
+.net-lines path{stroke-dasharray:6 8;animation:dash 22s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-280}}
+.net-nodes circle{animation:pulse 4s ease-in-out infinite}
+.net-nodes circle:nth-child(even){animation-delay:1.4s}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+.hero-inner{position:relative;z-index:1;padding:96px 24px 92px;max-width:820px}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy-700);background:rgba(29,58,99,.07);padding:7px 14px;border-radius:100px;margin-bottom:22px}
+.hero-title{font-size:clamp(2.4rem,6vw,4.1rem);line-height:1.04;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+.hero-sub{font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--muted);margin-top:22px;max-width:620px}
+.hero-sub-cn{font-size:.98rem;color:var(--silver);margin-top:10px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.trust-strip{list-style:none;display:flex;flex-wrap:wrap;gap:24px 34px;margin-top:52px;padding-top:28px;border-top:1px solid var(--line)}
+.trust-strip li{display:flex;align-items:center;gap:9px;font-size:.9rem;font-weight:600;color:var(--navy)}
+.trust-strip .dot{width:8px;height:8px;border-radius:50%;background:var(--silver)}
+.trust-strip li:nth-child(odd) .dot{background:var(--navy)}
+.section{padding:92px 0}.section-alt{background:var(--bg-alt)}
+.section-navy{background:linear-gradient(160deg,var(--navy),var(--navy-900));color:#fff}
+.section-head{max-width:720px;margin-bottom:52px}
+.section-eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--silver);margin-bottom:14px}
+.section-eyebrow.light{color:var(--silver-300)}
+.section-title{font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.12;font-weight:800;color:var(--navy);letter-spacing:-.01em}
+.section-title.light{color:#fff}
+.section-lead{font-size:1.08rem;color:var(--muted);margin-top:16px}.section-lead.light{color:rgba(255,255,255,.78)}
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:center}
+.about-copy p{color:var(--muted);margin-top:16px;font-size:1.05rem}
+.about-copy .mission-line{margin-top:26px;font-weight:700;color:var(--navy);font-size:1.1rem}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.stat{background:var(--bg-alt);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px}
+.stat-num{display:block;font-size:1.5rem;font-weight:800;color:var(--navy)}
+.stat-label{display:block;font-size:.9rem;color:var(--muted);margin-top:6px}
+.cards-grid{display:grid;gap:24px}.services-grid{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-lg);padding:34px 30px;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+.card-icon{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(150deg,var(--navy),var(--navy-700));color:#fff;margin-bottom:20px}
+.card-icon svg{width:28px;height:28px}.card-icon.sm{width:48px;height:48px;border-radius:12px}.card-icon.sm svg{width:24px;height:24px}
+.card h3{font-size:1.18rem;color:var(--navy);font-weight:700}.card p{color:var(--muted);margin-top:10px;font-size:.97rem}
+.categories-grid{grid-template-columns:repeat(3,1fr)}
+.cat-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease);display:flex;flex-direction:column}
+.cat-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.cat-art{height:168px;display:grid;place-items:center;position:relative;background:linear-gradient(150deg,var(--silver-100),#fff);border-bottom:1px solid var(--line);color:var(--navy-700)}
+.cat-art::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(29,58,99,.06),transparent 60%)}
+.cat-art svg{width:78px;height:78px;position:relative;z-index:1}
+.cat-body{padding:24px 26px 28px}.cat-body h3{font-size:1.12rem;color:var(--navy);font-weight:700}.cat-body p{color:var(--muted);margin-top:8px;font-size:.93rem}
+.cat-card-cta{background:linear-gradient(155deg,var(--navy),var(--navy-900));color:#fff;justify-content:center;align-items:flex-start}
+.cat-card-cta .cat-body{padding:34px 30px}.cat-card-cta h3{color:#fff}.cat-card-cta p{color:rgba(255,255,255,.8);margin-bottom:22px}
+.process-grid{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-lg);padding:30px 26px;transition:background .3s,transform .3s var(--ease)}
+.step:hover{background:rgba(255,255,255,.1);transform:translateY(-4px)}
+.step-num{font-size:.95rem;font-weight:800;letter-spacing:.1em;color:var(--silver-300)}
+.step h3{font-size:1.12rem;margin-top:14px;color:#fff}.step p{color:rgba(255,255,255,.74);margin-top:8px;font-size:.95rem}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.why-list{list-style:none;display:grid;gap:16px}
+.why-list li{display:flex;align-items:flex-start;gap:14px;font-size:1.05rem;font-weight:500;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.why-list svg{width:22px;height:22px;flex:none;color:var(--navy);margin-top:2px}
+.trust-grid{grid-template-columns:repeat(4,1fr)}
+.trust-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 26px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.trust-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.trust-card h3{font-size:1.08rem;color:var(--navy);margin-top:4px}.trust-card p{color:var(--muted);margin-top:8px;font-size:.93rem}
+.rfq-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start}
+.rfq-contacts{list-style:none;margin-top:32px;display:grid;gap:16px}
+.rfq-contacts li{display:flex;flex-direction:column;gap:2px}
+.rfq-contact-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--silver)}
+.rfq-contacts a{color:var(--navy);font-weight:600}.rfq-contacts a:hover{text-decoration:underline}
+.rfq-form{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-lg);padding:34px;box-shadow:var(--shadow)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{margin-bottom:18px;display:flex;flex-direction:column}
+.field label{font-size:.84rem;font-weight:600;color:var(--navy);margin-bottom:7px}
+.field input,.field textarea{font-family:inherit;font-size:.95rem;color:var(--ink);padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fcfdfe;transition:border-color .2s,box-shadow .2s;resize:vertical}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--navy-700);box-shadow:0 0 0 3px rgba(29,58,99,.1);background:#fff}
+.field input.invalid,.field textarea.invalid{border-color:#d9534f}
+.form-note{margin-top:14px;font-size:.92rem;font-weight:500;min-height:1.2em}.form-note.ok{color:#1a7f47}.form-note.err{color:#d9534f}
+.site-footer{background:var(--navy-900);color:rgba(255,255,255,.78)}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:50px;padding:70px 24px 50px}
+.footer-logo{width:48px;height:48px;background:#fff;border-radius:8px;padding:4px}
+.footer-name{display:block;font-weight:800;letter-spacing:.14em;color:#fff;margin-top:16px}
+.footer-mission{color:var(--silver-300);font-weight:600;margin-top:12px}
+.footer-desc{font-size:.92rem;margin-top:12px;max-width:420px}
+.footer-col h4{color:#fff;font-size:.95rem;letter-spacing:.05em;margin-bottom:16px}
+.footer-col a{display:block;font-size:.92rem;padding:6px 0;color:rgba(255,255,255,.7);transition:color .2s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12)}
+.footer-bottom-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:22px 24px;font-size:.85rem;color:rgba(255,255,255,.6)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(max-width:960px){.services-grid,.categories-grid,.trust-grid,.process-grid{grid-template-columns:repeat(2,1fr)}.about-grid,.why-grid,.rfq-grid{grid-template-columns:1fr;gap:40px}.footer-inner{grid-template-columns:1fr 1fr;gap:36px}}
+@media(max-width:720px){.main-nav{position:fixed;top:72px;right:0;left:0;flex-direction:column;align-items:stretch;gap:0;background:#fff;border-bottom:1px solid var(--line);padding:12px 24px 24px;transform:translateY(-130%);transition:transform .35s var(--ease);box-shadow:var(--shadow);max-height:calc(100vh - 72px);overflow-y:auto}.main-nav.open{transform:translateY(0)}.main-nav a{padding:14px 0;border-bottom:1px solid var(--line)}.main-nav .nav-cta{margin-top:14px;border-bottom:0}.nav-toggle{display:flex}.section{padding:64px 0}.hero-inner{padding:64px 24px}.field-row{grid-template-columns:1fr;gap:0}.footer-inner{grid-template-columns:1fr}}
+@media(max-width:460px){.services-grid,.categories-grid,.trust-grid,.process-grid,.about-stats{grid-template-columns:1fr}.brand-tag{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
 </head>
 <body>
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="#top" class="brand" aria-label="Concord Trade home">
+      <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M14.3 63 A38 38 0 0 1 85.7 37" fill="none" stroke="#16335a" stroke-width="13" stroke-linecap="round"/>
+        <path d="M85.7 37 A38 38 0 0 1 14.3 63" fill="none" stroke="#98a2ad" stroke-width="13" stroke-linecap="round"/>
+        <path d="M47 43 L86 39 L82 51 L43 53 Z" fill="#16335a"/>
+        <path d="M53 57 L14 61 L18 49 L57 47 Z" fill="#98a2ad"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-name">CONCORD TRADE</span>
+        <span class="brand-tag">Global Trade · Reliable Supply</span>
+      </span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="Primary">
+      <a href="#services">What We Do</a>
+      <a href="#categories">Categories</a>
+      <a href="#process">How We Work</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact">Contact</a>
+      <a href="#rfq" class="btn btn-primary btn-sm nav-cta">Submit RFQ</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
 
-  <!-- ============ HEADER ============ -->
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <a href="#top" class="brand" aria-label="Concord Trade home">
-        <img src="assets/logo.svg" alt="Concord Trade" class="brand-mark" width="46" height="46" />
-        <span class="brand-text">
-          <span class="brand-name">CONCORD TRADE</span>
-          <span class="brand-tag">Global Trade · Reliable Supply</span>
-        </span>
-      </a>
-
-      <nav class="main-nav" id="mainNav" aria-label="Primary">
-        <a href="#services">What We Do</a>
-        <a href="#categories">Categories</a>
-        <a href="#process">How We Work</a>
-        <a href="#why">Why Us</a>
-        <a href="#contact">Contact</a>
-        <a href="#rfq" class="btn btn-primary btn-sm nav-cta">Submit RFQ</a>
-      </nav>
-
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+<main>
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <svg class="world-net" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs><radialGradient id="glow" cx="68%" cy="38%" r="60%"><stop offset="0%" stop-color="#1d3a63" stop-opacity=".10"/><stop offset="100%" stop-color="#1d3a63" stop-opacity="0"/></radialGradient></defs>
+        <rect width="1200" height="600" fill="url(#glow)"/>
+        <g class="net-lines" stroke="#1d3a63" stroke-opacity=".18" stroke-width="1" fill="none">
+          <path d="M160,420 C420,300 620,360 820,180"/><path d="M160,420 C300,520 560,500 880,440"/>
+          <path d="M820,180 C980,240 1040,360 880,440"/><path d="M420,140 C560,220 700,200 820,180"/>
+          <path d="M260,260 C380,200 360,360 420,420"/><path d="M880,440 C1000,460 1080,520 1140,500"/>
+          <path d="M420,140 C260,180 200,300 260,260"/>
+        </g>
+        <g class="net-nodes" fill="#1d3a63">
+          <circle cx="160" cy="420" r="5"/><circle cx="820" cy="180" r="6"/><circle cx="880" cy="440" r="5"/>
+          <circle cx="420" cy="140" r="5"/><circle cx="260" cy="260" r="4"/><circle cx="1140" cy="500" r="4"/>
+          <circle cx="620" cy="300" r="3"/><circle cx="560" cy="480" r="3"/>
+        </g>
+      </svg>
     </div>
-  </header>
-
-  <main>
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <div class="hero-bg" aria-hidden="true">
-        <svg class="world-net" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="glow" cx="68%" cy="38%" r="60%">
-              <stop offset="0%" stop-color="#1d3a63" stop-opacity="0.10" />
-              <stop offset="100%" stop-color="#1d3a63" stop-opacity="0" />
-            </radialGradient>
-          </defs>
-          <rect width="1200" height="600" fill="url(#glow)" />
-          <g class="net-lines" stroke="#1d3a63" stroke-opacity="0.18" stroke-width="1" fill="none">
-            <path d="M160,420 C420,300 620,360 820,180" />
-            <path d="M160,420 C300,520 560,500 880,440" />
-            <path d="M820,180 C980,240 1040,360 880,440" />
-            <path d="M420,140 C560,220 700,200 820,180" />
-            <path d="M260,260 C380,200 360,360 420,420" />
-            <path d="M880,440 C1000,460 1080,520 1140,500" />
-            <path d="M420,140 C260,180 200,300 260,260" />
-          </g>
-          <g class="net-nodes" fill="#1d3a63">
-            <circle cx="160" cy="420" r="5" /><circle cx="820" cy="180" r="6" />
-            <circle cx="880" cy="440" r="5" /><circle cx="420" cy="140" r="5" />
-            <circle cx="260" cy="260" r="4" /><circle cx="1140" cy="500" r="4" />
-            <circle cx="620" cy="300" r="3" /><circle cx="560" cy="480" r="3" />
-          </g>
-        </svg>
+    <div class="container hero-inner">
+      <p class="eyebrow">International Sourcing &amp; Trade Partner</p>
+      <h1 class="hero-title">Global Sourcing &amp;<br/>Trade Solutions</h1>
+      <p class="hero-sub">Connecting global buyers with reliable manufacturers, quality products, and efficient supply chain support.</p>
+      <p class="hero-sub-cn">为全球客户提供可靠的产品采购、供应商对接与供应链解决方案</p>
+      <div class="hero-actions">
+        <a href="#rfq" class="btn btn-primary">Submit RFQ</a>
+        <a href="#categories" class="btn btn-ghost">View Product Categories</a>
       </div>
+      <ul class="trust-strip">
+        <li><span class="dot"></span>Reliable Partners</li>
+        <li><span class="dot"></span>Quality Products</li>
+        <li><span class="dot"></span>Global Network</li>
+        <li><span class="dot"></span>Growing Together</li>
+      </ul>
+    </div>
+  </section>
 
-      <div class="container hero-inner">
-        <p class="eyebrow">International Sourcing &amp; Trade Partner</p>
-        <h1 class="hero-title">Global Sourcing &amp;<br />Trade Solutions</h1>
-        <p class="hero-sub">
-          Connecting global buyers with reliable manufacturers, quality products,
-          and efficient supply chain support.
-        </p>
-        <p class="hero-sub-cn">为全球客户提供可靠的产品采购、供应商对接与供应链解决方案</p>
-        <div class="hero-actions">
-          <a href="#rfq" class="btn btn-primary">Submit RFQ</a>
-          <a href="#categories" class="btn btn-ghost">View Product Categories</a>
-        </div>
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <div class="about-copy reveal">
+        <p class="section-eyebrow">Who We Are</p>
+        <h2 class="section-title">We connect global business with reliable supply.</h2>
+        <p>Concord Trade is a B2B international trading and sourcing company focused on connecting global buyers with reliable manufacturers, quality products, and efficient supply chain solutions.</p>
+        <p>Our role is not only to find products, but to help clients reduce sourcing risks, improve communication efficiency, compare supplier options, and build stable business partnerships across international markets.</p>
+        <p class="mission-line">Global Trade. Reliable Supply. Strategic Connections.</p>
+      </div>
+      <div class="about-stats reveal">
+        <div class="stat"><span class="stat-num">5+</span><span class="stat-label">Core product categories sourced</span></div>
+        <div class="stat"><span class="stat-num">End&#8209;to&#8209;end</span><span class="stat-label">From RFQ to delivery follow-up</span></div>
+        <div class="stat"><span class="stat-num">OEM / ODM</span><span class="stat-label">Private label &amp; custom packaging</span></div>
+        <div class="stat"><span class="stat-num">Global</span><span class="stat-label">Supplier network &amp; export support</span></div>
+      </div>
+    </div>
+  </section>
 
-        <ul class="trust-strip" aria-label="Our commitments">
-          <li><span class="dot"></span>Reliable Partners</li>
-          <li><span class="dot"></span>Quality Products</li>
-          <li><span class="dot"></span>Global Network</li>
-          <li><span class="dot"></span>Growing Together</li>
+  <section class="section section-alt" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-eyebrow">What We Do</p>
+        <h2 class="section-title">Sourcing &amp; trade capability, end to end</h2>
+        <p class="section-lead">Products are just the entry point. What we deliver is sourcing, supplier coordination, OEM/ODM execution, quality follow-up, and supply chain reliability.</p>
+      </div>
+      <div class="cards-grid services-grid">
+        <article class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>Product Sourcing</h3><p>We source suitable products based on your target market, price range, quantity, packaging requirements, and compliance needs.</p></article>
+        <article class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 11a3 3 0 1 0-3-3"/><path d="M8 13a3 3 0 1 0 3 3"/><path d="M19 20a4 4 0 0 0-6-3.4"/><path d="M5 20a4 4 0 0 1 6-3.4"/></svg></div><h3>Supplier Coordination</h3><p>We connect you with qualified manufacturers, support supplier comparison, quotation collection, sample follow-up, and factory communication.</p></article>
+        <article class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20h18"/><path d="M5 20V9l5 3V9l5 3V6l4 2v12"/></svg></div><h3>OEM / ODM Support</h3><p>Private label projects, customized packaging, product development communication, MOQ negotiation, and sample preparation.</p></article>
+        <article class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v5c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Quality &amp; Sample Follow-up</h3><p>Sample coordination, quality requirement alignment, inspection follow-up, and supplier verification before you commit to orders.</p></article>
+        <article class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h13v10H3z"/><path d="M16 10h3l2 3v4h-5z"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg></div><h3>Import &amp; Export Support</h3><p>Trade communication support, product documentation coordination, shipping communication, and export process follow-up.</p></article>
+        <article class="card reveal"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l4-4 3 3 5-6 3 3"/><circle cx="6" cy="7" r="1.6"/><circle cx="18" cy="7" r="1.6"/><path d="M3 21h18"/></svg></div><h3>Supply Chain Solutions</h3><p>We help build flexible, reliable supply chains — coordinating products, suppliers, orders, quality, and delivery timelines.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="categories">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-eyebrow">Product Categories We Source</p>
+        <h2 class="section-title">Sourcing directions we focus on</h2>
+        <p class="section-lead">Not an off-the-shelf marketplace — these are the categories we actively source, verify, and coordinate for international buyers.</p>
+      </div>
+      <div class="cards-grid categories-grid">
+        <article class="cat-card reveal"><div class="cat-art" aria-hidden="true"><svg viewBox="0 0 64 64" fill="currentColor"><circle cx="20" cy="20" r="6"/><circle cx="44" cy="20" r="6"/><circle cx="12" cy="34" r="5"/><circle cx="52" cy="34" r="5"/><path d="M32 30c-7 0-13 6-13 13 0 5 4 7 13 7s13-2 13-7c0-7-6-13-13-13z"/></svg></div><div class="cat-body"><h3>Pet Care Products</h3><p>Pet bowls, leashes, cleaning, grooming &amp; toys</p></div></article>
+        <article class="cat-card reveal"><div class="cat-art" aria-hidden="true"><svg viewBox="0 0 64 64" fill="currentColor"><path d="M26 6h12v6h-12z"/><path d="M24 12h16l4 10v32a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4V22z"/><path d="M28 30h8v14h-8z" fill="#fff" opacity=".85"/></svg></div><div class="cat-body"><h3>Home Hygiene &amp; Odor Control</h3><p>Deodorizing sprays, cleaning &amp; home care sets</p></div></article>
+        <article class="cat-card reveal"><div class="cat-art" aria-hidden="true"><svg viewBox="0 0 64 64" fill="currentColor"><path d="M14 28c0-4 4-8 8-8 3 0 4 1 6 3l4 4 4-4c2-2 3-3 6-3 4 0 8 4 8 8 0 6-8 10-14 18-2 3-4 3-6 0-6-8-16-12-16-18z" opacity=".25"/><path d="M30 18h4v8h8v4h-8v8h-4v-8h-8v-4h8z"/></svg></div><div class="cat-body"><h3>Medical Disposables &amp; PPE</h3><p>Gloves, masks, disposables &amp; packaging</p></div></article>
+        <article class="cat-card reveal"><div class="cat-art" aria-hidden="true"><svg viewBox="0 0 64 64" fill="currentColor"><path d="M22 22v-4a10 10 0 0 1 20 0v4" fill="none" stroke="currentColor" stroke-width="4"/><path d="M16 22h32l3 30a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4z"/></svg></div><div class="cat-body"><h3>Bags &amp; Travel Accessories</h3><p>Bags, organizers &amp; travel accessories</p></div></article>
+        <article class="cat-card reveal"><div class="cat-art" aria-hidden="true"><svg viewBox="0 0 64 64" fill="currentColor"><path d="M24 10h16l-2 8h-12z"/><path d="M22 18h20l4 14-6 4-2-8v22a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V28l-2 8-6-4z"/></svg></div><div class="cat-body"><h3>Athleisure &amp; Wearables</h3><p>Sport socks, accessories, straps &amp; basics</p></div></article>
+        <article class="cat-card cat-card-cta reveal"><div class="cat-body"><h3>Looking for something else?</h3><p>Tell us the product, target market, and volume — we'll source and verify suppliers for you.</p><a href="#rfq" class="btn btn-primary btn-sm">Submit a sourcing request</a></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-navy" id="process">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-eyebrow light">How We Work</p>
+        <h2 class="section-title light">A clear sourcing workflow</h2>
+        <p class="section-lead light">From requirement to long-term supply — a transparent process built for B2B buyers.</p>
+      </div>
+      <ol class="process-grid">
+        <li class="step reveal"><span class="step-num">01</span><h3>Submit Requirement</h3><p>Share product, quantity, target price, market, packaging &amp; certification needs.</p></li>
+        <li class="step reveal"><span class="step-num">02</span><h3>Supplier Matching</h3><p>We identify and shortlist qualified manufacturers from our network.</p></li>
+        <li class="step reveal"><span class="step-num">03</span><h3>Quotation Comparison</h3><p>Collect and compare quotations, terms, MOQ, and lead times.</p></li>
+        <li class="step reveal"><span class="step-num">04</span><h3>Sample Coordination</h3><p>Arrange samples, confirm specs, packaging, and quality requirements.</p></li>
+        <li class="step reveal"><span class="step-num">05</span><h3>Order Follow-up</h3><p>Track production, quality, documentation, and shipping communication.</p></li>
+        <li class="step reveal"><span class="step-num">06</span><h3>Long-term Supply</h3><p>Build a stable, flexible supply chain partnership over time.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="why">
+    <div class="container why-grid">
+      <div class="why-copy reveal">
+        <p class="section-eyebrow">Why Concord Trade</p>
+        <h2 class="section-title">A sourcing partner, not just a supplier</h2>
+        <p class="section-lead">Tell us what you need. We help you find, compare, verify, and source the right products from reliable suppliers.</p>
+      </div>
+      <ul class="why-list reveal">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Reliable supplier connection &amp; network</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Efficient, clear sourcing communication</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Flexible MOQ &amp; OEM/ODM support</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Practical, hands-on trade execution</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Clear quotation &amp; sample follow-up</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Quality &amp; export document coordination</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="trust">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="section-eyebrow">Trust &amp; Execution</p>
+        <h2 class="section-title">How we reduce your sourcing risk</h2>
+      </div>
+      <div class="cards-grid trust-grid">
+        <article class="trust-card reveal"><div class="card-icon sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v5c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Supplier Verification</h3><p>We assess and shortlist suppliers before recommending them to you.</p></article>
+        <article class="trust-card reveal"><div class="card-icon sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16v13H4z"/><path d="M8 7V5h8v2"/><path d="M9 13l2 2 4-4"/></svg></div><h3>Quality Control</h3><p>Quality requirements, sample confirmation, and inspection follow-up.</p></article>
+        <article class="trust-card reveal"><div class="card-icon sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></div><h3>Packaging Customization</h3><p>Private label, custom packaging, labeling, and specification support.</p></article>
+        <article class="trust-card reveal"><div class="card-icon sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 14h6M10 17h6"/></svg></div><h3>Export Documentation</h3><p>Coordination of trade documents and export process communication.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="rfq">
+    <div class="container rfq-grid">
+      <div class="rfq-intro reveal">
+        <p class="section-eyebrow">Submit RFQ</p>
+        <h2 class="section-title">Request a quotation</h2>
+        <p class="section-lead">Tell us what you need. We'll find, compare, verify, and source the right products from reliable suppliers — then follow up on samples, quality, and delivery.</p>
+        <ul class="rfq-contacts">
+          <li><span class="rfq-contact-label">Sales</span><a href="mailto:tj@concord-trade.com">tj@concord-trade.com</a></li>
+          <li><span class="rfq-contact-label">General</span><a href="mailto:info@concord-trade.com">info@concord-trade.com</a></li>
+          <li><span class="rfq-contact-label">LinkedIn</span><a href="https://www.linkedin.com/company/concord-trade/" target="_blank" rel="noopener">linkedin.com/company/concord-trade</a></li>
         </ul>
       </div>
-    </section>
-
-    <!-- ============ ABOUT / INTRO ============ -->
-    <section class="section about" id="about">
-      <div class="container about-grid">
-        <div class="about-copy reveal">
-          <p class="section-eyebrow">Who We Are</p>
-          <h2 class="section-title">We connect global business with reliable supply.</h2>
-          <p>
-            Concord Trade is a B2B international trading and sourcing company focused on
-            connecting global buyers with reliable manufacturers, quality products, and
-            efficient supply chain solutions.
-          </p>
-          <p>
-            Our role is not only to find products, but to help clients reduce sourcing
-            risks, improve communication efficiency, compare supplier options, and build
-            stable business partnerships across international markets.
-          </p>
-          <p class="mission-line">Global Trade. Reliable Supply. Strategic Connections.</p>
+      <form class="rfq-form reveal" id="rfqForm" novalidate>
+        <div class="field-row">
+          <div class="field"><label for="name">Your name *</label><input type="text" id="name" name="name" required autocomplete="name"/></div>
+          <div class="field"><label for="company">Company</label><input type="text" id="company" name="company" autocomplete="organization"/></div>
         </div>
-        <div class="about-stats reveal">
-          <div class="stat">
-            <span class="stat-num">5+</span>
-            <span class="stat-label">Core product categories sourced</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">End&#8209;to&#8209;end</span>
-            <span class="stat-label">From RFQ to delivery follow-up</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">OEM / ODM</span>
-            <span class="stat-label">Private label &amp; custom packaging</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">Global</span>
-            <span class="stat-label">Supplier network &amp; export support</span>
-          </div>
+        <div class="field-row">
+          <div class="field"><label for="email">Email *</label><input type="email" id="email" name="email" required autocomplete="email"/></div>
+          <div class="field"><label for="market">Target market</label><input type="text" id="market" name="market" placeholder="e.g. US, EU, UK"/></div>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ SERVICES / WHAT WE DO ============ -->
-    <section class="section section-alt" id="services">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="section-eyebrow">What We Do</p>
-          <h2 class="section-title">Sourcing &amp; trade capability, end to end</h2>
-          <p class="section-lead">
-            Products are just the entry point. What we deliver is sourcing, supplier
-            coordination, OEM/ODM execution, quality follow-up, and supply chain reliability.
-          </p>
+        <div class="field"><label for="product">Product / category *</label><input type="text" id="product" name="product" required placeholder="e.g. pet grooming gloves, sport socks…"/></div>
+        <div class="field-row">
+          <div class="field"><label for="quantity">Target quantity</label><input type="text" id="quantity" name="quantity" placeholder="e.g. 5,000 pcs / month"/></div>
+          <div class="field"><label for="price">Target price</label><input type="text" id="price" name="price" placeholder="e.g. USD 1.20 / pc FOB"/></div>
         </div>
-
-        <div class="cards-grid services-grid">
-          <article class="card reveal">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-            </div>
-            <h3>Product Sourcing</h3>
-            <p>We source suitable products based on your target market, price range, quantity, packaging requirements, and compliance needs.</p>
-          </article>
-
-          <article class="card reveal">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 11a3 3 0 1 0-3-3"/><path d="M8 13a3 3 0 1 0 3 3"/><path d="M19 20a4 4 0 0 0-6-3.4"/><path d="M5 20a4 4 0 0 1 6-3.4"/></svg>
-            </div>
-            <h3>Supplier Coordination</h3>
-            <p>We connect you with qualified manufacturers, support supplier comparison, quotation collection, sample follow-up, and factory communication.</p>
-          </article>
-
-          <article class="card reveal">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20h18"/><path d="M5 20V9l5 3V9l5 3V6l4 2v12"/></svg>
-            </div>
-            <h3>OEM / ODM Support</h3>
-            <p>Private label projects, customized packaging, product development communication, MOQ negotiation, and sample preparation.</p>
-          </article>
-
-          <article class="card reveal">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v5c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
-            </div>
-            <h3>Quality &amp; Sample Follow-up</h3>
-            <p>Sample coordination, quality requirement alignment, inspection follow-up, and supplier verification before you commit to orders.</p>
-          </article>
-
-          <article class="card reveal">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h13v10H3z"/><path d="M16 10h3l2 3v4h-5z"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>
-            </div>
-            <h3>Import &amp; Export Support</h3>
-            <p>Trade communication support, product documentation coordination, shipping communication, and export process follow-up.</p>
-          </article>
-
-          <article class="card reveal">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l4-4 3 3 5-6 3 3"/><circle cx="6" cy="7" r="1.6"/><circle cx="18" cy="7" r="1.6"/><path d="M3 21h18"/></svg>
-            </div>
-            <h3>Supply Chain Solutions</h3>
-            <p>We help build flexible, reliable supply chains — coordinating products, suppliers, orders, quality, and delivery timelines.</p>
-          </article>
+        <div class="field-row">
+          <div class="field"><label for="packaging">Packaging needs</label><input type="text" id="packaging" name="packaging" placeholder="e.g. private label, color box"/></div>
+          <div class="field"><label for="certification">Certification requirements</label><input type="text" id="certification" name="certification" placeholder="e.g. CE, FDA, ISO…"/></div>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ PRODUCT CATEGORIES ============ -->
-    <section class="section" id="categories">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="section-eyebrow">Product Categories We Source</p>
-          <h2 class="section-title">Sourcing directions we focus on</h2>
-          <p class="section-lead">
-            Not an off-the-shelf marketplace — these are the categories we actively source,
-            verify, and coordinate for international buyers.
-          </p>
-        </div>
-
-        <div class="cards-grid categories-grid">
-          <article class="cat-card reveal">
-            <div class="cat-art cat-pet" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="currentColor"><circle cx="20" cy="20" r="6"/><circle cx="44" cy="20" r="6"/><circle cx="12" cy="34" r="5"/><circle cx="52" cy="34" r="5"/><path d="M32 30c-7 0-13 6-13 13 0 5 4 7 13 7s13-2 13-7c0-7-6-13-13-13z"/></svg>
-            </div>
-            <div class="cat-body">
-              <h3>Pet Care Products</h3>
-              <p>Pet bowls, leashes, cleaning, grooming &amp; toys</p>
-            </div>
-          </article>
-
-          <article class="cat-card reveal">
-            <div class="cat-art cat-hygiene" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="currentColor"><path d="M26 6h12v6h-12z"/><path d="M24 12h16l4 10v32a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4V22z"/><path d="M28 30h8v14h-8z" fill="#fff" opacity="0.85"/></svg>
-            </div>
-            <div class="cat-body">
-              <h3>Home Hygiene &amp; Odor Control</h3>
-              <p>Deodorizing sprays, cleaning &amp; home care sets</p>
-            </div>
-          </article>
-
-          <article class="cat-card reveal">
-            <div class="cat-art cat-medical" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="currentColor"><path d="M14 28c0-4 4-8 8-8 3 0 4 1 6 3l4 4 4-4c2-2 3-3 6-3 4 0 8 4 8 8 0 6-8 10-14 18-2 3-4 3-6 0-6-8-16-12-16-18z" opacity="0.25"/><path d="M30 18h4v8h8v4h-8v8h-4v-8h-8v-4h8z"/></svg>
-            </div>
-            <div class="cat-body">
-              <h3>Medical Disposables &amp; PPE</h3>
-              <p>Gloves, masks, disposables &amp; packaging</p>
-            </div>
-          </article>
-
-          <article class="cat-card reveal">
-            <div class="cat-art cat-bags" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="currentColor"><path d="M22 22v-4a10 10 0 0 1 20 0v4" fill="none" stroke="currentColor" stroke-width="4"/><path d="M16 22h32l3 30a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4z"/></svg>
-            </div>
-            <div class="cat-body">
-              <h3>Bags &amp; Travel Accessories</h3>
-              <p>Bags, organizers &amp; travel accessories</p>
-            </div>
-          </article>
-
-          <article class="cat-card reveal">
-            <div class="cat-art cat-athleisure" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="currentColor"><path d="M24 10h16l-2 8h-12z"/><path d="M22 18h20l4 14-6 4-2-8v22a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V28l-2 8-6-4z"/></svg>
-            </div>
-            <div class="cat-body">
-              <h3>Athleisure &amp; Wearables</h3>
-              <p>Sport socks, accessories, straps &amp; basics</p>
-            </div>
-          </article>
-
-          <article class="cat-card cat-card-cta reveal">
-            <div class="cat-body">
-              <h3>Looking for something else?</h3>
-              <p>Tell us the product, target market, and volume — we'll source and verify suppliers for you.</p>
-              <a href="#rfq" class="btn btn-primary btn-sm">Submit a sourcing request</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ HOW WE WORK / PROCESS ============ -->
-    <section class="section section-navy" id="process">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="section-eyebrow light">How We Work</p>
-          <h2 class="section-title light">A clear sourcing workflow</h2>
-          <p class="section-lead light">
-            From requirement to long-term supply — a transparent process built for B2B buyers.
-          </p>
-        </div>
-
-        <ol class="process-grid">
-          <li class="step reveal"><span class="step-num">01</span><h3>Submit Requirement</h3><p>Share product, quantity, target price, market, packaging &amp; certification needs.</p></li>
-          <li class="step reveal"><span class="step-num">02</span><h3>Supplier Matching</h3><p>We identify and shortlist qualified manufacturers from our network.</p></li>
-          <li class="step reveal"><span class="step-num">03</span><h3>Quotation Comparison</h3><p>Collect and compare quotations, terms, MOQ, and lead times.</p></li>
-          <li class="step reveal"><span class="step-num">04</span><h3>Sample Coordination</h3><p>Arrange samples, confirm specs, packaging, and quality requirements.</p></li>
-          <li class="step reveal"><span class="step-num">05</span><h3>Order Follow-up</h3><p>Track production, quality, documentation, and shipping communication.</p></li>
-          <li class="step reveal"><span class="step-num">06</span><h3>Long-term Supply</h3><p>Build a stable, flexible supply chain partnership over time.</p></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============ WHY CONCORD TRADE ============ -->
-    <section class="section section-alt" id="why">
-      <div class="container why-grid">
-        <div class="why-copy reveal">
-          <p class="section-eyebrow">Why Concord Trade</p>
-          <h2 class="section-title">A sourcing partner, not just a supplier</h2>
-          <p class="section-lead">
-            Tell us what you need. We help you find, compare, verify, and source the right
-            products from reliable suppliers.
-          </p>
-        </div>
-        <ul class="why-list reveal">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Reliable supplier connection &amp; network</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Efficient, clear sourcing communication</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Flexible MOQ &amp; OEM/ODM support</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Practical, hands-on trade execution</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Clear quotation &amp; sample follow-up</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Quality &amp; export document coordination</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ TRUST / QUALITY ============ -->
-    <section class="section" id="trust">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="section-eyebrow">Trust &amp; Execution</p>
-          <h2 class="section-title">How we reduce your sourcing risk</h2>
-        </div>
-        <div class="cards-grid trust-grid">
-          <article class="trust-card reveal">
-            <div class="card-icon sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v5c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
-            <h3>Supplier Verification</h3>
-            <p>We assess and shortlist suppliers before recommending them to you.</p>
-          </article>
-          <article class="trust-card reveal">
-            <div class="card-icon sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16v13H4z"/><path d="M8 7V5h8v2"/><path d="M9 13l2 2 4-4"/></svg></div>
-            <h3>Quality Control</h3>
-            <p>Quality requirements, sample confirmation, and inspection follow-up.</p>
-          </article>
-          <article class="trust-card reveal">
-            <div class="card-icon sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></div>
-            <h3>Packaging Customization</h3>
-            <p>Private label, custom packaging, labeling, and specification support.</p>
-          </article>
-          <article class="trust-card reveal">
-            <div class="card-icon sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 14h6M10 17h6"/></svg></div>
-            <h3>Export Documentation</h3>
-            <p>Coordination of trade documents and export process communication.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ RFQ FORM ============ -->
-    <section class="section section-alt" id="rfq">
-      <div class="container rfq-grid">
-        <div class="rfq-intro reveal">
-          <p class="section-eyebrow">Submit RFQ</p>
-          <h2 class="section-title">Request a quotation</h2>
-          <p class="section-lead">
-            Tell us what you need. We'll find, compare, verify, and source the right products
-            from reliable suppliers — then follow up on samples, quality, and delivery.
-          </p>
-          <ul class="rfq-contacts">
-            <li>
-              <span class="rfq-contact-label">Sales</span>
-              <a href="mailto:tj@concord-trade.com">tj@concord-trade.com</a>
-            </li>
-            <li>
-              <span class="rfq-contact-label">General</span>
-              <a href="mailto:info@concord-trade.com">info@concord-trade.com</a>
-            </li>
-            <li>
-              <span class="rfq-contact-label">LinkedIn</span>
-              <a href="https://www.linkedin.com/company/concord-trade/" target="_blank" rel="noopener">linkedin.com/company/concord-trade</a>
-            </li>
-          </ul>
-        </div>
-
-        <form class="rfq-form reveal" id="rfqForm" novalidate>
-          <div class="field-row">
-            <div class="field">
-              <label for="name">Your name *</label>
-              <input type="text" id="name" name="name" required autocomplete="name" />
-            </div>
-            <div class="field">
-              <label for="company">Company</label>
-              <input type="text" id="company" name="company" autocomplete="organization" />
-            </div>
-          </div>
-
-          <div class="field-row">
-            <div class="field">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" required autocomplete="email" />
-            </div>
-            <div class="field">
-              <label for="market">Target market</label>
-              <input type="text" id="market" name="market" placeholder="e.g. US, EU, UK" />
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="product">Product / category *</label>
-            <input type="text" id="product" name="product" required placeholder="e.g. pet grooming gloves, sport socks…" />
-          </div>
-
-          <div class="field-row">
-            <div class="field">
-              <label for="quantity">Target quantity</label>
-              <input type="text" id="quantity" name="quantity" placeholder="e.g. 5,000 pcs / month" />
-            </div>
-            <div class="field">
-              <label for="price">Target price</label>
-              <input type="text" id="price" name="price" placeholder="e.g. USD 1.20 / pc FOB" />
-            </div>
-          </div>
-
-          <div class="field-row">
-            <div class="field">
-              <label for="packaging">Packaging needs</label>
-              <input type="text" id="packaging" name="packaging" placeholder="e.g. private label, color box" />
-            </div>
-            <div class="field">
-              <label for="certification">Certification requirements</label>
-              <input type="text" id="certification" name="certification" placeholder="e.g. CE, FDA, ISO…" />
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="message">Additional details</label>
-            <textarea id="message" name="message" rows="4" placeholder="Anything else we should know about your project…"></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-block">Send RFQ</button>
-          <p class="form-note" id="formNote" role="status"></p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <!-- ============ FOOTER / CONTACT ============ -->
-  <footer class="site-footer" id="contact">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <img src="assets/logo.svg" alt="Concord Trade" width="44" height="44" />
-        <span class="footer-name">CONCORD TRADE</span>
-        <p class="footer-mission">Global Trade. Reliable Supply. Strategic Connections.</p>
-        <p class="footer-desc">
-          International sourcing &amp; trade partner. We make global sourcing simpler,
-          safer, and more efficient for international businesses.
-        </p>
-      </div>
-
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="#about">About</a>
-        <a href="#services">What We Do</a>
-        <a href="#categories">Categories</a>
-        <a href="#process">How We Work</a>
-        <a href="#why">Why Us</a>
-      </div>
-
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="mailto:tj@concord-trade.com">tj@concord-trade.com</a>
-        <a href="mailto:info@concord-trade.com">info@concord-trade.com</a>
-        <a href="https://www.linkedin.com/company/concord-trade/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="#rfq">Submit RFQ</a>
-      </div>
+        <div class="field"><label for="message">Additional details</label><textarea id="message" name="message" rows="4" placeholder="Anything else we should know about your project…"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-block">Send RFQ</button>
+        <p class="form-note" id="formNote" role="status"></p>
+      </form>
     </div>
+  </section>
+</main>
 
-    <div class="footer-bottom">
-      <div class="container footer-bottom-inner">
-        <span>&copy; <span id="year"></span> Concord Trade. All rights reserved.</span>
-        <span>www.concord-trade.com</span>
-      </div>
+<footer class="site-footer" id="contact">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <svg class="footer-logo" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M14.3 63 A38 38 0 0 1 85.7 37" fill="none" stroke="#16335a" stroke-width="13" stroke-linecap="round"/>
+        <path d="M85.7 37 A38 38 0 0 1 14.3 63" fill="none" stroke="#98a2ad" stroke-width="13" stroke-linecap="round"/>
+        <path d="M47 43 L86 39 L82 51 L43 53 Z" fill="#16335a"/>
+        <path d="M53 57 L14 61 L18 49 L57 47 Z" fill="#98a2ad"/>
+      </svg>
+      <span class="footer-name">CONCORD TRADE</span>
+      <p class="footer-mission">Global Trade. Reliable Supply. Strategic Connections.</p>
+      <p class="footer-desc">International sourcing &amp; trade partner. We make global sourcing simpler, safer, and more efficient for international businesses.</p>
     </div>
-  </footer>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#about">About</a><a href="#services">What We Do</a><a href="#categories">Categories</a><a href="#process">How We Work</a><a href="#why">Why Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:tj@concord-trade.com">tj@concord-trade.com</a>
+      <a href="mailto:info@concord-trade.com">info@concord-trade.com</a>
+      <a href="https://www.linkedin.com/company/concord-trade/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#rfq">Submit RFQ</a>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="container footer-bottom-inner"><span>&copy; <span id="year"></span> Concord Trade. All rights reserved.</span><span>www.concord-trade.com</span></div></div>
+</footer>
 
-  <script src="script.js"></script>
+<script>
+(function(){
+  document.getElementById('year').textContent=new Date().getFullYear();
+  var header=document.querySelector('.site-header');
+  function onScroll(){window.scrollY>8?header.classList.add('scrolled'):header.classList.remove('scrolled');}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var toggle=document.getElementById('navToggle'),nav=document.getElementById('mainNav');
+  toggle.addEventListener('click',function(){var o=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',o?'true':'false');});
+  nav.addEventListener('click',function(e){if(e.target.tagName==='A'){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');}});
+  var reveals=document.querySelectorAll('.reveal');
+  if('IntersectionObserver'in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});reveals.forEach(function(el){io.observe(el);});}else{reveals.forEach(function(el){el.classList.add('in');});}
+  var form=document.getElementById('rfqForm'),note=document.getElementById('formNote');
+  function v(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();var ok=true;
+    ['name','email','product'].forEach(function(id){var el=document.getElementById(id);if(!el.value.trim()){el.classList.add('invalid');ok=false;}else{el.classList.remove('invalid');}});
+    var em=document.getElementById('email');
+    if(em.value&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim())){em.classList.add('invalid');ok=false;}
+    if(!ok){note.textContent='Please complete the required fields (name, a valid email, and product).';note.className='form-note err';return;}
+    var lines=['New RFQ from Concord Trade website','','Name: '+v('name'),'Company: '+(v('company')||'-'),'Email: '+v('email'),'Target market: '+(v('market')||'-'),'','Product / category: '+v('product'),'Target quantity: '+(v('quantity')||'-'),'Target price: '+(v('price')||'-'),'Packaging needs: '+(v('packaging')||'-'),'Certification requirements: '+(v('certification')||'-'),'','Additional details:',(v('message')||'-')];
+    var subject='RFQ — '+v('product')+(v('company')?' ('+v('company')+')':'');
+    window.location.href='mailto:info@concord-trade.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(lines.join('\n'));
+    note.textContent='Opening your email app to send this RFQ to info@concord-trade.com. If nothing opens, email us directly.';note.className='form-note ok';
+  });
+  form.addEventListener('input',function(e){if(e.target.classList.contains('invalid'))e.target.classList.remove('invalid');});
+})();
+</script>
 </body>
 </html>

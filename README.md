@@ -38,13 +38,23 @@ composes a structured email to `info@concord-trade.com` via `mailto:`.
 form backend such as [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com):
 in `script.js`, replace the `mailto:` handler with a `fetch()` POST to your endpoint.
 
+## SEO & social sharing
+- **Open Graph + Twitter Card** meta so links shared on LinkedIn / X / chat render a
+  branded preview card (`assets/social-card.png`, 1200×630).
+- **JSON-LD `Organization`** structured data (logo, slogan, product focus areas,
+  LinkedIn `sameAs`, and `sales` / `customer service` contact emails) for richer
+  search-engine results.
+- Canonical URL + `theme-color`.
+
 ## Files
 ```
-index.html        # all sections / markup
-styles.css        # design system + responsive layout
-script.js         # nav, scroll reveals, RFQ form handler
-assets/logo.svg   # Concord Trade mark
+index.html              # all sections / markup + SEO + structured data
+styles.css              # design system + responsive layout
+script.js               # nav, scroll reveals, RFQ form handler
+assets/logo.svg         # Concord Trade mark
 assets/favicon.svg
+assets/social-card.svg  # source for the social preview card
+assets/social-card.png  # 1200×630 Open Graph / Twitter share image
 ```
 
 ## Run locally

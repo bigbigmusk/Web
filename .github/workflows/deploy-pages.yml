@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["claude/b2b-showcase-page-WZo02", claude/admiring-hypatia-t1Wkd", "claude/concord-trade-b2b-site-mLMTL", "main"]
+    branches: ["claude/b2b-showcase-page-WZo02", "claude/admiring-hypatia-t1Wkd", "claude/concord-trade-b2b-site-mLMTL", "main"]
   workflow_dispatch:
 
 permissions:

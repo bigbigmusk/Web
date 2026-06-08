@@ -57,15 +57,26 @@ switcher (EN / 中文 / ES / FR). Implementation is dependency-free:
   search-engine results.
 - Canonical URL + `theme-color`.
 
+## Brand assets
+The logo is the customer's official artwork (`assets/7BAC…PNG` master). The header /
+footer / favicon / share card are cropped straight from it — no redrawn approximation:
+```
+assets/logo-mark.png          # emblem, transparent (header + JSON-LD logo)
+assets/logo-wordmark.png      # "CONCORD TRADE" wordmark, transparent (header)
+assets/logo-mark-white.png    # white emblem for the dark footer
+assets/logo-wordmark-white.png# white wordmark for the dark footer
+assets/favicon.png            # emblem on a white rounded tile
+assets/social-card.svg        # source for the 1200×630 share card
+assets/social-card.png        # Open Graph / Twitter share image (uses the real emblem)
+```
+
 ## Files
 ```
-index.html              # all sections / markup + SEO + structured data
+index.html              # all sections / markup + i18n hooks + SEO + structured data
 styles.css              # design system + responsive layout
 script.js               # nav, scroll reveals, RFQ form handler
-assets/logo.svg         # Concord Trade mark
-assets/favicon.svg
-assets/social-card.svg  # source for the social preview card
-assets/social-card.png  # 1200×630 Open Graph / Twitter share image
+translations.js         # EN / ZH / ES / FR copy
+i18n.js                 # language switcher engine
 ```
 
 ## Run locally

@@ -58,6 +58,11 @@
     return el ? el.value.trim() : '';
   }
 
+  // Localised message helper (falls back to English when i18n is absent)
+  function msg(key, fallback) {
+    return (window.I18N && window.I18N.t) ? window.I18N.t(key) : fallback;
+  }
+
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -76,7 +81,7 @@
       }
 
       if (!ok) {
-        note.textContent = 'Please complete the required fields (name, a valid email, and product).';
+        note.textContent = msg('form_err', 'Please complete the required fields (name, a valid email, and product).');
         note.className = 'form-note err';
         return;
       }
@@ -105,7 +110,7 @@
 
       window.location.href = mailto;
 
-      note.textContent = 'Opening your email app to send this RFQ to info@concord-trade.com. If nothing opens, email us directly.';
+      note.textContent = msg('form_ok', 'Opening your email app to send this RFQ to info@concord-trade.com. If nothing opens, email us directly.');
       note.className = 'form-note ok';
     });
 

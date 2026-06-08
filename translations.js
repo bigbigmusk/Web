@@ -11,6 +11,7 @@ window.TRANSLATIONS = {
     brand_tag: "Global Trade · Reliable Supply",
     nav_services: "What We Do",
     nav_categories: "Categories",
+    nav_products: "Products",
     nav_process: "How We Work",
     nav_why: "Why Us",
     nav_contact: "Contact",
@@ -63,6 +64,10 @@ window.TRANSLATIONS = {
     catctat: "Looking for something else?",
     catctad: "Tell us the product, target market, and volume — we'll source and verify suppliers for you.",
     catctabtn: "Submit a sourcing request",
+
+    gal_eyebrow: "Product Showcase",
+    gal_title: "Real products we source & ship",
+    gal_lead: "A snapshot of recent sourcing across our core categories — verified suppliers, quality-checked samples, export-ready packaging.",
 
     proc_eyebrow: "How We Work",
     proc_title: "A clear sourcing workflow",
@@ -121,6 +126,7 @@ window.TRANSLATIONS = {
     brand_tag: "全球贸易 · 可靠供应",
     nav_services: "业务范围",
     nav_categories: "产品品类",
+    nav_products: "产品",
     nav_process: "合作流程",
     nav_why: "为何选择我们",
     nav_contact: "联系我们",
@@ -173,6 +179,10 @@ window.TRANSLATIONS = {
     catctat: "在找其他产品？",
     catctad: "告诉我们产品、目标市场与采购量——我们将为您寻源并核实供应商。",
     catctabtn: "提交寻源需求",
+
+    gal_eyebrow: "产品实拍",
+    gal_title: "我们采购并发运的真实产品",
+    gal_lead: "近期核心品类采购的部分实拍——经核实的供应商、质检过的样品、可出口的包装。",
 
     proc_eyebrow: "合作流程",
     proc_title: "清晰的采购工作流",
@@ -231,6 +241,7 @@ window.TRANSLATIONS = {
     brand_tag: "Comercio global · Suministro fiable",
     nav_services: "Qué hacemos",
     nav_categories: "Categorías",
+    nav_products: "Productos",
     nav_process: "Cómo trabajamos",
     nav_why: "Por qué nosotros",
     nav_contact: "Contacto",
@@ -283,6 +294,10 @@ window.TRANSLATIONS = {
     catctat: "¿Busca algo más?",
     catctad: "Díganos el producto, el mercado objetivo y el volumen, y abasteceremos y verificaremos proveedores para usted.",
     catctabtn: "Enviar una solicitud de abastecimiento",
+
+    gal_eyebrow: "Catálogo de productos",
+    gal_title: "Productos reales que abastecemos y enviamos",
+    gal_lead: "Una muestra de abastecimientos recientes en nuestras categorías clave: proveedores verificados, muestras con control de calidad y embalaje listo para exportar.",
 
     proc_eyebrow: "Cómo trabajamos",
     proc_title: "Un flujo de abastecimiento claro",
@@ -341,6 +356,7 @@ window.TRANSLATIONS = {
     brand_tag: "Commerce mondial · Approvisionnement fiable",
     nav_services: "Ce que nous faisons",
     nav_categories: "Catégories",
+    nav_products: "Produits",
     nav_process: "Notre méthode",
     nav_why: "Pourquoi nous",
     nav_contact: "Contact",
@@ -393,6 +409,10 @@ window.TRANSLATIONS = {
     catctat: "Vous cherchez autre chose ?",
     catctad: "Indiquez-nous le produit, le marché cible et le volume : nous sourçons et vérifions les fournisseurs pour vous.",
     catctabtn: "Envoyer une demande de sourcing",
+
+    gal_eyebrow: "Aperçu produits",
+    gal_title: "Des produits réels que nous sourçons et expédions",
+    gal_lead: "Un aperçu de sourcings récents dans nos catégories clés : fournisseurs vérifiés, échantillons contrôlés, emballage prêt à l'export.",
 
     proc_eyebrow: "Notre méthode",
     proc_title: "Un flux de sourcing clair",

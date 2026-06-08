@@ -94,6 +94,7 @@
       <nav class="main-nav" id="mainNav" aria-label="Primary">
         <a href="#services" data-i18n="nav_services">What We Do</a>
         <a href="#categories" data-i18n="nav_categories">Categories</a>
+        <a href="#products" data-i18n="nav_products">Products</a>
         <a href="#process" data-i18n="nav_process">How We Work</a>
         <a href="#why" data-i18n="nav_why">Why Us</a>
         <a href="#contact" data-i18n="nav_contact">Contact</a>
@@ -117,30 +118,7 @@
     <!-- ============ HERO ============ -->
     <section class="hero">
       <div class="hero-bg" aria-hidden="true">
-        <svg class="world-net" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="glow" cx="68%" cy="38%" r="60%">
-              <stop offset="0%" stop-color="#1d3a63" stop-opacity="0.10" />
-              <stop offset="100%" stop-color="#1d3a63" stop-opacity="0" />
-            </radialGradient>
-          </defs>
-          <rect width="1200" height="600" fill="url(#glow)" />
-          <g class="net-lines" stroke="#1d3a63" stroke-opacity="0.18" stroke-width="1" fill="none">
-            <path d="M160,420 C420,300 620,360 820,180" />
-            <path d="M160,420 C300,520 560,500 880,440" />
-            <path d="M820,180 C980,240 1040,360 880,440" />
-            <path d="M420,140 C560,220 700,200 820,180" />
-            <path d="M260,260 C380,200 360,360 420,420" />
-            <path d="M880,440 C1000,460 1080,520 1140,500" />
-            <path d="M420,140 C260,180 200,300 260,260" />
-          </g>
-          <g class="net-nodes" fill="#1d3a63">
-            <circle cx="160" cy="420" r="5" /><circle cx="820" cy="180" r="6" />
-            <circle cx="880" cy="440" r="5" /><circle cx="420" cy="140" r="5" />
-            <circle cx="260" cy="260" r="4" /><circle cx="1140" cy="500" r="4" />
-            <circle cx="620" cy="300" r="3" /><circle cx="560" cy="480" r="3" />
-          </g>
-        </svg>
+        <img src="assets/concord_trade_web_images_v1/hero.jpg" alt="" class="hero-photo" />
       </div>
 
       <div class="container hero-inner">
@@ -166,21 +144,26 @@
 
     <!-- ============ ABOUT / INTRO ============ -->
     <section class="section about" id="about">
-      <div class="container about-grid">
-        <div class="about-copy reveal">
-          <p class="section-eyebrow" data-i18n="about_eyebrow">Who We Are</p>
-          <h2 class="section-title" data-i18n="about_title">We connect global business with reliable supply.</h2>
-          <p data-i18n="about_p1">
-            Concord Trade is a B2B international trading and sourcing company focused on
-            connecting global buyers with reliable manufacturers, quality products, and
-            efficient supply chain solutions.
-          </p>
-          <p data-i18n="about_p2">
-            Our role is not only to find products, but to help clients reduce sourcing
-            risks, improve communication efficiency, compare supplier options, and build
-            stable business partnerships across international markets.
-          </p>
-          <p class="mission-line" data-i18n="about_mission">Global Trade. Reliable Supply. Strategic Connections.</p>
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-copy reveal">
+            <p class="section-eyebrow" data-i18n="about_eyebrow">Who We Are</p>
+            <h2 class="section-title" data-i18n="about_title">We connect global business with reliable supply.</h2>
+            <p data-i18n="about_p1">
+              Concord Trade is a B2B international trading and sourcing company focused on
+              connecting global buyers with reliable manufacturers, quality products, and
+              efficient supply chain solutions.
+            </p>
+            <p data-i18n="about_p2">
+              Our role is not only to find products, but to help clients reduce sourcing
+              risks, improve communication efficiency, compare supplier options, and build
+              stable business partnerships across international markets.
+            </p>
+            <p class="mission-line" data-i18n="about_mission">Global Trade. Reliable Supply. Strategic Connections.</p>
+          </div>
+          <div class="about-media reveal">
+            <img src="assets/concord_trade_web_images_v1/about.jpg" alt="" loading="lazy" />
+          </div>
         </div>
         <div class="about-stats reveal">
           <div class="stat">
@@ -281,8 +264,8 @@
 
         <div class="cards-grid categories-grid">
           <article class="cat-card reveal">
-            <div class="cat-art cat-pet" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="currentColor"><circle cx="20" cy="20" r="6"/><circle cx="44" cy="20" r="6"/><circle cx="12" cy="34" r="5"/><circle cx="52" cy="34" r="5"/><path d="M32 30c-7 0-13 6-13 13 0 5 4 7 13 7s13-2 13-7c0-7-6-13-13-13z"/></svg>
+            <div class="cat-art">
+              <img src="assets/concord_trade_web_images_v1/cat-pet.jpg" alt="" loading="lazy" />
             </div>
             <div class="cat-body">
               <h3 data-i18n="cat1t">Pet Care Products</h3>
@@ -291,8 +274,8 @@
           </article>
 
           <article class="cat-card reveal">
-            <div class="cat-art cat-hygiene" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="currentColor"><path d="M26 6h12v6h-12z"/><path d="M24 12h16l4 10v32a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4V22z"/><path d="M28 30h8v14h-8z" fill="#fff" opacity="0.85"/></svg>
+            <div class="cat-art">
+              <img src="assets/concord_trade_web_images_v1/cat-hygiene.jpg" alt="" loading="lazy" />
             </div>
             <div class="cat-body">
               <h3 data-i18n="cat2t">Home Hygiene &amp; Odor Control</h3>
@@ -301,8 +284,8 @@
           </article>
 
           <article class="cat-card reveal">
-            <div class="cat-art cat-medical" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="currentColor"><path d="M14 28c0-4 4-8 8-8 3 0 4 1 6 3l4 4 4-4c2-2 3-3 6-3 4 0 8 4 8 8 0 6-8 10-14 18-2 3-4 3-6 0-6-8-16-12-16-18z" opacity="0.25"/><path d="M30 18h4v8h8v4h-8v8h-4v-8h-8v-4h8z"/></svg>
+            <div class="cat-art">
+              <img src="assets/concord_trade_web_images_v1/cat-medical.jpg" alt="" loading="lazy" />
             </div>
             <div class="cat-body">
               <h3 data-i18n="cat3t">Medical Disposables &amp; PPE</h3>
@@ -311,8 +294,8 @@
           </article>
 
           <article class="cat-card reveal">
-            <div class="cat-art cat-bags" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="currentColor"><path d="M22 22v-4a10 10 0 0 1 20 0v4" fill="none" stroke="currentColor" stroke-width="4"/><path d="M16 22h32l3 30a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4z"/></svg>
+            <div class="cat-art">
+              <img src="assets/concord_trade_web_images_v1/cat-bags.jpg" alt="" loading="lazy" />
             </div>
             <div class="cat-body">
               <h3 data-i18n="cat4t">Bags &amp; Travel Accessories</h3>
@@ -321,8 +304,8 @@
           </article>
 
           <article class="cat-card reveal">
-            <div class="cat-art cat-athleisure" aria-hidden="true">
-              <svg viewBox="0 0 64 64" fill="currentColor"><path d="M24 10h16l-2 8h-12z"/><path d="M22 18h20l4 14-6 4-2-8v22a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V28l-2 8-6-4z"/></svg>
+            <div class="cat-art">
+              <img src="assets/concord_trade_web_images_v1/cat-athleisure.jpg" alt="" loading="lazy" />
             </div>
             <div class="cat-body">
               <h3 data-i18n="cat5t">Athleisure &amp; Wearables</h3>
@@ -337,6 +320,28 @@
               <a href="#rfq" class="btn btn-primary btn-sm" data-i18n="catctabtn">Submit a sourcing request</a>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRODUCT SHOWCASE / GALLERY ============ -->
+    <section class="section section-alt" id="products">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-eyebrow" data-i18n="gal_eyebrow">Product Showcase</p>
+          <h2 class="section-title" data-i18n="gal_title">Real products we source &amp; ship</h2>
+          <p class="section-lead" data-i18n="gal_lead">
+            A snapshot of recent sourcing across our core categories — verified suppliers,
+            quality-checked samples, export-ready packaging.
+          </p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-item reveal"><img src="assets/concord_trade_web_images_v1/gallery-1.jpg" alt="" loading="lazy" /></figure>
+          <figure class="gallery-item reveal"><img src="assets/concord_trade_web_images_v1/gallery-2.jpg" alt="" loading="lazy" /></figure>
+          <figure class="gallery-item reveal"><img src="assets/concord_trade_web_images_v1/gallery-3.jpg" alt="" loading="lazy" /></figure>
+          <figure class="gallery-item reveal"><img src="assets/concord_trade_web_images_v1/gallery-4.jpg" alt="" loading="lazy" /></figure>
+          <figure class="gallery-item reveal"><img src="assets/concord_trade_web_images_v1/gallery-5.jpg" alt="" loading="lazy" /></figure>
+          <figure class="gallery-item reveal"><img src="assets/concord_trade_web_images_v1/gallery-6.jpg" alt="" loading="lazy" /></figure>
         </div>
       </div>
     </section>
@@ -523,6 +528,7 @@
         <a href="#about" data-i18n="foot_about">About</a>
         <a href="#services" data-i18n="nav_services">What We Do</a>
         <a href="#categories" data-i18n="nav_categories">Categories</a>
+        <a href="#products" data-i18n="nav_products">Products</a>
         <a href="#process" data-i18n="nav_process">How We Work</a>
         <a href="#why" data-i18n="nav_why">Why Us</a>
       </div>

@@ -85,3 +85,18 @@ Just open `index.html`, or serve the folder:
 python3 -m http.server 8000
 # → http://localhost:8000
 ```
+
+## Deployment (Cloudflare Pages)
+Static site, no build step. Hosted on **Cloudflare Pages**, connected to this
+repo and auto-deploying on every push to **`main`**.
+
+Cloudflare Pages project settings:
+- Production branch: `main`
+- Framework preset: `None`
+- Build command: *(empty)*
+- Build output directory: `/`
+
+`_headers` (Cloudflare syntax) applies the security headers and asset caching.
+The custom domain `www.concord-trade.com` is configured in the Cloudflare Pages
+dashboard (Custom domains), not via a repo file.
+

@@ -30,13 +30,8 @@
     <circle cx="820" cy="240" r="4"/><circle cx="1140" cy="260" r="4"/>
   </g>
 
-  <!-- ===== Logo mark ===== -->
-  <g transform="translate(96,205) scale(2.2)">
-    <path d="M13.14 53.22 A37 37 0 0 1 84.06 35.54" fill="none" stroke="#16335a" stroke-width="12.5" stroke-linecap="round"/>
-    <path d="M86.86 46.78 A37 37 0 0 1 15.94 64.46" fill="none" stroke="#98a2ad" stroke-width="12.5" stroke-linecap="round"/>
-    <path d="M 35.63 41.99 L 94.82 27.23 L 97.36 37.42 L 38.18 52.18 Z" fill="#16335a"/>
-    <path d="M 64.37 58.01 L 5.18 72.77 L 2.64 62.58 L 61.82 47.82 Z" fill="#98a2ad"/>
-  </g>
+  <!-- ===== Logo mark (real emblem) ===== -->
+  <image href="logo-mark.png" x="99" y="240" width="194" height="150" preserveAspectRatio="xMidYMid meet"/>
 
   <!-- ===== Text block ===== -->
   <text x="372" y="232" font-family="Outfit" font-weight="700" font-size="24" letter-spacing="3" fill="#1d3a63">INTERNATIONAL SOURCING &amp; TRADE PARTNER</text>

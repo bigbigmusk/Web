@@ -68,11 +68,9 @@ a { color: inherit; text-decoration: none; }
 .site-header.scrolled { box-shadow: var(--shadow-sm); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
 
-.brand { display: flex; align-items: center; gap: 12px; }
-.brand-mark { border-radius: 8px; }
-.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-.brand-name { font-weight: 800; letter-spacing: 0.14em; color: var(--navy); font-size: 1.02rem; }
-.brand-tag { font-size: 0.66rem; letter-spacing: 0.08em; color: var(--silver); text-transform: uppercase; }
+.brand { display: flex; align-items: center; gap: 13px; }
+.brand-mark { height: 40px; width: auto; }
+.brand-word { height: 19px; width: auto; }
 
 .main-nav { display: flex; align-items: center; gap: 30px; }
 .main-nav a { font-size: 0.92rem; font-weight: 500; color: var(--muted); transition: color .2s; }
@@ -258,8 +256,8 @@ a { color: inherit; text-decoration: none; }
 /* ---------- Footer ---------- */
 .site-footer { background: var(--navy-900); color: rgba(255,255,255,0.78); }
 .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; padding: 70px 24px 50px; }
-.footer-brand img { border-radius: 8px; background: #fff; padding: 4px; }
-.footer-name { display: block; font-weight: 800; letter-spacing: 0.14em; color: #fff; margin-top: 16px; }
+.footer-mark { height: 50px; width: auto; display: block; }
+.footer-word { height: 19px; width: auto; display: block; margin-top: 14px; }
 .footer-mission { color: var(--silver-300); font-weight: 600; margin-top: 12px; }
 .footer-desc { font-size: 0.92rem; margin-top: 12px; max-width: 420px; }
 .footer-col h4 { color: #fff; font-size: 0.95rem; letter-spacing: 0.05em; margin-bottom: 16px; }
@@ -301,7 +299,8 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 460px) {
   .services-grid, .categories-grid, .trust-grid, .process-grid, .about-stats { grid-template-columns: 1fr; }
-  .brand-tag { display: none; }
+  .brand-mark { height: 34px; }
+  .brand-word { height: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

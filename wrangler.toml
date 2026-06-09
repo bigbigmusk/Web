@@ -1,0 +1,8 @@
+# Cloudflare Worker (static assets) — auto-deploys from GitHub `main`.
+# The name MUST match the existing Worker so the custom domain
+# (www.concord-trade.com) stays attached.
+name = "shy-scene-4ff5"
+compatibility_date = "2025-06-01"
+
+[assets]
+directory = "./"

@@ -8,8 +8,8 @@
   'use strict';
 
   var DICT = window.TRANSLATIONS || {};
-  var SUPPORTED = ['en', 'zh', 'es', 'fr'];
-  var STORAGE_KEY = 'ct-lang';
+  var SUPPORTED = ['en', 'es', 'fr', 'zh'];
+  var STORAGE_KEY = 'ct-lang2';
   // html lang attribute values per UI language
   var HTML_LANG = { en: 'en', zh: 'zh-Hans', es: 'es', fr: 'fr' };
 
@@ -22,7 +22,8 @@
   }
 
   function detect() {
-    // 1) ?lang= query param  2) saved choice  3) browser  4) en
+    // 1) ?lang= query param  2) saved manual choice  3) default English
+    // (browser language is intentionally ignored so the site lands in English)
     try {
       var qs = pick(new URLSearchParams(window.location.search).get('lang'));
       if (qs) return qs;
@@ -30,11 +31,6 @@
     var saved = null;
     try { saved = pick(localStorage.getItem(STORAGE_KEY)); } catch (e) { /* no-op */ }
     if (saved) return saved;
-    var navs = navigator.languages || [navigator.language];
-    for (var i = 0; i < navs.length; i++) {
-      var m = pick(navs[i]);
-      if (m) return m;
-    }
     return 'en';
   }
 

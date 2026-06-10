@@ -5,8 +5,8 @@
 window.TRANSLATIONS = {
   /* ---------------- English ---------------- */
   en: {
-    meta_title: "Concord Trade — Global Sourcing & Trade Solutions",
-    meta_desc: "Concord Trade is a B2B international sourcing and trade partner connecting global buyers with reliable manufacturers, quality products, OEM/ODM support, and efficient supply chain solutions.",
+    meta_title: "Concord Trade | Global Sourcing & Trade Solutions from China",
+    meta_desc: "Concord Trade helps international businesses source reliable manufacturers, manage OEM/ODM projects, verify suppliers, and coordinate export communication across China and Asia.",
 
     brand_tag: "Global Trade · Reliable Supply",
     nav_services: "What We Do",
@@ -18,10 +18,10 @@ window.TRANSLATIONS = {
     nav_rfq: "Submit RFQ",
 
     hero_eyebrow: "International Sourcing & Trade Partner",
-    hero_title: "Global Sourcing &<br />Trade Solutions",
-    hero_sub: "Connecting global buyers with reliable manufacturers, quality products, and efficient supply chain support.",
-    hero_cta1: "Submit RFQ",
-    hero_cta2: "View Product Categories",
+    hero_title: "Global Sourcing & Trade Solutions<br />for International Business",
+    hero_sub: "We help global buyers source reliable manufacturers, compare supplier options, manage OEM/ODM projects, and coordinate supply chain communication from China and Asia.",
+    hero_cta1: "Start a Sourcing Project",
+    hero_cta2: "Explore Our Services",
     hero_t1: "Reliable Partners",
     hero_t2: "Quality Products",
     hero_t3: "Global Network",
@@ -120,8 +120,8 @@ window.TRANSLATIONS = {
 
   /* ---------------- 简体中文 ---------------- */
   zh: {
-    meta_title: "Concord Trade — 全球采购与外贸解决方案",
-    meta_desc: "Concord Trade 是一家 B2B 国际采购与外贸合作伙伴，连接全球买家与可靠的制造商，提供优质产品、OEM/ODM 支持以及高效的供应链解决方案。",
+    meta_title: "Concord Trade | 来自中国的全球采购与外贸解决方案",
+    meta_desc: "Concord Trade 帮助国际企业从中国和亚洲寻找可靠制造商、管理 OEM/ODM 项目、核实供应商并协调出口沟通。",
 
     brand_tag: "全球贸易 · 可靠供应",
     nav_services: "业务范围",
@@ -133,10 +133,10 @@ window.TRANSLATIONS = {
     nav_rfq: "提交询价",
 
     hero_eyebrow: "国际采购与外贸合作伙伴",
-    hero_title: "全球采购与<br />外贸解决方案",
-    hero_sub: "连接全球买家与可靠制造商，提供优质产品与高效的供应链支持。",
-    hero_cta1: "提交询价",
-    hero_cta2: "查看产品品类",
+    hero_title: "面向国际企业的<br />全球采购与外贸解决方案",
+    hero_sub: "我们帮助全球买家从中国和亚洲寻找可靠制造商、比较供应商、管理 OEM/ODM 项目，并协调供应链沟通。",
+    hero_cta1: "启动采购项目",
+    hero_cta2: "了解我们的服务",
     hero_t1: "可靠伙伴",
     hero_t2: "优质产品",
     hero_t3: "全球网络",
@@ -235,7 +235,7 @@ window.TRANSLATIONS = {
 
   /* ---------------- Español ---------------- */
   es: {
-    meta_title: "Concord Trade — Soluciones globales de abastecimiento y comercio",
+    meta_title: "Concord Trade | Abastecimiento y comercio global desde China",
     meta_desc: "Concord Trade es un socio B2B de abastecimiento y comercio internacional que conecta a compradores globales con fabricantes fiables, productos de calidad, soporte OEM/ODM y soluciones eficientes de cadena de suministro.",
 
     brand_tag: "Comercio global · Suministro fiable",
@@ -248,10 +248,10 @@ window.TRANSLATIONS = {
     nav_rfq: "Enviar RFQ",
 
     hero_eyebrow: "Socio internacional de abastecimiento y comercio",
-    hero_title: "Soluciones globales de<br />abastecimiento y comercio",
-    hero_sub: "Conectamos a compradores globales con fabricantes fiables, productos de calidad y un soporte eficiente de la cadena de suministro.",
-    hero_cta1: "Enviar RFQ",
-    hero_cta2: "Ver categorías de productos",
+    hero_title: "Soluciones globales de abastecimiento y comercio<br />para empresas internacionales",
+    hero_sub: "Ayudamos a compradores globales a abastecerse de fabricantes fiables, comparar proveedores, gestionar proyectos OEM/ODM y coordinar la comunicación de la cadena de suministro desde China y Asia.",
+    hero_cta1: "Iniciar un proyecto de abastecimiento",
+    hero_cta2: "Ver nuestros servicios",
     hero_t1: "Socios fiables",
     hero_t2: "Productos de calidad",
     hero_t3: "Red global",
@@ -350,7 +350,7 @@ window.TRANSLATIONS = {
 
   /* ---------------- Français ---------------- */
   fr: {
-    meta_title: "Concord Trade — Solutions mondiales de sourcing et de commerce",
+    meta_title: "Concord Trade | Sourcing et commerce mondial depuis la Chine",
     meta_desc: "Concord Trade est un partenaire B2B de sourcing et de commerce international qui relie les acheteurs mondiaux à des fabricants fiables, des produits de qualité, un support OEM/ODM et des solutions efficaces de chaîne d'approvisionnement.",
 
     brand_tag: "Commerce mondial · Approvisionnement fiable",
@@ -363,10 +363,10 @@ window.TRANSLATIONS = {
     nav_rfq: "Envoyer un RFQ",
 
     hero_eyebrow: "Partenaire international de sourcing et de commerce",
-    hero_title: "Solutions mondiales de<br />sourcing et de commerce",
-    hero_sub: "Nous relions les acheteurs mondiaux à des fabricants fiables, des produits de qualité et un support efficace de la chaîne d'approvisionnement.",
-    hero_cta1: "Envoyer un RFQ",
-    hero_cta2: "Voir les catégories de produits",
+    hero_title: "Solutions mondiales de sourcing et de commerce<br />pour les entreprises internationales",
+    hero_sub: "Nous aidons les acheteurs mondiaux à sourcer des fabricants fiables, comparer les fournisseurs, gérer des projets OEM/ODM et coordonner la communication de la chaîne d'approvisionnement depuis la Chine et l'Asie.",
+    hero_cta1: "Démarrer un projet de sourcing",
+    hero_cta2: "Découvrir nos services",
     hero_t1: "Partenaires fiables",
     hero_t2: "Produits de qualité",
     hero_t3: "Réseau mondial",

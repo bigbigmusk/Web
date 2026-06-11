@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart — GAWU OBJECTS</title>
+  <meta name="description" content="Your GAWU OBJECTS cart. Checkout by email or WhatsApp inquiry — no card details stored on site.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div data-include="header"></div>
+
+  <main id="cart-page">
+    <section class="page-banner">
+      <div class="container">
+        <p class="breadcrumb"><a href="index.html">Home</a> / Cart</p>
+        <span class="eyebrow">Your selection</span>
+        <h1>Cart</h1>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="container">
+        <!-- Empty state -->
+        <div class="cart-empty" id="cart-empty" style="display:none">
+          <h2>Your cart is quiet</h2>
+          <p class="muted">No objects yet. Begin with a vessel for memory, protection or scent.</p>
+          <a class="btn" href="shop.html">Shop objects</a>
+        </div>
+
+        <div class="cart-layout">
+          <div>
+            <div id="cart-lines"><!-- rendered by main.js --></div>
+          </div>
+
+          <aside class="cart-summary" id="cart-summary" style="display:none">
+            <h3 style="margin-bottom:var(--space-sm)">Summary</h3>
+            <div class="cart-summary__row"><span>Subtotal</span><span id="cart-subtotal">$0</span></div>
+            <div class="cart-summary__row"><span>Shipping</span><span class="muted">Calculated at inquiry</span></div>
+            <div class="cart-summary__total"><span>Total</span><span id="cart-total">$0</span></div>
+
+            <!-- Checkout opens an inquiry — it does NOT take payment directly. -->
+            <p class="muted" style="font-size:.8rem;margin:var(--space-sm) 0">Checkout sends us your selection. We confirm availability and reply with a secure payment link.</p>
+            <a href="#" class="btn btn--block" id="checkout-email">Checkout by email</a>
+            <a href="#" class="btn btn--blue btn--block" id="checkout-whatsapp" style="margin-top:var(--space-xs)">Checkout via WhatsApp</a>
+            <p class="text-center" style="margin-top:var(--space-sm)"><a class="link-underline" href="shop.html">Continue shopping</a></p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Title & description are updated by main.js for the selected product -->
+  <title>Product — GAWU OBJECTS</title>
+  <meta name="description" content="A GAWU OBJECTS wearable ritual object — silver, natural stone and scent.">
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="GAWU OBJECTS">
+  <meta property="og:image" content="assets/images/product-placeholder.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div data-include="header"></div>
+
+  <main id="pdp-root">
+    <div class="container" style="padding-top:var(--space-md)">
+      <p class="breadcrumb"><a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <span id="pdp-crumb"></span></p>
+    </div>
+
+    <section class="section--tight">
+      <div class="container">
+        <div class="pdp" id="pdp">
+          <!-- Gallery -->
+          <div class="gallery">
+            <div class="gallery__main" id="gallery-main"></div>
+            <div class="gallery__thumbs" id="gallery-thumbs"></div>
+          </div>
+
+          <!-- Info -->
+          <div class="pdp__info">
+            <p class="pdp__collection" id="pdp-collection"></p>
+            <h1 id="pdp-name" style="margin-top:.2em"></h1>
+            <p class="pdp__price" id="pdp-price"></p>
+            <p id="pdp-short"></p>
+
+            <div class="pdp__buy">
+              <div class="pdp__qty">
+                <button id="pdp-minus" aria-label="Decrease quantity">–</button>
+                <input id="pdp-qty" type="text" inputmode="numeric" value="1" aria-label="Quantity">
+                <button id="pdp-plus" aria-label="Increase quantity">+</button>
+              </div>
+              <button class="btn btn--block" id="pdp-add">Add to cart</button>
+            </div>
+
+            <p class="pdp__story" id="pdp-story"></p>
+
+            <h3 style="font-size:1rem;text-transform:uppercase;letter-spacing:.14em">Details</h3>
+            <ul class="spec-list" id="pdp-specs"></ul>
+
+            <div class="accordion">
+              <details>
+                <summary>Shipping &amp; Returns</summary>
+                <p>Each object is made to order and ships within 5–7 business days, wrapped for ritual. Complimentary shipping on orders over $199. Returns accepted within 14 days on unworn pieces — see the FAQ for full terms.</p>
+              </details>
+              <details>
+                <summary>Materials &amp; Care</summary>
+                <p>Recycled 925 silver and natural stone. Keep dry, store flat away from other metals, and polish gently with a soft cloth. Natural stone may vary piece to piece.</p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">You may also carry</span><h2>Related objects</h2></div>
+        <div class="product-grid" id="related-grid"></div>
+      </div>
+    </section>
+
+    <!-- Recently viewed -->
+    <section class="section bg-ivory-2" id="viewed-section" style="display:none">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">Recently viewed</span><h2>Return to</h2></div>
+        <div class="product-grid" id="viewed-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

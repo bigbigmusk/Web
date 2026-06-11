@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — GAWU OBJECTS</title>
+  <meta name="description" content="Contact GAWU OBJECTS — inquiries by email or WhatsApp about objects, custom pieces, orders and the Ritual Club.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact — GAWU OBJECTS">
+  <meta property="og:description" content="Reach the GAWU OBJECTS studio by email or WhatsApp.">
+  <meta property="og:image" content="assets/images/hero-placeholder.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div data-include="header"></div>
+
+  <main>
+    <section class="page-banner">
+      <div class="container narrow">
+        <p class="breadcrumb"><a href="index.html">Home</a> / Contact</p>
+        <span class="eyebrow">Get in touch</span>
+        <h1>Contact</h1>
+        <p class="lead">For orders, custom pieces and the Ritual Club. We reply within two business days.</p>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Contact details -->
+          <div>
+            <div class="contact-detail">
+              <h4>Email</h4>
+              <!-- data-site=email is filled from SITE.email in products.js -->
+              <p><a class="link-underline" data-site="email" href="#">email</a></p>
+            </div>
+            <div class="contact-detail">
+              <h4>WhatsApp</h4>
+              <!-- data-site=whatsapp link is filled from SITE.whatsapp -->
+              <p><a class="link-underline" data-site="whatsapp" href="#" target="_blank" rel="noopener">Message us on WhatsApp</a></p>
+            </div>
+            <div class="contact-detail">
+              <h4>Studio</h4>
+              <p class="muted">By appointment only.<br><!-- Replace with your studio city / address --> Add your city here.</p>
+            </div>
+            <div class="contact-detail">
+              <h4>Ritual Club</h4>
+              <p class="muted">New objects, stories and private release notes. Join from any page footer.</p>
+            </div>
+          </div>
+
+          <!-- Form (composes a mailto, no backend) -->
+          <form id="contact-form" novalidate>
+            <div class="field">
+              <label for="cf-name">Your name</label>
+              <input id="cf-name" name="name" type="text" required>
+            </div>
+            <div class="field">
+              <label for="cf-email">Email</label>
+              <input id="cf-email" name="email" type="email" required>
+            </div>
+            <div class="field">
+              <label for="cf-topic">Topic</label>
+              <select id="cf-topic" name="topic">
+                <option>General inquiry</option>
+                <option>Order or tracking</option>
+                <option>Custom / bespoke object</option>
+                <option>Affiliate / wholesale</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="message" required></textarea>
+            </div>
+            <button class="btn btn--block" type="submit">Send message</button>
+            <p class="muted" style="font-size:.78rem;margin-top:var(--space-xs)">This opens your email app addressed to our studio — no data is stored on this site.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

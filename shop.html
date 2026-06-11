@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — GAWU OBJECTS</title>
+  <meta name="description" content="Shop GAWU OBJECTS — silver pendants, fragrance charms, snuff-bottle necklaces, bracelets and ritual objects. Filter by category, collection and price.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Shop — GAWU OBJECTS">
+  <meta property="og:description" content="Silver pendants, fragrance charms and ritual objects for memory and protection.">
+  <meta property="og:image" content="assets/images/product-placeholder.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div data-include="header"></div>
+
+  <main>
+    <section class="page-banner">
+      <div class="container">
+        <p class="breadcrumb"><a href="index.html">Home</a> / Shop</p>
+        <span class="eyebrow">All Objects</span>
+        <h1>The Shop</h1>
+        <p class="lead">Wearable objects for memory, protection and scent.</p>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="container">
+        <div class="shop-toolbar">
+          <button class="btn btn--ghost btn--sm filters-toggle" data-filters-toggle>Filters</button>
+          <span class="result-count" id="result-count"></span>
+          <label style="display:flex;align-items:center;gap:.6em;font-size:.82rem">Sort
+            <select id="sort-by" aria-label="Sort products">
+              <option value="featured">Featured</option>
+              <option value="low">Price: low to high</option>
+              <option value="high">Price: high to low</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="shop-layout">
+          <aside class="filters" aria-label="Product filters">
+            <div class="filter-group">
+              <h4>Category</h4>
+              <div id="filter-category"></div>
+            </div>
+            <div class="filter-group">
+              <h4>Collection</h4>
+              <div id="filter-collection"></div>
+            </div>
+            <div class="filter-group price-range">
+              <h4>Max price</h4>
+              <input type="range" id="filter-price" min="100" max="400" step="10" value="400" aria-label="Maximum price">
+              <output id="price-output">$400</output>
+            </div>
+          </aside>
+
+          <div class="product-grid" id="shop-grid"><!-- rendered by main.js --></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

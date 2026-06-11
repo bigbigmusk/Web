@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Concord Trade">
-  <rect width="100" height="100" rx="20" fill="#ffffff"/>
-  <path d="M18.3 63 A36 36 0 0 1 81.7 39" fill="none" stroke="#16335a" stroke-width="12" stroke-linecap="round"/>
-  <path d="M81.7 39 A36 36 0 0 1 18.3 63" fill="none" stroke="#98a2ad" stroke-width="12" stroke-linecap="round"/>
-  <path d="M48 44 L82 40.5 L78.5 51 L44.5 53 Z" fill="#16335a"/>
-  <path d="M52 56 L18 59.5 L21.5 49 L55.5 47 Z" fill="#98a2ad"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="GAWU OBJECTS">
+  <rect width="100" height="100" rx="22" fill="#2b2824"/>
+  <!-- small vessel / snuff-bottle mark -->
+  <rect x="42" y="20" width="16" height="9" rx="2" fill="#5b7c8c"/>
+  <path d="M40 30 C40 30 32 36 32 54 C32 70 44 78 50 78 C56 78 68 70 68 54 C68 36 60 30 60 30 Z"
+        fill="none" stroke="#f6f1e7" stroke-width="4.5" stroke-linejoin="round"/>
+  <ellipse cx="50" cy="56" rx="8" ry="10" fill="#5b7c8c" opacity="0.55"/>
 </svg>

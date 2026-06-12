@@ -1,0 +1,5 @@
+# 生成物 / 缓存，不需要纳入版本管理
+reports/
+__pycache__/
+*.pyc
+.DS_Store

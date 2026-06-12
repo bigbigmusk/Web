@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reddit 商业机会爬虫</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🔍</span>
+      <div>
+        <h1>Reddit 商业机会爬虫</h1>
+        <p class="tagline">自动阅读论坛 · 规则初筛 + AI 精判 · 一键导出 Excel</p>
+      </div>
+    </div>
+    <div id="status-chips" class="chips"></div>
+  </header>
+
+  <main class="layout">
+    <!-- 左侧：配置面板 -->
+    <section class="panel config">
+      <h2>抓取配置</h2>
+
+      <label>子版块（空格或逗号分隔）
+        <input id="subreddits" type="text"
+               placeholder="SaaS Entrepreneur smallbusiness" />
+      </label>
+      <div class="presets">
+        <span>快速填入：</span>
+        <button class="preset" data-v="SaaS Entrepreneur startups smallbusiness">创业/SaaS</button>
+        <button class="preset" data-v="sideproject indiehackers webdev">独立开发</button>
+        <button class="preset" data-v="freelance digitalnomad marketing">自由职业</button>
+      </div>
+
+      <div class="row">
+        <label>排序
+          <select id="sort">
+            <option value="new">最新 new</option>
+            <option value="hot">热门 hot</option>
+            <option value="top">最高 top</option>
+            <option value="rising">上升 rising</option>
+          </select>
+        </label>
+        <label>时间范围（top）
+          <select id="time_filter">
+            <option value="day">今天</option>
+            <option value="week" selected>本周</option>
+            <option value="month">本月</option>
+            <option value="year">今年</option>
+            <option value="all">全部</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="row">
+        <label>每版块抓取条数
+          <input id="limit" type="number" value="50" min="5" max="500" />
+        </label>
+        <label>规则初筛阈值
+          <input id="min_rule_score" type="number" value="3" min="0" max="20" />
+        </label>
+      </div>
+
+      <label class="toggle">
+        <input id="use_ai" type="checkbox" checked />
+        <span>启用 Claude AI 精判（更准，需配置密钥）</span>
+      </label>
+
+      <label>AI 最大调用次数（成本上限）
+        <input id="max_ai_calls" type="number" value="60" min="0" max="500" />
+      </label>
+
+      <button id="run-btn" class="primary">🚀 开始抓取</button>
+
+      <div id="progress" class="progress hidden">
+        <div class="bar"><div id="bar-fill" class="bar-fill"></div></div>
+        <p id="progress-msg" class="progress-msg"></p>
+      </div>
+    </section>
+
+    <!-- 右侧：结果 -->
+    <section class="panel results">
+      <div class="results-head">
+        <h2>识别结果</h2>
+        <a id="download-btn" class="download hidden" href="#">⬇ 下载 Excel</a>
+      </div>
+
+      <div id="stats" class="stats hidden"></div>
+      <div id="empty" class="empty">
+        <p>填好左侧配置后点击「开始抓取」。<br />
+           识别出的商业机会会在这里以卡片展示，并可导出 Excel。</p>
+      </div>
+      <div id="cards" class="cards"></div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

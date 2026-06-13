@@ -67,6 +67,8 @@
         <label>市场 / 数据源</label>
         <select id="market">
           <option value="crypto">币圈（实时·币安）</option>
+          <option value="us">美股 / ETF（雅虎·经代理）</option>
+          <option value="cn">A股 / 指数（腾讯·经代理）</option>
           <option value="demo">离线演示（模拟数据，断网可用）</option>
         </select>
       </div>
@@ -133,7 +135,10 @@
     • <b>总收益 vs 买入持有</b>：策略必须跑赢“无脑一直拿着”才有意义。<br>
     • <b>最大回撤</b>：历史上从最高点最多跌多少，越小越扛得住。<br>
     • <b>夏普 &gt;1</b> 不错、<b>&gt;2</b> 优秀。<br>
-    数据来源：币安公开行情接口（实时，无需账号）。如所在地区访问受限，请用“离线演示”。
+    数据来源：币圈=币安、美股=雅虎财经、A股=腾讯证券（均为公开行情，无需账号）。<br>
+    美股/A股因浏览器跨域限制需经公共代理读取，偶尔会慢或失败，多试一次或稍后再试；
+    若仍不行，请改用电脑端 Python 工具（对美股/A股更稳）或先用“离线演示”。
+    周期里的“4/1 小时”仅币圈支持，美股/A股会自动按日线处理。
   </div>
 
 <script>
@@ -160,6 +165,49 @@ async function fetchKlines(symbol, interval, limit){
     }catch(e){ lastErr=e; }
   }
   throw lastErr || new Error("全部数据源不可用");
+}
+// 跨域代理（美股/A股的行情接口默认不允许浏览器直读，需中转）
+const CORS_PROXIES = [
+  u => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
+  u => "https://corsproxy.io/?url=" + encodeURIComponent(u),
+];
+async function fetchText(url){
+  let lastErr;
+  try{ const r=await fetch(url,{cache:"no-store"}); if(r.ok) return await r.text(); }
+  catch(e){ lastErr=e; }                       // 先试直连（少数接口允许跨域）
+  for(const p of CORS_PROXIES){                // 再依次试公共代理
+    try{ const r=await fetch(p(url),{cache:"no-store"}); if(r.ok) return await r.text(); }
+    catch(e){ lastErr=e; }
+  }
+  throw lastErr || new Error("数据源与代理都连不上");
+}
+async function fetchUS(symbol, itv){
+  symbol = symbol.toUpperCase().replace(/[^A-Z0-9.\-]/g,"");
+  const weekly = itv==="1w";
+  const interval = weekly ? "1wk" : "1d";
+  const range = weekly ? "5y" : "2y";
+  const url=`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=${range}&interval=${interval}`;
+  const j=JSON.parse(await fetchText(url));
+  const res=j.chart && j.chart.result && j.chart.result[0];
+  if(!res) throw new Error("找不到该美股代码（试试 AAPL、NVDA、SPY）");
+  const ts=res.timestamp||[], q=res.indicators.quote[0];
+  const bars=[];
+  for(let i=0;i<ts.length;i++){
+    if(q.close[i]==null) continue;
+    bars.push({time:new Date(ts[i]*1000).toISOString().slice(0,10),
+      open:+q.open[i],high:+q.high[i],low:+q.low[i],close:+q.close[i],volume:+(q.volume[i]||0)});
+  }
+  return bars;
+}
+async function fetchCN(symbol, itv){
+  symbol = symbol.toLowerCase().replace(/[^a-z0-9]/g,"");
+  const period = itv==="1w" ? "week" : "day";
+  const url=`https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=${symbol},${period},,,500,qfq`;
+  const j=JSON.parse(await fetchText(url));
+  const node=j.data && j.data[symbol];
+  if(!node) throw new Error("找不到该A股代码（如 sh600519、sz000001、sh000001）");
+  const kline=node["qfq"+period]||node[period]||[];
+  return kline.map(k=>({time:k[0],open:+k[1],close:+k[2],high:+k[3],low:+k[4],volume:+(k[5]||0)}));
 }
 function genDemo(n=300){
   const bars=[]; let price=100, seed=Date.now()%99999;
@@ -292,12 +340,14 @@ function drawEquity(cv,eq,bh){
 // ============ 主流程 ============
 const $=id=>document.getElementById(id);
 const QUICK={crypto:["BTCUSDT","ETHUSDT","SOLUSDT","BNBUSDT","DOGEUSDT","XRPUSDT"],
+             us:["AAPL","NVDA","TSLA","MSFT","SPY","QQQ"],
+             cn:["sh600519","sz000001","sh000001","sz399001","sh601318"],
              demo:["模拟币"]};
+const DEFSYM={crypto:"BTCUSDT",us:"AAPL",cn:"sh600519",demo:"模拟币"};
 function renderChips(){const mk=$("market").value;$("chips").innerHTML="";
   (QUICK[mk]||[]).forEach(s=>{const c=document.createElement("span");c.className="chip";
     c.textContent=s;c.onclick=()=>{$("symbol").value=s;run();};$("chips").appendChild(c);});}
-$("market").onchange=()=>{const demo=$("market").value==="demo";
-  $("symbol").value=demo?"模拟币":"BTCUSDT";renderChips();};
+$("market").onchange=()=>{$("symbol").value=DEFSYM[$("market").value]||"BTCUSDT";renderChips();};
 
 function card(label,val,cls){return `<div class="c"><div class="v ${cls||'neu'}">${val}</div><div class="l">${label}</div></div>`;}
 function fmt(v,d=2){return (v>=0?"+":"")+v.toFixed(d)+"%";}
@@ -309,6 +359,8 @@ async function run(){
   try{
     let bars;
     if(mk==="demo"){bars=genDemo(300);}
+    else if(mk==="us"){bars=await fetchUS(sym,itv);}
+    else if(mk==="cn"){bars=await fetchCN(sym,itv);}
     else{bars=await fetchKlines(sym,itv,400);}
     if(!bars||bars.length<40) throw new Error("数据太少，无法分析");
 

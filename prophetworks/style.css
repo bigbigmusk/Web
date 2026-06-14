@@ -73,7 +73,11 @@
 *::before,
 *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* Keep anchored sections clear of the sticky header */
+  scroll-padding-top: 92px;
+}
 
 body {
   margin: 0;
@@ -360,7 +364,44 @@ button:focus-visible {
   margin-bottom: 16px;
 }
 .hero-lead { color: var(--muted); max-width: 520px; margin-bottom: 36px; font-size: 17px; }
+
+/* Plain-language product definition right under the headline */
+.hero-define {
+  font-size: 17px;
+  color: var(--ink);
+  max-width: 540px;
+  margin-bottom: 18px;
+  line-height: 1.55;
+}
+.hero-define b { font-weight: 700; }
+
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* "What it does" capability strip — instant clarity of purpose */
+.hero-caps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  max-width: 540px;
+}
+.hero-caps li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.hero-caps li::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+}
 
 /* ---- Dashboard mockup (light) ---- */
 .hero-visual { position: relative; }
@@ -762,17 +803,20 @@ button:focus-visible {
 /* -----------------------------------------------------------
    15. SCROLL-REVEAL ANIMATION
    ----------------------------------------------------------- */
-.reveal {
+/* IMPORTANT: reveal elements are hidden ONLY when JS is active
+   (the .js class is added by script.js). If JS fails to load,
+   nothing is hidden and the whole page stays readable. */
+.js .reveal {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
   will-change: opacity, transform;
 }
-.reveal.is-visible { opacity: 1; transform: none; }
+.js .reveal.is-visible { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; scroll-behavior: auto !important; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
 }
 
 /* -----------------------------------------------------------

@@ -15,6 +15,11 @@
 (function () {
   "use strict";
 
+  /* Mark that JS is running. CSS only hides reveal elements when
+     this class is present, so the page stays fully readable if
+     this script ever fails to load. Set first, before anything else. */
+  document.documentElement.classList.add("js");
+
   /* Respect reduced-motion preference for JS-driven motion */
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

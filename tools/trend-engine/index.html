@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>趋势预测引擎 · 海关时间序列预测 | Concord Trade</title>
+  <meta name="description" content="跨境电商品类趋势预测工具：基于36个月海关出口数据，用趋势×季节性集成模型预测未来12个月走势，给出置信区间、旺季识别与最佳备货时机。" />
+  <link rel="canonical" href="https://www.concord-trade.com/tools/trend-engine/" />
+  <meta name="theme-color" content="#16335a" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=4" />
+  <link rel="stylesheet" href="/tools/tools.css?v=1" />
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="/" class="brand" aria-label="Concord Trade home">
+        <img src="/assets/logo-mark.png" alt="Concord Trade logo" class="brand-mark" />
+        <img src="/assets/logo-wordmark.png" alt="Concord Trade" class="brand-word" />
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">首页</a>
+        <a href="/services/">服务</a>
+        <a href="/tools/" style="color:var(--navy);font-weight:700;">选品工具</a>
+        <a href="/contact/" class="btn btn-primary btn-sm nav-cta">联系我们</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tool-main">
+    <section class="tool-head">
+      <div class="container">
+        <p class="crumbs"><a href="/tools/">选品工具</a> · 工具二</p>
+        <p class="eyebrow">TREND FORECASTING ENGINE</p>
+        <h1>趋势预测引擎 · 海关时间序列预测</h1>
+        <p>选择品类，引擎用 36 个月海关出口数据拟合"趋势 × 季节性"集成模型，预测未来 12 个月走势与 80% 置信区间，识别旺季峰值，并倒推最佳备货下单月份。</p>
+        <div class="tool-tabs">
+          <a href="/tools/product-engine/">① 选品评分</a>
+          <a href="/tools/trend-engine/" class="active">② 趋势预测</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-wrap">
+      <div class="container">
+        <div class="tool-grid">
+
+          <!-- ---- Controls ---- -->
+          <div>
+            <div class="panel sticky">
+              <h2>选择品类</h2>
+              <p class="sub">查看历史与未来 12 个月预测。</p>
+              <div class="field">
+                <label>品类</label>
+                <select id="catSelect"></select>
+              </div>
+              <div class="field">
+                <label>主指标</label>
+                <select id="metricSelect">
+                  <option value="exportSeries">海关出口额（USD）</option>
+                  <option value="searchSeries">需求景气指数（搜索）</option>
+                </select>
+              </div>
+              <label style="display:flex;align-items:center;gap:8px;font-size:0.84rem;font-weight:600;color:var(--ink);margin-top:4px;cursor:pointer;">
+                <input type="checkbox" id="overlay" checked style="accent-color:var(--navy);width:16px;height:16px;" />
+                叠加另一条对照线
+              </label>
+
+              <div class="callout" id="quickRec" style="margin-top:18px;font-size:0.86rem;"></div>
+            </div>
+          </div>
+
+          <!-- ---- Results ---- -->
+          <div>
+            <div class="panel">
+              <h2 id="mainTitle">出口趋势与预测</h2>
+              <p class="sub" id="mainSub">实线 = 历史 · 虚线 = 预测 · 阴影 = 80% 置信区间</p>
+              <div class="metrics" id="metrics" style="margin-bottom:18px;"></div>
+              <div class="chart-box"><canvas id="mainChart"></canvas></div>
+              <div class="legend" id="legend"></div>
+            </div>
+
+            <div class="panel">
+              <h2>季节性指数</h2>
+              <p class="sub">各月相对全年均值的需求倍数（1.0 = 平均水平），高亮为旺季峰值月。</p>
+              <div class="chart-box sm"><canvas id="seasonChart"></canvas></div>
+              <div class="callout" id="seasonRec" style="margin-top:14px;"></div>
+            </div>
+
+            <p class="note">
+              预测模型：对历史序列做<strong>线性趋势回归</strong>，叠加由历史去趋势残差估计的<strong>乘法季节性指数</strong>，按拟合残差标准差给出约 80% 置信区间（随预测期递增放大）。
+              这是稳健的基线预测，不构成对突发事件（政策、爆款、汇率）的保证。数据为代表性贸易数据集，接入 <code>CBData.sources</code> 实时接口后自动切换。仅供备货与选品参考。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>&copy; <span id="year"></span> Concord Trade. 趋势预测引擎。</span>
+        <span><a href="/tools/" style="color:#fff;opacity:.8;">← 返回工具中心</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/tools/data.js?v=1"></script>
+  <script src="/tools/charts.js?v=1"></script>
+  <script src="/tools/trend-engine/forecast.js?v=1"></script>
+</body>
+</html>

@@ -25,6 +25,38 @@ anywhere — GitHub Pages, Netlify, Vercel, or any static host.
 8. **RFQ form** — structured request for quotation
 9. **Footer** — contact, LinkedIn, mission
 
+## Sourcing Intelligence Toolkit (`/tools/`)
+Two data-driven, dependency-free web apps for cross-border e-commerce product
+selection — same navy/silver design system, no build step, no external libraries
+(canvas charts are hand-rolled).
+
+1. **Product Decision Engine** (`/tools/product-engine/`) — multi-factor product
+   scoring (demand · growth · competition · margin · customs trade momentum ·
+   logistics) with adjustable weights / strategy presets, a sortable ranking
+   table, a per-category factor radar, and an automatic **blue-ocean** flag
+   (high-growth × low-competition).
+2. **Trend Forecasting Engine** (`/tools/trend-engine/`) — 36-month customs
+   export history + 12-month forecast using a **trend (linear regression) ×
+   multiplicative seasonality** ensemble with an ~80% confidence band, a
+   seasonality-index chart, demand-vs-export overlay, and stocking-timing advice.
+
+### Data & the pluggable live-data layer
+- `tools/data.js` — a *representative* cross-border trade dataset (20 categories)
+  calibrated against China customs (海关总署) export structure, UN Comtrade HS-code
+  flows and marketplace demand signals. Monthly series are generated
+  deterministically (seeded) so results are stable and reproducible. It also holds
+  the shared analytics (momentum, linear regression, seasonal indices, forecast).
+- `tools/charts.js` — tiny canvas chart engine (line/area + bars + radar).
+- **Connecting real data:** implement the async hooks in
+  `CBData.sources.customs` / `.comtrade` / `.trends` (e.g. a China Customs or
+  UN Comtrade proxy, Google Trends, or a vendor like Tendata / Jungle Scout).
+  Each should resolve to an array shaped like the bundled dataset. The tools call
+  `CBData.load()`, which uses live data when a provider is configured and falls
+  back to the bundled dataset otherwise — no UI changes needed.
+
+> The toolkit is decision support, not a guarantee; pair it with compliance,
+> logistics and supplier due-diligence.
+
 ## Contact
 - Sales: `tj@concord-trade.com`
 - General: `info@concord-trade.com`

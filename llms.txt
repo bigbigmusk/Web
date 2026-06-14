@@ -7,6 +7,11 @@
 - [Supplier Verification](https://www.concord-trade.com/services/supplier-verification/): Verify suppliers before ordering to reduce sourcing risk.
 - [OEM / ODM Sourcing](https://www.concord-trade.com/services/oem-odm-sourcing/): Private label, custom packaging, product development, MOQ negotiation, production follow-up.
 
+## Tools
+- [Sourcing Intelligence Toolkit](https://www.concord-trade.com/tools/): Data-driven product selection & trend tools for cross-border e-commerce.
+- [Product Decision Engine](https://www.concord-trade.com/tools/product-engine/): Multi-factor product scoring (demand, growth, competition, margin, customs trade momentum) with adjustable weights and a blue-ocean opportunity radar.
+- [Trend Forecasting Engine](https://www.concord-trade.com/tools/trend-engine/): 12-month customs export forecast (trend × seasonality) with confidence intervals, seasonality detection, and stocking-timing recommendations.
+
 ## Industries
 - [Pet Product Sourcing](https://www.concord-trade.com/industries/pet-product-sourcing/)
 - [Medical Consumables & PPE Sourcing](https://www.concord-trade.com/industries/medical-consumables-sourcing/)

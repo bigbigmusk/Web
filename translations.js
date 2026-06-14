@@ -14,6 +14,7 @@ window.TRANSLATIONS = {
     nav_products: "Products",
     nav_process: "How We Work",
     nav_why: "Why Us",
+    nav_tools: "Sourcing Tools",
     nav_contact: "Contact",
     nav_rfq: "Submit RFQ",
 
@@ -129,6 +130,7 @@ window.TRANSLATIONS = {
     nav_products: "产品",
     nav_process: "合作流程",
     nav_why: "为何选择我们",
+    nav_tools: "选品工具",
     nav_contact: "联系我们",
     nav_rfq: "提交询价",
 
@@ -244,6 +246,7 @@ window.TRANSLATIONS = {
     nav_products: "Productos",
     nav_process: "Cómo trabajamos",
     nav_why: "Por qué nosotros",
+    nav_tools: "Herramientas",
     nav_contact: "Contacto",
     nav_rfq: "Enviar RFQ",
 
@@ -359,6 +362,7 @@ window.TRANSLATIONS = {
     nav_products: "Produits",
     nav_process: "Notre méthode",
     nav_why: "Pourquoi nous",
+    nav_tools: "Outils Sourcing",
     nav_contact: "Contact",
     nav_rfq: "Envoyer un RFQ",
 

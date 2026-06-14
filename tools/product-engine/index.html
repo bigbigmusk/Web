@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>选品决策引擎 · 多因子评分 + 蓝海雷达 | Concord Trade</title>
+  <meta name="description" content="跨境电商选品评分工具：按需求、增长、竞争、利润、海关贸易量多因子加权打分，权重可调，自动识别低竞争高增长的蓝海机会品类。" />
+  <link rel="canonical" href="https://www.concord-trade.com/tools/product-engine/" />
+  <meta name="theme-color" content="#16335a" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css?v=4" />
+  <link rel="stylesheet" href="/tools/tools.css?v=1" />
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="/" class="brand" aria-label="Concord Trade home">
+        <img src="/assets/logo-mark.png" alt="Concord Trade logo" class="brand-mark" />
+        <img src="/assets/logo-wordmark.png" alt="Concord Trade" class="brand-word" />
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="/">首页</a>
+        <a href="/services/">服务</a>
+        <a href="/tools/" style="color:var(--navy);font-weight:700;">选品工具</a>
+        <a href="/contact/" class="btn btn-primary btn-sm nav-cta">联系我们</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tool-main">
+    <section class="tool-head">
+      <div class="container">
+        <p class="crumbs"><a href="/tools/">选品工具</a> · 工具一</p>
+        <p class="eyebrow">PRODUCT DECISION ENGINE</p>
+        <h1>选品决策引擎 · 多因子评分 + 蓝海雷达</h1>
+        <p>设定你的选品偏好（重利润还是重低竞争？），引擎按需求、增长、竞争、利润、海关贸易动能多因子加权，输出全品类 0–100 综合得分排名，并自动高亮"低竞争 × 高增长"的蓝海机会。</p>
+        <div class="tool-tabs">
+          <a href="/tools/product-engine/" class="active">① 选品评分</a>
+          <a href="/tools/trend-engine/">② 趋势预测</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tool-wrap">
+      <div class="container">
+        <div class="tool-grid">
+
+          <!-- ---- Controls ---- -->
+          <div>
+            <div class="panel sticky">
+              <h2>评分设置</h2>
+              <p class="sub">拖动权重，排名实时更新。</p>
+
+              <div class="field">
+                <label>选品策略预设</label>
+                <select id="preset">
+                  <option value="balanced">均衡型（推荐）</option>
+                  <option value="blueocean">蓝海优先（低竞争·高增长）</option>
+                  <option value="profit">利润优先</option>
+                  <option value="volume">规模优先（海关大盘）</option>
+                  <option value="fast">轻物流·快周转</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>品类范围</label>
+                <div class="chips" id="catChips"></div>
+              </div>
+
+              <h3 style="margin:18px 0 12px;">因子权重</h3>
+              <div id="weights"></div>
+
+              <label style="display:flex;align-items:center;gap:8px;font-size:0.84rem;font-weight:600;color:var(--ink);margin-top:6px;cursor:pointer;">
+                <input type="checkbox" id="blueOnly" style="accent-color:var(--navy);width:16px;height:16px;" />
+                只看蓝海机会品类
+              </label>
+
+              <button class="btn btn-ghost btn-sm btn-block" id="resetBtn" style="margin-top:16px;">重置为均衡型</button>
+            </div>
+          </div>
+
+          <!-- ---- Results ---- -->
+          <div>
+            <div class="panel">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;">
+                <div>
+                  <h2 style="margin-bottom:0;">选品排名 <span id="count" style="color:var(--muted);font-weight:600;font-size:0.85rem;"></span></h2>
+                  <p class="sub" style="margin:4px 0 0;">点击表头排序 · 点击某行查看因子拆解</p>
+                </div>
+                <span class="tag tag-blue">★ = 蓝海机会</span>
+              </div>
+              <div class="tbl-wrap" style="margin-top:14px;">
+                <table class="rank" id="rankTable">
+                  <thead>
+                    <tr>
+                      <th class="num" data-k="rank">#</th>
+                      <th data-k="name">品类 / HS</th>
+                      <th class="num" data-k="score">综合得分 ▾</th>
+                      <th class="num" data-k="demand">需求</th>
+                      <th class="num" data-k="growth">增长%</th>
+                      <th class="num" data-k="comp">竞争</th>
+                      <th class="num" data-k="margin">毛利%</th>
+                      <th class="num" data-k="customs">海关动能</th>
+                      <th class="num" data-k="blue">蓝海</th>
+                    </tr>
+                  </thead>
+                  <tbody id="rankBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- detail -->
+            <div class="panel" id="detail" style="display:none;">
+              <div style="display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:center;" class="detail-grid">
+                <div class="chart-box sm" style="height:240px;"><canvas id="radar"></canvas></div>
+                <div>
+                  <h2 id="dName" style="margin-bottom:2px;"></h2>
+                  <p class="sub" id="dMeta"></p>
+                  <div class="metrics" id="dMetrics" style="grid-template-columns:repeat(auto-fit,minmax(110px,1fr));"></div>
+                  <div class="callout" id="dRec" style="margin-top:16px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <p class="note">
+              评分为各因子<strong>跨品类相对排名</strong>（0–100 归一化）后按权重合成，非绝对预测值。海关动能 = 近 6 个月出口均值相对前 6 个月的变化率。
+              蓝海得分 = 高增长 × 低竞争的复合指标，前 30% 标记为 ★ 蓝海机会。数据为代表性贸易数据集，接入实时接口后自动切换。仅供选品决策参考。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>&copy; <span id="year"></span> Concord Trade. 选品决策引擎。</span>
+        <span><a href="/tools/" style="color:#fff;opacity:.8;">← 返回工具中心</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/tools/data.js?v=1"></script>
+  <script src="/tools/charts.js?v=1"></script>
+  <script src="/tools/product-engine/scoring.js?v=1"></script>
+</body>
+</html>

@@ -136,6 +136,9 @@
   function init(data) {
     if (data) cats = data;
     buildSelect();
+    if (D.mountSourceToggle) {
+      D.mountSourceToggle('srcToggle', function (newData) { cats = newData; render(); });
+    }
     document.getElementById('catSelect').addEventListener('change', function (e) { state.id = e.target.value; render(); });
     document.getElementById('metricSelect').addEventListener('change', function (e) { state.metric = e.target.value; render(); });
     document.getElementById('overlay').addEventListener('change', function (e) { state.overlay = e.target.checked; render(); });

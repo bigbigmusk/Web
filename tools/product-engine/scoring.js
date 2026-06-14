@@ -32,9 +32,10 @@
     blueOnly: false, selected: null
   };
 
-  // ---- precompute normalized factor scores -----------------
+  // ---- normalized factor scores (recomputed when data changes) ----
   var normScores = {}; // id -> {key: 0..100}
-  (function computeNorm() {
+  function recomputeNorm() {
+    normScores = {};
     FACTORS.forEach(function (f) {
       var raw = cats.map(function (c) { return f.get(c); });
       var lo = Math.min.apply(null, raw), hi = Math.max.apply(null, raw);
@@ -45,7 +46,8 @@
         (normScores[c.id] = normScores[c.id] || {})[f.key] = v * 100;
       });
     });
-  })();
+  }
+  recomputeNorm();
 
   function blueScore(c) {
     // high growth × low competition, scaled 0..100
@@ -249,7 +251,14 @@
 
   // ---- init -------------------------------------------------
   function init(data) {
-    if (data) cats = data;
+    if (data) { cats = data; recomputeNorm(); }
+    if (D.mountSourceToggle) {
+      D.mountSourceToggle('srcToggle', function (newData) {
+        cats = newData; recomputeNorm();
+        state.cats = uniq(cats.map(function (c) { return c.cat; }));
+        render();
+      });
+    }
     document.getElementById('preset').addEventListener('change', function (e) { applyPreset(e.target.value); });
     document.getElementById('blueOnly').addEventListener('change', function (e) { state.blueOnly = e.target.checked; render(); });
     document.getElementById('resetBtn').addEventListener('click', function () {

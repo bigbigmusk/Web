@@ -121,5 +121,12 @@ table.rank tr.row.sel { background: rgba(22,51,90,0.05); }
 .hub-card li::before { content: "→"; position: absolute; left: 0; color: var(--navy); font-weight: 700; }
 .hub-card .btn { margin-top: auto; }
 
+/* data-source segmented toggle */
+.src-toggle { border:1px solid var(--line); background: var(--bg-alt); border-radius: 12px; padding: 14px; margin-bottom: 18px; }
+.src-seg { display:flex; background:#fff; border:1px solid var(--silver-300); border-radius:9px; padding:3px; gap:3px; }
+.src-seg button { flex:1; font:inherit; font-size:0.82rem; font-weight:600; color:var(--muted); background:none; border:0; padding:8px 6px; border-radius:7px; cursor:pointer; transition:.15s; }
+.src-seg button:hover { color:var(--navy); }
+.src-seg button.active { background:var(--navy); color:#fff; }
+
 .spin { display:inline-block; width:16px; height:16px; border:2px solid var(--silver-300); border-top-color: var(--navy); border-radius:50%; animation: sp .7s linear infinite; vertical-align:middle; }
 @keyframes sp { to { transform: rotate(360deg); } }

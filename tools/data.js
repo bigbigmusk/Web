@@ -222,30 +222,39 @@
     trends: null     // async (categories) => { [id]: searchSeries }
   };
 
+  // build the bundled dataset ONCE (canonical fallback)
+  var bundled = buildDataset();
+
   var _cache = null;
+  // initial synchronous-ish access: returns bundled (fast, offline-safe)
   async function load() {
     if (_cache) return _cache;
-    var base = buildDataset();
+    _cache = bundled;
+    return bundled;
+  }
+
+  // pull LIVE data from a configured provider (e.g. UN Comtrade customs).
+  // onProgress(done, total) is optional. Always resolves: live data on
+  // success, the bundled dataset on any failure (CORS / rate-limit / offline).
+  async function fetchLive(onProgress) {
+    if (typeof sources.customs !== 'function') return bundled;
     try {
-      if (typeof sources.customs === 'function') {
-        var live = await sources.customs();
-        if (Array.isArray(live) && live.length) base = live;
-      }
-      if (typeof sources.trends === 'function') {
-        var t = await sources.trends(base);
-        if (t) base.forEach(function (c) { if (t[c.id]) c.searchSeries = t[c.id]; });
-      }
-    } catch (e) { /* fall back silently to bundled data */ }
-    _cache = base;
-    return base;
+      var live = await sources.customs(bundled, onProgress);
+      return (Array.isArray(live) && live.length) ? live : bundled;
+    } catch (e) {
+      return bundled;
+    }
   }
 
   window.CBData = {
     HISTORY: HISTORY, FORECAST: FORECAST,
     histMonths: HIST_MONTHS, fcastMonths: FCAST_MONTHS,
-    categories: buildDataset(),   // synchronous bundled access
-    load: load,                   // async (honours live sources)
+    categories: bundled,          // synchronous bundled access
+    bundled: bundled,             // canonical fallback set
+    load: load,                   // async — bundled (offline-safe)
+    fetchLive: fetchLive,         // async — live provider, falls back to bundled
     sources: sources,
+    round1: round1,
     // analytics
     mean: mean, std: std, momentum: momentum, linReg: linReg,
     seasonalIndices: seasonalIndices, forecast: forecast,

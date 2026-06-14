@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & Help | Oddpeel</title>
+  <meta name="description" content="Questions about your order, sizing, returns or wholesale? The Oddpeel humans reply within one business day. Plus answers to common questions." />
+  <link rel="canonical" href="https://www.oddpeel.com/contact.html" />
+  <meta name="theme-color" content="#FFD23F" />
+  <meta property="og:title" content="Contact & Help | Oddpeel" />
+  <meta property="og:description" content="Real humans, fast replies. Plus answers to common questions." />
+  <meta property="og:image" content="https://www.oddpeel.com/assets/social-card.svg" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=1" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"How long does shipping take?","acceptedAnswer":{"@type":"Answer","text":"Orders ship within 1 business day. Standard US delivery is 3–5 business days and is free over $35. International typically arrives in 7–14 business days."}},
+      {"@type":"Question","name":"What sizes do Oddpeel socks come in?","acceptedAnswer":{"@type":"Answer","text":"Most styles are one stretchy size fitting US men's 6–13 / women's 7–14. Each product page notes the exact fit."}},
+      {"@type":"Question","name":"What is your return policy?","acceptedAnswer":{"@type":"Answer","text":"We offer a 30-day happiness guarantee. If you're not happy, we'll replace or refund — no need to ship socks back."}},
+      {"@type":"Question","name":"Do you offer wholesale?","acceptedAnswer":{"@type":"Answer","text":"Yes. Email wholesale@oddpeel.com with your shop details and we'll send our line sheet."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="announce">
+    <div class="marquee" aria-hidden="true">
+      <span><span class="dot">●</span> Free shipping over $35</span>
+      <span><span class="dot">●</span> Buy 3, get 1 free</span>
+      <span><span class="dot">●</span> Peel the boring 🍌</span>
+      <span><span class="dot">●</span> Combed-cotton comfort</span>
+      <span><span class="dot">●</span> 30-day happiness guarantee</span>
+      <span><span class="dot">●</span> Free shipping over $35</span>
+      <span><span class="dot">●</span> Buy 3, get 1 free</span>
+      <span><span class="dot">●</span> Peel the boring 🍌</span>
+      <span><span class="dot">●</span> Combed-cotton comfort</span>
+      <span><span class="dot">●</span> 30-day happiness guarantee</span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="brand" aria-label="Oddpeel home">
+        <svg class="eye-blob" viewBox="0 0 64 60" aria-hidden="true">
+          <ellipse cx="32" cy="31" rx="30" ry="28" fill="#161616"/>
+          <circle cx="23" cy="26" r="9" fill="#fff"/><circle cx="44" cy="26" r="9" fill="#fff"/>
+          <circle cx="25" cy="28" r="3.6" fill="#161616"/><circle cx="46" cy="28" r="3.6" fill="#161616"/>
+        </svg>
+        <span class="wordmark">Oddpeel</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="shop.html">Shop</a>
+        <a href="shop.html#bestsellers">Bestsellers</a>
+        <a href="about.html">Our Story</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="shop.html" class="cart-btn">
+          <span aria-hidden="true">🛒</span>
+          <span class="cart-label">Cart</span>
+          <span class="cart-count" data-cart-count>0</span>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <section class="page-hero blue">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html" style="color:#fff;">Home</a> / Contact</p>
+      <h1>Talk to a human</h1>
+      <p class="lead center-block">Real people, fast replies — usually within one business day. No bots, no banana-split attention spans.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-grid">
+      <div>
+        <span class="eyebrow">Send a note</span>
+        <h2>How can we help?</h2>
+        <form id="contactForm">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="Banana McPeelface" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@oddmail.com" required />
+          </div>
+          <div class="field">
+            <label for="topic">Topic</label>
+            <select id="topic" name="topic">
+              <option>Order &amp; shipping</option>
+              <option>Returns &amp; exchanges</option>
+              <option>Sizing help</option>
+              <option>Wholesale</option>
+              <option>Just saying hi 👋</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us everything…" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-dark btn-block">Send it →</button>
+        </form>
+        <div id="contactSuccess" class="info-card" style="display:none;background:var(--green);color:#fff;margin-top:18px;">
+          <h3 style="margin-top:0;">Got it! 🍌</h3>
+          <p style="margin:0;">Thanks for reaching out. A real Oddpeel human will reply within one business day.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="info-card">
+          <h3>📦 Order help</h3>
+          <p style="margin:0;">Email <strong>help@oddpeel.com</strong><br/>Mon–Fri, 9am–5pm PT</p>
+        </div>
+        <div class="info-card">
+          <h3>🤝 Wholesale</h3>
+          <p style="margin:0;">Stock Oddpeel in your shop.<br/>Email <strong>wholesale@oddpeel.com</strong></p>
+        </div>
+        <div class="info-card">
+          <h3>📣 Press &amp; collabs</h3>
+          <p style="margin:0;">Got a weird idea? We're in.<br/>Email <strong>hello@oddpeel.com</strong></p>
+        </div>
+        <div class="info-card bg-cream2">
+          <h3>🔎 Track your order</h3>
+          <p style="margin:0;">Use the link in your shipping email, or send us your order number and we'll chase it down.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-cream2" id="faq" style="border-top:3px solid var(--line);border-bottom:3px solid var(--line);">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">FAQ</span>
+        <h2>Quick answers</h2>
+      </div>
+      <div class="faq">
+        <details open><summary>How long does shipping take?</summary><p>Orders ship within 1 business day. Standard US delivery is 3–5 business days and free over $35. International usually arrives in 7–14 business days.</p></details>
+        <details><summary>What sizes do your socks come in?</summary><p>Most styles are one stretchy size fitting US men's 6–13 / women's 7–14. The exact fit is noted on each product page.</p></details>
+        <details><summary>What's your return policy?</summary><p>A 30-day happiness guarantee. Not happy? We'll replace or refund — and you usually don't need to ship the socks back.</p></details>
+        <details><summary>How should I wash them?</summary><p>Machine wash cold, inside out, tumble dry low. Our colors are knitted in, not printed, so they stay loud for the long haul.</p></details>
+        <details><summary>Do you ship internationally?</summary><p>Yes — we ship to most countries. Duties and taxes are calculated at checkout where applicable.</p></details>
+        <details><summary>Do you offer wholesale?</summary><p>We do. Email <strong>wholesale@oddpeel.com</strong> with your shop details and we'll send our line sheet.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <span class="wordmark">Oddpeel</span>
+        <p style="margin-top:10px;">Weird looks good. Oddly perfect socks for people who peel the boring.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="TikTok">🎵</a>
+          <a href="#" aria-label="Pinterest">📌</a>
+          <a href="#" aria-label="Email">✉️</a>
+        </div>
+      </div>
+      <div class="foot-col"><h4>Shop</h4>
+        <a href="shop.html">All socks</a><a href="shop.html#bestsellers">Bestsellers</a><a href="shop.html">New arrivals</a><a href="shop.html">Build-a-box</a>
+      </div>
+      <div class="foot-col"><h4>Company</h4>
+        <a href="about.html">Our story</a><a href="contact.html">Contact</a><a href="contact.html#faq">FAQ</a><a href="contact.html">Wholesale</a>
+      </div>
+      <div class="foot-col"><h4>Help</h4>
+        <a href="contact.html#faq">Shipping</a><a href="contact.html#faq">Returns</a><a href="contact.html#faq">Size guide</a><a href="contact.html">Track order</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© 2026 Oddpeel. All rights reserved.</span>
+      <span>Peel the boring. 🍌</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"><span class="dot">●</span> <span id="toastMsg">Added to cart</span></div>
+  <script src="script.js?v=1"></script>
+</body>
+</html>

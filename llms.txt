@@ -1,23 +1,22 @@
-# Concord Trade
+# Oddpeel
 
-> Concord Trade is a B2B international sourcing and trade solutions company helping global buyers source reliable manufacturers, compare supplier options, manage OEM/ODM projects, coordinate samples and orders, and reduce sourcing risks from China and Asia.
+> Oddpeel is a direct-to-consumer sock brand. We make bold, comfortable
+> statement socks for people who "peel the boring." Tagline: "Weird looks good." /
+> "Oddly perfect." / 奇怪的刚刚好。
 
-## Services
-- [China Product Sourcing](https://www.concord-trade.com/services/china-product-sourcing/): Find and compare reliable Chinese manufacturers, collect quotes, manage samples.
-- [Supplier Verification](https://www.concord-trade.com/services/supplier-verification/): Verify suppliers before ordering to reduce sourcing risk.
-- [OEM / ODM Sourcing](https://www.concord-trade.com/services/oem-odm-sourcing/): Private label, custom packaging, product development, MOQ negotiation, production follow-up.
+## About
+- Combed-cotton crew socks with reinforced heel & toe, US sizes 6–13.
+- Patterns designed in-house and knitted (not printed) so colors last.
+- Free US shipping over $35, 30-day happiness guarantee, carbon-neutral delivery.
+- Plastic-free packaging; fair-wage, audited knitting partners.
 
-## Industries
-- [Pet Product Sourcing](https://www.concord-trade.com/industries/pet-product-sourcing/)
-- [Medical Consumables & PPE Sourcing](https://www.concord-trade.com/industries/medical-consumables-sourcing/)
-- [Bags, Apparel & Home Goods Sourcing](https://www.concord-trade.com/industries/bags-apparel-home-goods-sourcing/)
-
-## Company
-- [About](https://www.concord-trade.com/about/)
-- [Insights](https://www.concord-trade.com/insights/)
-- [Contact](https://www.concord-trade.com/contact/)
+## Pages
+- Home: https://www.oddpeel.com/
+- Shop all socks: https://www.oddpeel.com/shop.html
+- Our story: https://www.oddpeel.com/about.html
+- Contact & FAQ: https://www.oddpeel.com/contact.html
 
 ## Contact
-- Sales: tj@concord-trade.com
-- General: info@concord-trade.com
-- LinkedIn: https://www.linkedin.com/company/concord-trade/
+- Customer help: help@oddpeel.com
+- Wholesale: wholesale@oddpeel.com
+- Press & collabs: hello@oddpeel.com

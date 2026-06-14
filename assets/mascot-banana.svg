@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" role="img" aria-label="Oddpeel banana mascot">
+  <defs>
+    <linearGradient id="peelY" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFE05A"/>
+      <stop offset="1" stop-color="#FBC02A"/>
+    </linearGradient>
+  </defs>
+  <!-- peels -->
+  <path d="M100 70 C70 70 56 96 60 132 L74 226 C76 238 64 236 70 224 L92 150 Z" fill="url(#peelY)" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M100 70 C130 70 144 96 140 132 L126 226 C124 238 136 236 130 224 L108 150 Z" fill="url(#peelY)" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M100 64 C84 64 74 80 78 104 L92 160 C96 176 104 176 108 160 L122 104 C126 80 116 64 100 64 Z" fill="#FFF3D6" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+  <!-- top stem -->
+  <path d="M92 62 L100 44 L108 62 Z" fill="#7A4B1E" stroke="#111" stroke-width="6" stroke-linejoin="round"/>
+  <!-- face -->
+  <ellipse cx="89" cy="104" rx="9" ry="11" fill="#fff" stroke="#111" stroke-width="4"/>
+  <ellipse cx="111" cy="104" rx="9" ry="11" fill="#fff" stroke="#111" stroke-width="4"/>
+  <circle cx="91" cy="107" r="4" fill="#111"/>
+  <circle cx="109" cy="107" r="4" fill="#111"/>
+  <path d="M88 126 Q100 138 112 126" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="78" cy="122" r="5" fill="#FF7FB6" opacity=".7"/>
+  <circle cx="122" cy="122" r="5" fill="#FF7FB6" opacity=".7"/>
+</svg>

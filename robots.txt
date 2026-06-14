@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.concord-trade.com/sitemap.xml
+Sitemap: https://www.oddpeel.com/sitemap.xml

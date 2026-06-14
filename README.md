@@ -1,102 +1,57 @@
-# Concord Trade — B2B Sourcing & Trade Website
+# Oddpeel — B2C website
 
-International sourcing & trade partner showcase site. Built as a fast,
-dependency-free static website (HTML + CSS + vanilla JS) so it can be hosted
-anywhere — GitHub Pages, Netlify, Vercel, or any static host.
+> Weird looks good. / Oddly perfect. / 奇怪的刚刚好。
 
-**Positioning:** not a product marketplace — a sourcing & trade execution partner.
-> *Tell us what you need. We help you find, compare, verify, and source the right products from reliable suppliers.*
+A fast, static B2C marketing + catalog site for **Oddpeel**, a fun statement-sock
+brand. No build step, no framework — just HTML, CSS, and a little vanilla JS.
 
-## Brand & visual system
-- **Colors:** navy `#16335a` + silver `#8f99a5` on clean white / light-grey (`#f4f7fb`).
-- **Style:** corporate, global, procurement-led. Abstract global-trade network graphics
-  and clean SVG iconography instead of ship/container/plane stock photos or 1688-style product dumps.
-- **Typography:** Inter (Google Fonts).
-- All graphics are inline SVG — crisp on every screen, no image assets to manage.
+## Pages
 
-## Page structure
-1. **Hero** — Global Sourcing & Trade Solutions (+ RFQ / View Categories CTAs, animated world-network background)
-2. **About** — who we are + capability stats
-3. **What We Do** — Product Sourcing · Supplier Coordination · OEM/ODM · Quality & Sample Follow-up · Import & Export · Supply Chain Solutions
-4. **Product Categories We Source** — Pet Care · Home Hygiene & Odor Control · Medical Disposables & PPE · Bags & Travel Accessories · Athleisure & Wearables
-5. **How We Work** — 6-step sourcing workflow (Requirement → Long-term Supply)
-6. **Why Concord Trade** — key advantages
-7. **Trust & Execution** — Supplier Verification · Quality Control · Packaging Customization · Export Documentation
-8. **RFQ form** — structured request for quotation
-9. **Footer** — contact, LinkedIn, mission
+| File | Purpose |
+| --- | --- |
+| `index.html` | Homepage: hero, bestsellers, brand promise, build-a-box, story, reviews, newsletter |
+| `shop.html` | Full catalog with category filters + build-a-box CTA |
+| `about.html` | Brand story, values, sustainability stats |
+| `contact.html` | Contact form, support channels, FAQ (with FAQ schema) |
 
-## Contact
-- Sales: `tj@concord-trade.com`
-- General: `info@concord-trade.com`
-- LinkedIn: https://www.linkedin.com/company/concord-trade/
+## How it works
 
-## RFQ form
-The form is static-host friendly: on submit it validates the required fields and
-composes a structured email to `info@concord-trade.com` via `mailto:`.
+- **Styling** lives in `styles.css` — a single sticker-style design system
+  (brand tokens, buttons, cards, layout, responsive rules).
+- **Behavior** lives in `script.js`:
+  - The product catalog is defined once in the `PRODUCTS` array.
+  - Bestsellers (home) and the full grid + filters (shop) render from that array.
+  - A lightweight cart counter persists in `localStorage` with an "added" toast.
+  - Mobile nav, newsletter, and contact form handlers.
+- **Brand art** is all SVG in `assets/`:
+  - `mascot-banana.svg`, `favicon.svg`, `social-card.svg`
+  - `assets/socks/*.svg` — patterned sock illustrations.
 
-**To upgrade to direct inbox delivery** (no email app popup), point the form at a
-form backend such as [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com):
-in `script.js`, replace the `mailto:` handler with a `fetch()` POST to your endpoint.
+### Regenerating the sock illustrations
 
-## Languages (i18n)
-The site ships in **English · 简体中文 · Español · Français** via a header language
-switcher (EN / 中文 / ES / FR). Implementation is dependency-free:
-- `translations.js` — all copy for the four languages, keyed by short ids.
-- `i18n.js` — applies translations to `[data-i18n]` / `[data-i18n-html]` /
-  `[data-i18n-ph]` elements, keeps `<html lang>`, `<title>` and the meta
-  description in sync, and remembers the choice in `localStorage`.
-- Language is auto-selected on first visit from `?lang=xx`, then the saved
-  choice, then the browser language (fallback English). `hreflang` alternates
-  are declared in `<head>`.
+The sock SVGs are produced by a small generator so patterns stay consistent:
 
-## SEO & social sharing
-- **Open Graph + Twitter Card** meta so links shared on LinkedIn / X / chat render a
-  branded preview card (`assets/social-card.png`, 1200×630).
-- **JSON-LD `Organization`** structured data (logo, slogan, product focus areas,
-  LinkedIn `sameAs`, and `sales` / `customer service` contact emails) for richer
-  search-engine results.
-- Canonical URL + `theme-color`.
-
-## Brand assets
-The logo is the customer's official artwork (`assets/7BAC…PNG` master). The header /
-footer / favicon / share card are cropped straight from it — no redrawn approximation:
-```
-assets/logo-mark.png          # emblem, transparent (header + JSON-LD logo)
-assets/logo-wordmark.png      # "CONCORD TRADE" wordmark, transparent (header)
-assets/logo-mark-white.png    # white emblem for the dark footer
-assets/logo-wordmark-white.png# white wordmark for the dark footer
-assets/favicon.png            # emblem on a white rounded tile
-assets/social-card.svg        # source for the 1200×630 share card
-assets/social-card.png        # Open Graph / Twitter share image (uses the real emblem)
+```bash
+python3 assets/gen_socks.py
 ```
 
-## Files
-```
-index.html              # all sections / markup + i18n hooks + SEO + structured data
-styles.css              # design system + responsive layout
-script.js               # nav, scroll reveals, RFQ form handler
-translations.js         # EN / ZH / ES / FR copy
-i18n.js                 # language switcher engine
-```
+Edit the `SOCKS` list in `assets/gen_socks.py` to add styles or change colors.
+The script is excluded from the published site via `.assetsignore`.
 
-## Run locally
-Just open `index.html`, or serve the folder:
+### Editing the catalog
+
+Add or change products in the `PRODUCTS` array near the top of `script.js`.
+Each product needs an `id`, `name`, `desc`, `price`, `img`, `tint` (background
+class), `cat` (filter tags), and optional `tag`/`tagClass` badge.
+
+## Local preview
+
 ```bash
 python3 -m http.server 8000
-# → http://localhost:8000
+# open http://localhost:8000
 ```
 
-## Deployment (Cloudflare Pages)
-Static site, no build step. Hosted on **Cloudflare Pages**, connected to this
-repo and auto-deploying on every push to **`main`**.
+## Deploy
 
-Cloudflare Pages project settings:
-- Production branch: `main`
-- Framework preset: `None`
-- Build command: *(empty)*
-- Build output directory: `/`
-
-`_headers` (Cloudflare syntax) applies the security headers and asset caching.
-The custom domain `www.concord-trade.com` is configured in the Cloudflare Pages
-dashboard (Custom domains), not via a repo file.
-
+Configured for Cloudflare (static assets) via `wrangler.toml` + `_headers`.
+Set the project `name` in `wrangler.toml` and attach your domain before going live.

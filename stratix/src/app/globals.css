@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 98%; /* ivory */
+    --foreground: 215 35% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 35% 12%;
+
+    --primary: 215 40% 12%; /* deep charcoal/navy */
+    --primary-foreground: 40 33% 98%;
+
+    --secondary: 215 30% 95%;
+    --secondary-foreground: 215 35% 18%;
+
+    --muted: 215 20% 95%;
+    --muted-foreground: 215 14% 42%;
+
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 20% 90%;
+    --input: 215 20% 88%;
+    --ring: 187 86% 38%;
+
+    --radius: 0.6rem;
+  }
+
+  .dark {
+    --background: 215 38% 7%;
+    --foreground: 40 20% 94%;
+    --card: 215 33% 10%;
+    --card-foreground: 40 20% 94%;
+    --primary: 40 33% 96%;
+    --primary-foreground: 215 38% 9%;
+    --secondary: 215 28% 15%;
+    --secondary-foreground: 40 20% 94%;
+    --muted: 215 28% 15%;
+    --muted-foreground: 215 14% 62%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 215 25% 18%;
+    --input: 215 25% 20%;
+    --ring: 187 86% 45%;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+  }
+}
+
+@layer utilities {
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(13, 17, 23, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(13, 17, 23, 0.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 9999px;
+  }
+}

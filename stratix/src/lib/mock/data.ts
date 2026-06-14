@@ -1,0 +1,466 @@
+// ──────────────────────────────────────────────────────────────
+// STRATIX mock dataset — realistic seed data so every screen is
+// populated without a backend. Products span the reference set:
+// pet deodorizer, medical sutures, sports bra, travel bag, home cleaning.
+// ──────────────────────────────────────────────────────────────
+
+import type {
+  Competitor,
+  Content,
+  CountryOpportunity,
+  ExportReadinessDiagnosis,
+  Lead,
+  Product,
+  Project,
+  Report,
+  Task,
+  User,
+} from "@/lib/types";
+import { mockExportReadiness, mockMarketRadar } from "@/lib/ai/mock";
+
+export const CURRENT_USER: User = {
+  id: "usr_001",
+  name: "Jiayi Tan",
+  email: "tanjiayi2016@gmail.com",
+  company_name: "Meridian Export Studio",
+  role: "Founder / Export Consultant",
+  plan: "pro",
+  created_at: "2026-03-02T09:00:00Z",
+};
+
+export const PROJECTS: Project[] = [
+  {
+    id: "prj_pet",
+    user_id: "usr_001",
+    project_name: "PawFresh — US & EU Launch",
+    business_type: "DTC Brand",
+    business_goal: "Find overseas buyers",
+    product_category: "Pet Care",
+    target_market: "United States",
+    status: "active",
+    export_readiness_score: 84,
+    opportunity_score: 88,
+    created_at: "2026-05-12T10:00:00Z",
+    updated_at: "2026-06-10T14:30:00Z",
+  },
+  {
+    id: "prj_suture",
+    user_id: "usr_001",
+    project_name: "MediBond Surgical Sutures",
+    business_type: "Manufacturer",
+    business_goal: "Build outbound sales system",
+    product_category: "Medical Disposables",
+    target_market: "Germany",
+    status: "active",
+    export_readiness_score: 71,
+    opportunity_score: 76,
+    created_at: "2026-05-20T11:00:00Z",
+    updated_at: "2026-06-09T08:15:00Z",
+  },
+  {
+    id: "prj_bra",
+    user_id: "usr_001",
+    project_name: "FlexForm Sports Bra — DTC Test",
+    business_type: "DTC Brand",
+    business_goal: "Test a new market",
+    product_category: "Athleisure",
+    target_market: "United Kingdom",
+    status: "active",
+    export_readiness_score: 79,
+    opportunity_score: 81,
+    created_at: "2026-06-01T09:30:00Z",
+    updated_at: "2026-06-12T16:00:00Z",
+  },
+  {
+    id: "prj_bag",
+    user_id: "usr_001",
+    project_name: "Voyager Travel Bag — Distributor Hunt",
+    business_type: "Export Company",
+    business_goal: "Prepare for trade show",
+    product_category: "Bags & Travel",
+    target_market: "United Arab Emirates",
+    status: "draft",
+    export_readiness_score: 68,
+    opportunity_score: 72,
+    created_at: "2026-06-08T13:00:00Z",
+    updated_at: "2026-06-11T10:45:00Z",
+  },
+];
+
+export const PRODUCTS: Product[] = [
+  {
+    id: "prod_pet",
+    project_id: "prj_pet",
+    product_name: "PawFresh Pet Deodorizer Spray",
+    category: "Pet Care",
+    description:
+      "Plant-based, non-toxic pet odor neutralizer for fur, bedding, and litter areas. Enzyme formula eliminates odor at the source instead of masking it.",
+    cost_price: 1.8,
+    target_price: 14.9,
+    moq: 1000,
+    certifications: "ISO 9001, REACH (in progress)",
+    current_channels: "Domestic 1688 wholesale, small Shopify store",
+    selling_points:
+      "Enzyme odor elimination, pet-safe & non-toxic, plant-based, no harsh fragrance, vet-reviewed",
+    images: [],
+    oem_odm_support: "OEM + ODM, custom scent and private-label packaging available",
+    factory_background: "8-year OEM factory for household & pet care, 3 production lines",
+    main_customer_type: "Pet retailers, DTC pet brands, distributors",
+    existing_website: "https://example-pawfresh.com",
+    created_at: "2026-05-12T10:05:00Z",
+  },
+  {
+    id: "prod_suture",
+    project_id: "prj_suture",
+    product_name: "MediBond Absorbable Surgical Sutures",
+    category: "Medical Disposables",
+    description:
+      "Sterile absorbable PGA surgical sutures with precision needles, individually packed. Consistent tensile strength and predictable absorption profile.",
+    cost_price: 0.45,
+    target_price: 2.6,
+    moq: 5000,
+    certifications: "ISO 13485, CE (Class IIa), in FDA 510(k) process",
+    current_channels: "Domestic hospital tenders, regional distributors",
+    selling_points:
+      "ISO 13485 + CE certified, consistent tensile strength, competitive distributor pricing, full documentation",
+    images: [],
+    oem_odm_support: "OEM private-label for distributors",
+    factory_background: "GMP medical facility, cleanroom production",
+    main_customer_type: "Medical distributors, hospital procurement, surgical supply importers",
+    existing_website: "",
+    created_at: "2026-05-20T11:05:00Z",
+  },
+  {
+    id: "prod_bra",
+    project_id: "prj_bra",
+    product_name: "FlexForm High-Support Sports Bra",
+    category: "Athleisure",
+    description:
+      "Seamless high-impact sports bra with moisture-wicking fabric and removable pads. Designed for running and HIIT, sizes XS-3XL.",
+    cost_price: 3.2,
+    target_price: 32.0,
+    moq: 500,
+    certifications: "OEKO-TEX Standard 100",
+    current_channels: "Tmall, small Amazon US test",
+    selling_points:
+      "High-impact support, seamless comfort, inclusive sizing XS-3XL, moisture-wicking, sustainable fabric option",
+    images: [],
+    oem_odm_support: "ODM design + OEM manufacturing, low MOQ for colorways",
+    factory_background: "Activewear factory with in-house design team",
+    main_customer_type: "DTC activewear brands, boutique fitness retailers",
+    existing_website: "https://example-flexform.com",
+    created_at: "2026-06-01T09:35:00Z",
+  },
+  {
+    id: "prod_bag",
+    project_id: "prj_bag",
+    product_name: "Voyager Anti-Theft Travel Backpack",
+    category: "Bags & Travel",
+    description:
+      "Water-resistant anti-theft travel backpack with USB charging port, hidden zippers, and laptop compartment. Durable, lightweight, TSA-friendly.",
+    cost_price: 6.5,
+    target_price: 49.0,
+    moq: 300,
+    certifications: "ISO 9001",
+    current_channels: "1688, Alibaba inquiries",
+    selling_points:
+      "Anti-theft design, USB charging, water-resistant, premium feel, strong margin for distributors",
+    images: [],
+    oem_odm_support: "OEM + ODM, custom logo and colorways",
+    factory_background: "Bag & luggage OEM, 12 years export experience",
+    main_customer_type: "Travel retailers, gift distributors, e-commerce sellers",
+    existing_website: "",
+    created_at: "2026-06-08T13:05:00Z",
+  },
+];
+
+// Pre-computed diagnoses for the two most-developed projects.
+export const DIAGNOSES: Record<string, ExportReadinessDiagnosis> = {
+  prj_pet: {
+    ...mockExportReadiness({
+      productName: "PawFresh Pet Deodorizer Spray",
+      category: "Pet Care",
+      targetPrice: 14.9,
+      costPrice: 1.8,
+    }),
+    export_readiness_score: 84,
+  },
+  prj_suture: {
+    ...mockExportReadiness({
+      productName: "MediBond Absorbable Surgical Sutures",
+      category: "Medical Disposables",
+      targetPrice: 2.6,
+      costPrice: 0.45,
+    }),
+    export_readiness_score: 71,
+  },
+};
+
+export const MARKET_RADAR: Record<string, { countries: CountryOpportunity[]; pricing_insight: string; channel_recommendation: string; risk_notes: string }> = {
+  prj_pet: mockMarketRadar({ category: "Pet Care", targetCountries: ["United States", "United Kingdom", "Germany"] }),
+  prj_suture: mockMarketRadar({ category: "Medical Disposables", targetCountries: ["Germany", "United Arab Emirates", "United Kingdom"] }),
+  prj_bra: mockMarketRadar({ category: "Athleisure", targetCountries: ["United Kingdom", "United States", "Australia"] }),
+  prj_bag: mockMarketRadar({ category: "Bags & Travel", targetCountries: ["United Arab Emirates", "United States", "Germany"] }),
+};
+
+export const COMPETITORS: Competitor[] = [
+  {
+    id: "cmp_001",
+    project_id: "prj_pet",
+    brand_name: "Skout's Honor",
+    website_url: "https://skoutshonor.com",
+    platform_url: "https://amazon.com/stores/skoutshonor",
+    price_range: "$$ mid-premium ($12-$20)",
+    positioning: "Premium, mission-driven pet care brand with a 'one bottle = one shelter meal' giveback.",
+    target_audience: "Conscious US pet parents, 28-50, who value ethics and clean ingredients.",
+    key_message: "Probiotic-powered, naturally derived pet care that does good.",
+    visual_style: "Clean, bright, blue/white palette, lots of happy-pet lifestyle imagery.",
+    sales_angles: ["Cause marketing / giveback", "Natural & probiotic story", "Vet endorsement", "Bundles & subscriptions"],
+    channel_strategy: "DTC + Amazon + Chewy + pet specialty retail (Petco).",
+    trust_signals: ["Vet endorsements", "Thousands of reviews", "Retail presence", "Giveback proof"],
+    hero_product: "Probiotic Deodorizer & Cleaner spray",
+    product_structure: "Core sprays + shampoos + supplements, subscription-friendly.",
+    what_to_learn: ["Cause-led brand story", "Retail + DTC channel mix", "Subscription bundling"],
+    what_to_avoid: ["Premium price without our compliance depth", "Heavy US-retail dependence early"],
+    differentiation_opportunity: "Win the distributor/private-label channel with flexible MOQ and OEM that Skout's does not offer.",
+    notes: "Strong brand; beatable on B2B/distributor flexibility and price-to-value.",
+    created_at: "2026-05-15T10:00:00Z",
+  },
+  {
+    id: "cmp_002",
+    project_id: "prj_pet",
+    brand_name: "Angry Orange",
+    website_url: "https://angryorange.com",
+    platform_url: "https://amazon.com/stores/angryorange",
+    price_range: "$ value ($10-$16)",
+    positioning: "Bold, high-strength citrus odor eliminator — value and potency.",
+    target_audience: "Practical pet owners wanting strong, affordable odor removal.",
+    key_message: "Powerful citrus odor elimination that actually works.",
+    visual_style: "High-contrast orange, bold typography, before/after demos.",
+    sales_angles: ["Strength / efficacy demos", "Value pricing", "Amazon review dominance"],
+    channel_strategy: "Amazon-first, then DTC and retail.",
+    trust_signals: ["Massive Amazon review count", "Before/after content"],
+    hero_product: "Concentrated citrus odor eliminator",
+    product_structure: "Concentrate + ready-to-use sprays.",
+    what_to_learn: ["Amazon review flywheel", "Efficacy-demo content"],
+    what_to_avoid: ["Race-to-bottom pricing", "Synthetic-heavy positioning"],
+    differentiation_opportunity: "Position PawFresh as the pet-SAFE, enzyme alternative with cleaner ingredients.",
+    notes: "Volume leader on Amazon; differentiate on safety and ingredients.",
+    created_at: "2026-05-16T10:00:00Z",
+  },
+];
+
+export const LEADS: Lead[] = [
+  {
+    id: "lead_001",
+    project_id: "prj_pet",
+    company_name: "PetWholesale Direct",
+    country: "United States",
+    website: "https://petwholesaledirect.example",
+    customer_type: "Distributor",
+    contact_name: "Marcus Reed",
+    email: "marcus@petwholesale.example",
+    linkedin_url: "https://linkedin.com/in/marcusreed",
+    source: "LinkedIn",
+    priority: "High",
+    status: "Contacted",
+    fit_score: 86,
+    last_contacted_at: "2026-06-09T00:00:00Z",
+    notes: "Distributes to 400+ independent pet stores. Asked for samples + MOQ.",
+    created_at: "2026-06-02T10:00:00Z",
+  },
+  {
+    id: "lead_002",
+    project_id: "prj_pet",
+    company_name: "GreenPaws Retail Group",
+    country: "United Kingdom",
+    website: "https://greenpaws.example",
+    customer_type: "Retail chain",
+    contact_name: "Olivia Hart",
+    email: "olivia@greenpaws.example",
+    linkedin_url: "https://linkedin.com/in/oliviahart",
+    source: "Trade show list",
+    priority: "High",
+    status: "Replied",
+    fit_score: 81,
+    last_contacted_at: "2026-06-10T00:00:00Z",
+    notes: "Replied positively, wants eco-credentials and REACH docs.",
+    created_at: "2026-06-03T10:00:00Z",
+  },
+  {
+    id: "lead_003",
+    project_id: "prj_pet",
+    company_name: "Nordic Pet Supply",
+    country: "Germany",
+    website: "https://nordicpet.example",
+    customer_type: "Distributor",
+    contact_name: "Lukas Vogel",
+    email: "lukas@nordicpet.example",
+    linkedin_url: "https://linkedin.com/in/lukasvogel",
+    source: "Apollo export",
+    priority: "Medium",
+    status: "Qualified",
+    fit_score: 74,
+    last_contacted_at: null,
+    notes: "Strong fit but strict on certifications. Queue after REACH is final.",
+    created_at: "2026-06-04T10:00:00Z",
+  },
+  {
+    id: "lead_004",
+    project_id: "prj_pet",
+    company_name: "Sunbelt Pet Imports",
+    country: "United States",
+    website: "https://sunbeltpet.example",
+    customer_type: "Importer",
+    contact_name: "Dana Cole",
+    email: "dana@sunbeltpet.example",
+    linkedin_url: "",
+    source: "Referral",
+    priority: "Medium",
+    status: "New",
+    fit_score: 69,
+    last_contacted_at: null,
+    notes: "Inbound referral from existing buyer. Needs qualification.",
+    created_at: "2026-06-08T10:00:00Z",
+  },
+  {
+    id: "lead_005",
+    project_id: "prj_pet",
+    company_name: "Maple Pet Co.",
+    country: "Canada",
+    website: "https://maplepet.example",
+    customer_type: "DTC brand",
+    contact_name: "Sophie Tremblay",
+    email: "sophie@maplepet.example",
+    linkedin_url: "https://linkedin.com/in/sophietremblay",
+    source: "LinkedIn",
+    priority: "Low",
+    status: "Meeting Booked",
+    fit_score: 77,
+    last_contacted_at: "2026-06-11T00:00:00Z",
+    notes: "Discovery call booked for next week. Interested in private label.",
+    created_at: "2026-06-05T10:00:00Z",
+  },
+  {
+    id: "lead_006",
+    project_id: "prj_suture",
+    company_name: "EuroMed Distribution GmbH",
+    country: "Germany",
+    website: "https://euromed.example",
+    customer_type: "Medical distributor",
+    contact_name: "Hannah Becker",
+    email: "hannah@euromed.example",
+    linkedin_url: "https://linkedin.com/in/hannahbecker",
+    source: "Trade show",
+    priority: "High",
+    status: "Quoted",
+    fit_score: 83,
+    last_contacted_at: "2026-06-07T00:00:00Z",
+    notes: "Quote sent for absorbable sutures. Awaiting CE doc review.",
+    created_at: "2026-05-28T10:00:00Z",
+  },
+];
+
+export const CONTENTS: Content[] = [
+  {
+    id: "cnt_001",
+    project_id: "prj_pet",
+    content_type: "Cold Email Sequence",
+    title: "PawFresh — Distributor Cold Email (Touch 1)",
+    target_audience: "US pet distributors",
+    platform: "Email",
+    tone: "Direct, professional",
+    main_message: "A high-margin, pet-safe enzyme deodorizer line your stores will reorder.",
+    body: "Subject: A high-margin pet deodorizer your stores will reorder\n\nHi {{first_name}},\n\nMost pet distributors struggle to find an odor product that's both genuinely pet-safe and high-margin. PawFresh is an enzyme-based, plant-derived deodorizer that eliminates odor at the source — vet-reviewed, with flexible MOQ and private-label support.\n\nWorth a quick look at how this could add a reorder-driving line for your stores?\n\nBest,\nJiayi",
+    cta: "Book a 15-minute intro call",
+    language: "English",
+    created_at: "2026-06-06T10:00:00Z",
+  },
+  {
+    id: "cnt_002",
+    project_id: "prj_pet",
+    content_type: "Company LinkedIn Post",
+    title: "PawFresh — Launch Announcement Post",
+    target_audience: "Pet industry buyers",
+    platform: "LinkedIn",
+    tone: "Confident, warm",
+    main_message: "Introducing a pet-safe enzyme deodorizer built for global partners.",
+    body: "We built PawFresh because pet parents deserve odor control that's actually safe.\n\n🐾 Enzyme formula — eliminates odor at the source\n🌱 Plant-based & non-toxic\n📦 Flexible MOQ + private-label for distributors\n\nWe're now opening partnerships in the US, UK, and EU. DM us for the brand kit.",
+    cta: "DM for the partner brand kit",
+    language: "English",
+    created_at: "2026-06-07T10:00:00Z",
+  },
+];
+
+export const REPORTS: Report[] = [
+  {
+    id: "rep_001",
+    project_id: "prj_pet",
+    report_type: "Export Readiness Report",
+    title: "PawFresh — Export Readiness Report",
+    summary:
+      "PawFresh scores 84/100 for export readiness. Strongest path: lead with the US market via distributor partnerships, supported by an English brand kit and REACH completion for the EU.",
+    sections: [
+      { heading: "Executive Summary", body: "PawFresh is export-ready for the US with a clear distributor wedge. Complete REACH to unlock the EU." },
+      { heading: "Priority Market", body: "United States — very high demand, premium price potential, beatable incumbents on B2B flexibility." },
+      { heading: "Next Steps", body: "Finalize REACH, launch outbound to 20 US distributors, and publish the English brand kit." },
+    ],
+    status: "final",
+    created_at: "2026-06-08T10:00:00Z",
+  },
+  {
+    id: "rep_002",
+    project_id: "prj_pet",
+    report_type: "Competitor Analysis Report",
+    title: "PawFresh — Competitor X-Ray (Skout's Honor + Angry Orange)",
+    summary:
+      "Two incumbents dominate brand and Amazon reviews but under-serve the distributor/private-label channel — PawFresh's clearest opening.",
+    sections: [
+      { heading: "Landscape", body: "Skout's Honor wins on brand/cause; Angry Orange wins on Amazon volume and price." },
+      { heading: "Opportunity", body: "Own the B2B private-label channel with flexible MOQ and cleaner ingredient story." },
+    ],
+    status: "final",
+    created_at: "2026-06-09T10:00:00Z",
+  },
+  {
+    id: "rep_003",
+    project_id: "prj_suture",
+    report_type: "Market Entry Report",
+    title: "MediBond — Germany Market Entry",
+    summary:
+      "Germany is the strongest first EU market for absorbable sutures, gated by CE documentation depth and distributor trust.",
+    sections: [
+      { heading: "Market", body: "Germany — high demand, strict compliance, documentation-driven buyers." },
+      { heading: "Strategy", body: "Lead with ISO 13485 + CE, target medical distributors via trade shows and LinkedIn." },
+    ],
+    status: "draft",
+    created_at: "2026-06-09T12:00:00Z",
+  },
+];
+
+export const TASKS: Task[] = [
+  { id: "tsk_01", project_id: "prj_pet", task_name: "Finalize target market (US)", task_type: "Strategy", day: 1, week: 1, due_date: "2026-06-14", status: "Done", owner: "Jiayi", notes: "Locked: US first, EU after REACH.", created_at: "2026-06-08T10:00:00Z" },
+  { id: "tsk_02", project_id: "prj_pet", task_name: "Build ICP & value proposition", task_type: "Strategy", day: 2, week: 1, due_date: "2026-06-15", status: "Done", owner: "Jiayi", notes: "", created_at: "2026-06-08T10:00:00Z" },
+  { id: "tsk_03", project_id: "prj_pet", task_name: "Identify 20 target leads", task_type: "Research", day: 3, week: 1, due_date: "2026-06-16", status: "Done", owner: "Jiayi", notes: "Imported via Apollo + LinkedIn.", created_at: "2026-06-08T10:00:00Z" },
+  { id: "tsk_04", project_id: "prj_pet", task_name: "Generate cold email sequence", task_type: "Content", day: 5, week: 1, due_date: "2026-06-18", status: "Done", owner: "Jiayi", notes: "4-touch sequence created.", created_at: "2026-06-08T10:00:00Z" },
+  { id: "tsk_05", project_id: "prj_pet", task_name: "Publish first LinkedIn company post", task_type: "Content", day: 6, week: 1, due_date: "2026-06-19", status: "In Progress", owner: "Jiayi", notes: "", created_at: "2026-06-08T10:00:00Z" },
+  { id: "tsk_06", project_id: "prj_pet", task_name: "Contact first 20 leads", task_type: "Outbound", day: 8, week: 2, due_date: "2026-06-21", status: "In Progress", owner: "Jiayi", notes: "8/20 contacted.", created_at: "2026-06-08T10:00:00Z" },
+  { id: "tsk_07", project_id: "prj_pet", task_name: "Run Competitor X-Ray on top 3", task_type: "Competitor", day: 12, week: 2, due_date: "2026-06-25", status: "Todo", owner: "Jiayi", notes: "", created_at: "2026-06-08T10:00:00Z" },
+  { id: "tsk_08", project_id: "prj_pet", task_name: "Book 3-5 discovery calls", task_type: "Outbound", day: 15, week: 3, due_date: "2026-06-28", status: "Todo", owner: "Jiayi", notes: "1 booked (Maple Pet).", created_at: "2026-06-08T10:00:00Z" },
+  { id: "tsk_09", project_id: "prj_pet", task_name: "Send samples + follow-up #1", task_type: "Outbound", day: 20, week: 3, due_date: "2026-07-03", status: "Todo", owner: "Jiayi", notes: "", created_at: "2026-06-08T10:00:00Z" },
+  { id: "tsk_10", project_id: "prj_pet", task_name: "Generate Market Entry proposal", task_type: "Report", day: 25, week: 4, due_date: "2026-07-08", status: "Todo", owner: "Jiayi", notes: "", created_at: "2026-06-08T10:00:00Z" },
+  { id: "tsk_11", project_id: "prj_pet", task_name: "Review pipeline & plan next sprint", task_type: "Strategy", day: 30, week: 4, due_date: "2026-07-13", status: "Todo", owner: "Jiayi", notes: "", created_at: "2026-06-08T10:00:00Z" },
+];
+
+// ── Lookup helpers ────────────────────────────────────────────
+export const getProject = (id: string) => PROJECTS.find((p) => p.id === id);
+export const getProduct = (projectId: string) => PRODUCTS.find((p) => p.project_id === projectId);
+export const getCompetitors = (projectId: string) => COMPETITORS.filter((c) => c.project_id === projectId);
+export const getLeads = (projectId?: string) => (projectId ? LEADS.filter((l) => l.project_id === projectId) : LEADS);
+export const getContents = (projectId?: string) => (projectId ? CONTENTS.filter((c) => c.project_id === projectId) : CONTENTS);
+export const getReports = (projectId?: string) => (projectId ? REPORTS.filter((r) => r.project_id === projectId) : REPORTS);
+export const getTasks = (projectId: string) => TASKS.filter((t) => t.project_id === projectId);
+export const getDiagnosis = (projectId: string) => DIAGNOSES[projectId];
+export const getRadar = (projectId: string) => MARKET_RADAR[projectId];
+
+export const DEFAULT_PROJECT_ID = "prj_pet";

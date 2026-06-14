@@ -95,6 +95,10 @@
       </div>
     </div>
     <div class="chips" id="chips"></div>
+    <div id="keyRow" class="hidden" style="margin-top:10px">
+      <label>美股数据 Key（Twelve Data，免费）— 只需填一次，自动存在你本机浏览器</label>
+      <input id="apikey" placeholder="把免费 API Key 粘到这里">
+    </div>
     <button class="go" id="run">🔍 开始分析</button>
     <div class="err hidden" id="err"></div>
   </div>
@@ -135,79 +139,103 @@
     • <b>总收益 vs 买入持有</b>：策略必须跑赢“无脑一直拿着”才有意义。<br>
     • <b>最大回撤</b>：历史上从最高点最多跌多少，越小越扛得住。<br>
     • <b>夏普 &gt;1</b> 不错、<b>&gt;2</b> 优秀。<br>
-    数据来源：币圈=币安、美股=雅虎财经、A股=腾讯证券（均为公开行情，无需账号）。<br>
-    美股/A股因浏览器跨域限制需经公共代理读取，偶尔会慢或失败，多试一次或稍后再试；
-    若仍不行，请改用电脑端 Python 工具（对美股/A股更稳）或先用“离线演示”。
-    周期里的“4/1 小时”仅币圈支持，美股/A股会自动按日线处理。
+    <b>数据来源（已升级为专业源，不再用公共代理）：</b><br>
+    • 币圈 = 币安官方接口（行情源头，最准；现价/24h涨跌与App对齐）<br>
+    • 美股 = Twelve Data 专业API（浏览器直连，需一次性免费Key：到
+      <a href="https://twelvedata.com/register" target="_blank">twelvedata.com/register</a>
+      注册→复制 API Key→粘到上方“美股数据Key”框，免费额度每天800次够用）<br>
+    • A股 = 东方财富接口（JSONP直连，前复权，免费稳定）<br>
+    每次结果都标“数据截至 日期”，方便你和行情软件核对。币圈支持 4/1 小时，
+    美股/A股按日线/周线（4/1小时会自动按日线）。
   </div>
 
 <script>
 "use strict";
-// ============ 数据获取 ============
-const BINANCE_HOSTS = [
-  "https://data-api.binance.vision",
-  "https://api.binance.com",
-  "https://api-gcp.binance.com",
-];
-async function fetchKlines(symbol, interval, limit){
-  symbol = symbol.toUpperCase().replace(/[^A-Z0-9]/g,"");
+// ============ 数据获取（专业数据源，统一返回 {bars, quote}）============
+// bars: K线数组（升序）；quote: {price, changePct} 实时报价(可为null)
+async function getJSON(url){
+  const r=await fetch(url,{cache:"no-store"});
+  if(!r.ok) throw new Error("HTTP "+r.status);
+  return r.json();
+}
+// JSONP：A股(东方财富)用，彻底绕过浏览器跨域，不依赖任何第三方公共代理
+function jsonp(url){
+  return new Promise((resolve,reject)=>{
+    const cb="__jp"+Math.random().toString(36).slice(2);
+    const s=document.createElement("script");
+    const t=setTimeout(()=>{done();reject(new Error("请求超时，请重试"));},12000);
+    function done(){clearTimeout(t);try{delete window[cb];}catch(e){}s.remove();}
+    window[cb]=d=>{done();resolve(d);};
+    s.onerror=()=>{done();reject(new Error("数据源加载失败"));};
+    s.src=url+(url.includes("?")?"&":"?")+"cb="+cb;
+    document.body.appendChild(s);
+  });
+}
+
+// 币圈：币安（行情源头，最准）。K线用于回测；24h ticker 校正现价/涨跌幅，与App对齐
+const BINANCE_HOSTS=["https://data-api.binance.vision","https://api.binance.com","https://api-gcp.binance.com"];
+async function loadCrypto(symbol,itv){
+  symbol=symbol.toUpperCase().replace(/[^A-Z0-9]/g,"");
   let lastErr;
-  for(const host of BINANCE_HOSTS){
+  for(const h of BINANCE_HOSTS){
     try{
-      const url = `${host}/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=${limit}`;
-      const r = await fetch(url, {cache:"no-store"});
-      if(!r.ok) throw new Error("HTTP "+r.status);
-      const raw = await r.json();
-      return raw.map(k=>({
-        time:new Date(k[0]).toISOString().slice(0,10),
-        open:+k[1], high:+k[2], low:+k[3], close:+k[4], volume:+k[5]
-      }));
-    }catch(e){ lastErr=e; }
+      const raw=await getJSON(`${h}/api/v3/klines?symbol=${symbol}&interval=${itv}&limit=400`);
+      const bars=raw.map(k=>({time:new Date(k[0]).toISOString().slice(0,10),
+        open:+k[1],high:+k[2],low:+k[3],close:+k[4],volume:+k[5]}));
+      let quote=null;
+      try{const t=await getJSON(`${h}/api/v3/ticker/24hr?symbol=${symbol}`);
+        quote={price:+t.lastPrice,changePct:+t.priceChangePercent};}catch(e){}
+      return {bars,quote};
+    }catch(e){lastErr=e;}
   }
-  throw lastErr || new Error("全部数据源不可用");
+  throw lastErr||new Error("币安连接失败（地区受限可切“离线演示”）");
 }
-// 跨域代理（美股/A股的行情接口默认不允许浏览器直读，需中转）
-const CORS_PROXIES = [
-  u => "https://api.allorigins.win/raw?url=" + encodeURIComponent(u),
-  u => "https://corsproxy.io/?url=" + encodeURIComponent(u),
-];
-async function fetchText(url){
-  let lastErr;
-  try{ const r=await fetch(url,{cache:"no-store"}); if(r.ok) return await r.text(); }
-  catch(e){ lastErr=e; }                       // 先试直连（少数接口允许跨域）
-  for(const p of CORS_PROXIES){                // 再依次试公共代理
-    try{ const r=await fetch(p(url),{cache:"no-store"}); if(r.ok) return await r.text(); }
-    catch(e){ lastErr=e; }
-  }
-  throw lastErr || new Error("数据源与代理都连不上");
+
+// 美股：Twelve Data 专业API（浏览器直连、开放跨域、数据准确）。需免费Key
+const TD_ITV={"1d":"1day","1w":"1week","4h":"4h","1h":"1h"};
+function getKey(){return ($("apikey").value||localStorage.getItem("td_key")||"").trim();}
+async function loadUS(symbol,itv){
+  const key=getKey();
+  if(!key) throw new Error("请先在上方“美股数据Key”里填入免费Key（注册见下方说明）");
+  symbol=symbol.toUpperCase().replace(/[^A-Z0-9.]/g,"");
+  const interval=TD_ITV[itv]||"1day";
+  const url=`https://api.twelvedata.com/time_series?symbol=${symbol}`+
+    `&interval=${interval}&outputsize=400&order=ASC&apikey=${encodeURIComponent(key)}`;
+  const j=await getJSON(url);
+  if(j.status==="error") throw new Error("数据源提示："+(j.message||"代码或Key有误"));
+  if(!j.values||!j.values.length) throw new Error("没取到数据，检查代码（如 AAPL、NVDA、SPY）");
+  const bars=j.values.map(v=>({time:v.datetime.slice(0,10),
+    open:+v.open,high:+v.high,low:+v.low,close:+v.close,volume:+(v.volume||0)}));
+  return {bars,quote:null};
 }
-async function fetchUS(symbol, itv){
-  symbol = symbol.toUpperCase().replace(/[^A-Z0-9.\-]/g,"");
-  const weekly = itv==="1w";
-  const interval = weekly ? "1wk" : "1d";
-  const range = weekly ? "5y" : "2y";
-  const url=`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=${range}&interval=${interval}`;
-  const j=JSON.parse(await fetchText(url));
-  const res=j.chart && j.chart.result && j.chart.result[0];
-  if(!res) throw new Error("找不到该美股代码（试试 AAPL、NVDA、SPY）");
-  const ts=res.timestamp||[], q=res.indicators.quote[0];
-  const bars=[];
-  for(let i=0;i<ts.length;i++){
-    if(q.close[i]==null) continue;
-    bars.push({time:new Date(ts[i]*1000).toISOString().slice(0,10),
-      open:+q.open[i],high:+q.high[i],low:+q.low[i],close:+q.close[i],volume:+(q.volume[i]||0)});
-  }
-  return bars;
+
+// A股：东方财富（JSONP直连，免费稳定，前复权）
+const EM_KLT={"1d":101,"1w":102,"1h":60};
+function emSecid(symbol){
+  symbol=symbol.toLowerCase().replace(/[^a-z0-9]/g,"");
+  const code=symbol.replace(/^(sh|sz|bj)/,"");
+  const mkt=symbol.startsWith("sh")?1:0;   // 1=沪市 0=深市
+  return mkt+"."+code;
 }
-async function fetchCN(symbol, itv){
-  symbol = symbol.toLowerCase().replace(/[^a-z0-9]/g,"");
-  const period = itv==="1w" ? "week" : "day";
-  const url=`https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=${symbol},${period},,,500,qfq`;
-  const j=JSON.parse(await fetchText(url));
-  const node=j.data && j.data[symbol];
-  if(!node) throw new Error("找不到该A股代码（如 sh600519、sz000001、sh000001）");
-  const kline=node["qfq"+period]||node[period]||[];
-  return kline.map(k=>({time:k[0],open:+k[1],close:+k[2],high:+k[3],low:+k[4],volume:+(k[5]||0)}));
+async function loadCN(symbol,itv){
+  const secid=emSecid(symbol);
+  const klt=EM_KLT[itv]||101;
+  const url=`https://push2his.eastmoney.com/api/qt/stock/kline/get`+
+    `?secid=${secid}&klt=${klt}&fqt=1&lmt=500&end=20500101`+
+    `&fields1=f1,f2,f3,f4,f5&fields2=f51,f52,f53,f54,f55,f56`;
+  const j=await jsonp(url);
+  const kl=j&&j.data&&j.data.klines;
+  if(!kl||!kl.length) throw new Error("没取到该A股数据（如 sh600519、sz000001、sh000001）");
+  const bars=kl.map(s=>{const a=s.split(",");   // 日期,开,收,高,低,量
+    return {time:a[0],open:+a[1],close:+a[2],high:+a[3],low:+a[4],volume:+(a[5]||0)};});
+  return {bars,quote:null};
+}
+
+async function loadData(mk,sym,itv){
+  if(mk==="demo") return {bars:genDemo(300),quote:null};
+  if(mk==="us")   return loadUS(sym,itv);
+  if(mk==="cn")   return loadCN(sym,itv);
+  return loadCrypto(sym,itv);
 }
 function genDemo(n=300){
   const bars=[]; let price=100, seed=Date.now()%99999;
@@ -347,7 +375,11 @@ const DEFSYM={crypto:"BTCUSDT",us:"AAPL",cn:"sh600519",demo:"模拟币"};
 function renderChips(){const mk=$("market").value;$("chips").innerHTML="";
   (QUICK[mk]||[]).forEach(s=>{const c=document.createElement("span");c.className="chip";
     c.textContent=s;c.onclick=()=>{$("symbol").value=s;run();};$("chips").appendChild(c);});}
-$("market").onchange=()=>{$("symbol").value=DEFSYM[$("market").value]||"BTCUSDT";renderChips();};
+function syncKeyRow(){$("keyRow").classList.toggle("hidden",$("market").value!=="us");}
+$("market").onchange=()=>{$("symbol").value=DEFSYM[$("market").value]||"BTCUSDT";renderChips();syncKeyRow();};
+// 美股Key：读出已保存的，输入即自动保存到本机浏览器
+$("apikey").value=localStorage.getItem("td_key")||"";
+$("apikey").addEventListener("input",()=>localStorage.setItem("td_key",$("apikey").value.trim()));
 
 function card(label,val,cls){return `<div class="c"><div class="v ${cls||'neu'}">${val}</div><div class="l">${label}</div></div>`;}
 function fmt(v,d=2){return (v>=0?"+":"")+v.toFixed(d)+"%";}
@@ -357,12 +389,8 @@ async function run(){
         itv=$("interval").value, sk=$("strategy").value;
   $("err").classList.add("hidden");$("run").disabled=true;$("run").textContent="⏳ 分析中…";
   try{
-    let bars;
-    if(mk==="demo"){bars=genDemo(300);}
-    else if(mk==="us"){bars=await fetchUS(sym,itv);}
-    else if(mk==="cn"){bars=await fetchCN(sym,itv);}
-    else{bars=await fetchKlines(sym,itv,400);}
-    if(!bars||bars.length<40) throw new Error("数据太少，无法分析");
+    const {bars,quote}=await loadData(mk,sym,itv);
+    if(!bars||bars.length<40) throw new Error("数据太少（不足40根K线），无法分析");
 
     const closes=bars.map(b=>b.close);
     const fastMA=sma(closes,10), slowMA=sma(closes,30);
@@ -371,25 +399,29 @@ async function run(){
     const bt=backtest(bars,signals);
     const bhCurve=closes.map(c=>bt.init*c/closes[0]);
 
-    // 当前信号
+    // 当前信号（基于最新一根K线）
     const cur=signals[signals.length-1];
     const changed=signals.length>1 && signals[signals.length-1]!==signals[signals.length-2];
     const rNow=rsi(closes,14).slice(-1)[0];
-    const last=closes[closes.length-1], prev=closes[closes.length-2]||last;
-    const chg=(last/prev-1)*100;
+    // 价格/涨跌：币圈用24h实时报价校正，其余用最近两根收盘
+    const lastClose=closes[closes.length-1], prev=closes[closes.length-2]||lastClose;
+    const last = quote? quote.price : lastClose;
+    const chg  = quote? quote.changePct : (lastClose/prev-1)*100;
+    const asOf = bars[bars.length-1].time;
+    const fd = (v)=>v.toLocaleString(undefined,{maximumFractionDigits:6});
 
     let sigCls,sigTxt;
-    if(cur===1 && changed){sigCls="sig-buy";sigTxt="🟢 买入信号（今日刚触发）";}
+    if(cur===1 && changed){sigCls="sig-buy";sigTxt="🟢 买入信号（最新一根刚触发）";}
     else if(cur===1){sigCls="sig-buy";sigTxt="🟢 持有 / 偏多";}
-    else if(cur===0 && changed){sigCls="sig-sell";sigTxt="🔴 卖出 / 离场信号（今日刚触发）";}
+    else if(cur===0 && changed){sigCls="sig-sell";sigTxt="🔴 卖出 / 离场信号（最新一根刚触发）";}
     else{sigCls="sig-hold";sigTxt="🟡 观望 / 空仓";}
     const sb=$("sigBig");sb.className="signal-big "+sigCls;
     sb.innerHTML=`${sigTxt}<div style="font-size:13px;font-weight:400;margin-top:6px;color:var(--sub)">`+
-      `${sym} · ${strat.name} · 现价 ${last.toLocaleString(undefined,{maximumFractionDigits:6})}</div>`;
+      `${sym} · ${strat.name} · 现价 ${fd(last)} · 数据截至 ${asOf}</div>`;
 
     $("cards").innerHTML=
-      card("最新价格",last.toLocaleString(undefined,{maximumFractionDigits:6}),"neu")+
-      card("最近涨跌",fmt(chg),chg>=0?"pos":"neg")+
+      card("最新价格",fd(last),"neu")+
+      card(quote?"24h涨跌":"最近涨跌",fmt(chg),chg>=0?"pos":"neg")+
       card("RSI",rNow!=null?rNow.toFixed(0):"—",rNow>70?"neg":rNow<30?"pos":"neu")+
       card("策略总收益",fmt(bt.totalReturn),bt.totalReturn>=0?"pos":"neg")+
       card("买入持有基准",fmt(bt.buyHold),bt.buyHold>=0?"pos":"neg")+
@@ -422,7 +454,7 @@ let rz;window.addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>
   if(window.__lastDraw){const d=window.__lastDraw;
     drawPrice($("priceCanvas"),d.bars,d.fastMA,d.slowMA,d.bt.marks);
     drawEquity($("eqCanvas"),d.bt.equity,d.bhCurve);}},200);});
-renderChips();
+renderChips();syncKeyRow();
 </script>
 </body>
 </html>

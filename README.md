@@ -1,102 +1,89 @@
-# Concord Trade — B2B Sourcing & Trade Website
+# China West Journeys — Private Western China Tours
 
-International sourcing & trade partner showcase site. Built as a fast,
-dependency-free static website (HTML + CSS + vanilla JS) so it can be hosted
-anywhere — GitHub Pages, Netlify, Vercel, or any static host.
+A premium, editorial website for **China West Journeys**, a boutique inbound
+travel company specializing in **private, tailor-made Western China tours** for
+international travelers. Built as a fast, dependency-free static site
+(HTML + CSS + vanilla JS) — no build step — so it can be hosted anywhere
+(Cloudflare Pages, GitHub Pages, Netlify, Vercel, any static host).
 
-**Positioning:** not a product marketplace — a sourcing & trade execution partner.
-> *Tell us what you need. We help you find, compare, verify, and source the right products from reliable suppliers.*
+> **Positioning:** Western China, thoughtfully planned. Private journeys across
+> Tibet, Xinjiang, Sichuan & Chengdu, Yunnan, Qinghai, and Gansu & the Silk Road.
 
 ## Brand & visual system
-- **Colors:** navy `#16335a` + silver `#8f99a5` on clean white / light-grey (`#f4f7fb`).
-- **Style:** corporate, global, procurement-led. Abstract global-trade network graphics
-  and clean SVG iconography instead of ship/container/plane stock photos or 1688-style product dumps.
-- **Typography:** Inter (Google Fonts).
-- All graphics are inline SVG — crisp on every screen, no image assets to manage.
+- **Palette:** warm ivory `#f7f3ec` background · deep charcoal `#23211d` text ·
+  sand/stone `#e3d8c5` · muted terracotta `#b3623f` accent · deep teal /
+  mountain green `#1f4a45` · Silk Road rust `#9a4a2b` (sparing).
+- **Type:** Fraunces (serif display) for headlines · Inter (sans) for body.
+- **Style:** premium, editorial, cinematic, calm — National Geographic /
+  Monocle / Aman influences. No red-and-gold cliché, no dragons/pandas/lanterns,
+  no heavy stock-photo feeling.
+- **Imagery:** scenic placeholders are built from layered CSS gradients
+  (`.scene-tibet`, `.scene-xinjiang`, `.scene-gansu`, …) so there are no image
+  assets to manage. Swap in real photography later by replacing the `.scene`
+  backgrounds in `styles.css` with `background-image`.
 
-## Page structure
-1. **Hero** — Global Sourcing & Trade Solutions (+ RFQ / View Categories CTAs, animated world-network background)
-2. **About** — who we are + capability stats
-3. **What We Do** — Product Sourcing · Supplier Coordination · OEM/ODM · Quality & Sample Follow-up · Import & Export · Supply Chain Solutions
-4. **Product Categories We Source** — Pet Care · Home Hygiene & Odor Control · Medical Disposables & PPE · Bags & Travel Accessories · Athleisure & Wearables
-5. **How We Work** — 6-step sourcing workflow (Requirement → Long-term Supply)
-6. **Why Concord Trade** — key advantages
-7. **Trust & Execution** — Supplier Verification · Quality Control · Packaging Customization · Export Documentation
-8. **RFQ form** — structured request for quotation
-9. **Footer** — contact, LinkedIn, mission
-
-## Contact
-- Sales: `tj@concord-trade.com`
-- General: `info@concord-trade.com`
-- LinkedIn: https://www.linkedin.com/company/concord-trade/
-
-## RFQ form
-The form is static-host friendly: on submit it validates the required fields and
-composes a structured email to `info@concord-trade.com` via `mailto:`.
-
-**To upgrade to direct inbox delivery** (no email app popup), point the form at a
-form backend such as [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com):
-in `script.js`, replace the `mailto:` handler with a `fetch()` POST to your endpoint.
-
-## Languages (i18n)
-The site ships in **English · 简体中文 · Español · Français** via a header language
-switcher (EN / 中文 / ES / FR). Implementation is dependency-free:
-- `translations.js` — all copy for the four languages, keyed by short ids.
-- `i18n.js` — applies translations to `[data-i18n]` / `[data-i18n-html]` /
-  `[data-i18n-ph]` elements, keeps `<html lang>`, `<title>` and the meta
-  description in sync, and remembers the choice in `localStorage`.
-- Language is auto-selected on first visit from `?lang=xx`, then the saved
-  choice, then the browser language (fallback English). `hreflang` alternates
-  are declared in `<head>`.
-
-## SEO & social sharing
-- **Open Graph + Twitter Card** meta so links shared on LinkedIn / X / chat render a
-  branded preview card (`assets/social-card.png`, 1200×630).
-- **JSON-LD `Organization`** structured data (logo, slogan, product focus areas,
-  LinkedIn `sameAs`, and `sales` / `customer service` contact emails) for richer
-  search-engine results.
-- Canonical URL + `theme-color`.
-
-## Brand assets
-The logo is the customer's official artwork (`assets/7BAC…PNG` master). The header /
-footer / favicon / share card are cropped straight from it — no redrawn approximation:
+## Pages & URL structure
 ```
-assets/logo-mark.png          # emblem, transparent (header + JSON-LD logo)
-assets/logo-wordmark.png      # "CONCORD TRADE" wordmark, transparent (header)
-assets/logo-mark-white.png    # white emblem for the dark footer
-assets/logo-wordmark-white.png# white wordmark for the dark footer
-assets/favicon.png            # emblem on a white rounded tile
-assets/social-card.svg        # source for the 1200×630 share card
-assets/social-card.png        # Open Graph / Twitter share image (uses the real emblem)
+/                                        Home
+/destinations/                           Destinations hub
+/destinations/tibet/
+/destinations/xinjiang/
+/destinations/sichuan-chengdu/
+/destinations/yunnan/
+/destinations/qinghai/
+/destinations/gansu-silk-road/
+/tours/                                  Filterable tour listing
+/tours/xinjiang-silk-road-adventure/     Sample tour detail page
+/custom-trips/                           Tailor-made inquiry form
+/travel-guide/                           SEO article index
+/about/
+/faq/
+/contact/
 ```
 
 ## Files
 ```
-index.html              # all sections / markup + i18n hooks + SEO + structured data
-styles.css              # design system + responsive layout
-script.js               # nav, scroll reveals, RFQ form handler
-translations.js         # EN / ZH / ES / FR copy
-i18n.js                 # language switcher engine
+index.html        Home (all 10 sections, SEO + structured data)
+styles.css        Design system + responsive layout
+script.js         Nav, scroll reveals, FAQ accordions, tour filters, form handling
+sitemap.xml       All page URLs
+robots.txt        Crawl directives + sitemap reference
+llms.txt          AI-search / GEO summary of the brand and site
+assets/favicon.svg  Sun-over-mountain brand mark
 ```
+
+## SEO & GEO (AI search)
+- Per-page `<title>`, meta description, canonical, Open Graph + Twitter tags.
+- Entity-based copy throughout (brand entity: *“China West Journeys is a boutique
+  inbound travel company specializing in private Western China tours for
+  international travelers.”*).
+- Structured data (JSON-LD): `TravelAgency` / `Organization`, `WebSite`,
+  `TouristTrip`, `FAQPage`, `BreadcrumbList`, and article/collection schema on
+  the travel guide.
+- `llms.txt` provides a clean, link-rich brand summary for AI search engines.
+- Strong internal linking: destinations ↔ tours ↔ custom-trip inquiry.
+
+## Forms
+All inquiry forms are static-host friendly. On submit (`form[data-inquiry]`)
+the handler in `script.js` validates required fields and composes a structured
+`mailto:` to `hello@chinawestjourneys.com`. To deliver straight to an inbox
+(no mail-app popup), point the handler at a form backend such as
+[Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com) — replace
+the `mailto:` block in `script.js` with a `fetch()` POST to your endpoint.
+
+## Customising before launch
+- Replace placeholder contact details: `hello@chinawestjourneys.com`, the
+  WhatsApp number (`wa.me/000000000000` and `+00 0000 000000`).
+- Set the real domain in `sitemap.xml`, `robots.txt`, `llms.txt`, and the
+  `canonical` / Open Graph URLs in each page.
+- Add real photography by swapping the `.scene-*` gradient backgrounds.
 
 ## Run locally
-Just open `index.html`, or serve the folder:
 ```bash
-python3 -m http.server 8000
-# → http://localhost:8000
+python3 -m http.server 8000   # → http://localhost:8000
 ```
 
-## Deployment (Cloudflare Pages)
-Static site, no build step. Hosted on **Cloudflare Pages**, connected to this
-repo and auto-deploying on every push to **`main`**.
-
-Cloudflare Pages project settings:
-- Production branch: `main`
-- Framework preset: `None`
-- Build command: *(empty)*
-- Build output directory: `/`
-
-`_headers` (Cloudflare syntax) applies the security headers and asset caching.
-The custom domain `www.concord-trade.com` is configured in the Cloudflare Pages
-dashboard (Custom domains), not via a repo file.
-
+## Deployment
+Static site, no build step. `_headers` (Cloudflare syntax) applies security
+headers and long-cache rules for assets. Point your static host's output
+directory at the repo root.

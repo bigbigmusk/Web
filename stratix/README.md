@@ -163,15 +163,44 @@ stratix/
 
 ---
 
-## ▲ Deploy to Vercel
+## ☁️ Deploy to Cloudflare Pages (recommended)
 
-1. Push this repo to GitHub.
-2. In Vercel → **New Project** → import the repo.
-3. **Set the Root Directory to `stratix/`** (this app lives in a subfolder).
-4. Framework preset: **Next.js** (auto-detected). Build: `next build`.
-5. Add the env vars from `.env.example` (optional — deploys in mock mode without
-   them).
-6. Deploy. 🎉
+STRATIX is configured for **Next.js static export** (`output: "export"` in
+`next.config.mjs`), so Cloudflare Pages serves the generated `out/` directory
+with **no server runtime** — AI runs in the browser in Demo mode.
+
+Create a **new, separate** Pages project (this keeps the existing root marketing
+site untouched):
+
+1. Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git**.
+2. Pick this repository and the branch to deploy.
+3. **Build settings:**
+   - **Root directory:** `stratix`
+   - **Framework preset:** `Next.js (Static HTML Export)` *(or `None`)*
+   - **Build command:** `npm run build`
+   - **Build output directory:** `out`
+4. **Environment variables** → add `NODE_VERSION` = `20` (Next 14 needs Node ≥ 18.17).
+   Everything else is optional — it deploys fully in Demo mode.
+5. **Save and Deploy.** You'll get a `https://<project>.pages.dev` URL.
+
+> Direct deep links work because every route is exported to its own
+> `out/<route>/index.html` (with `trailingSlash: true`).
+
+### Enabling a real model on Cloudflare
+
+The static build runs AI client-side. For live model calls, deploy with a server
+runtime instead — either Vercel (below) or Cloudflare via
+[`@cloudflare/next-on-pages`](https://github.com/cloudflare/next-on-pages) — then
+re-add the `src/app/api/ai/route.ts` handler (logic preserved in
+`src/lib/ai/service.ts`) and set `AI_API_KEY` + `NEXT_PUBLIC_AI_ENABLED=true`.
+
+## ▲ Deploy to Vercel (alternative — supports live server AI)
+
+1. Vercel → **New Project** → import the repo.
+2. **Set the Root Directory to `stratix/`**.
+3. Remove `output: "export"` from `next.config.mjs` and restore
+   `src/app/api/ai/route.ts` if you want the server AI endpoint.
+4. Add env vars from `.env.example` (optional). Deploy. 🎉
 
 > The repository root also contains a separate static marketing site (Concord
 > Trade) that deploys independently; keeping STRATIX in `stratix/` avoids any

@@ -1,8 +1,5 @@
-# Cloudflare Worker (static assets) — auto-deploys from GitHub `main`.
-# The name MUST match the existing Worker so the custom domain
-# (www.concord-trade.com) stays attached.
-name = "shy-scene-4ff5"
+# Cloudflare Pages — China West Journeys (static site, no build step)
+# Connected to GitHub via the Cloudflare dashboard (Git integration).
+name = "westours"
 compatibility_date = "2025-06-01"
-
-[assets]
-directory = "./"
+pages_build_output_dir = "."

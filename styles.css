@@ -541,3 +541,83 @@ section { padding: 96px 0; }
   .trust-row { grid-template-columns: 1fr 1fr; }
   .brand .wordmark i { display: none; }
 }
+
+/* =========================================================================
+   WildChina-inspired editorial refinement pass
+   Cinematic layered scenes · slow motion · generous whitespace · expertise
+   ========================================================================= */
+
+/* --- cinematic scenes: every gradient gets a layered mountain horizon --- */
+.scene::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; mix-blend-mode: normal;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.10), transparent 28%),
+    linear-gradient(0deg, rgba(20,24,28,.30), transparent 46%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='%23232a2e' fill-opacity='0.20' d='M0 320 L0 214 L150 168 L300 200 L470 140 L630 192 L800 132 L980 188 L1150 144 L1320 190 L1440 156 L1440 320Z'/%3E%3Cpath fill='%2316191c' fill-opacity='0.34' d='M0 320 L0 250 L180 214 L360 246 L540 200 L720 244 L900 206 L1080 248 L1260 212 L1440 246 L1440 320Z'/%3E%3C/svg%3E") no-repeat bottom / 100% 62%;
+}
+/* big immersive foreground range for the hero & page heroes */
+.scene-hero::before, .page-hero .scene-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background:
+    radial-gradient(40% 26% at 72% 26%, rgba(255,241,214,.55), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 540' preserveAspectRatio='none'%3E%3Cpath fill='%233a4750' fill-opacity='0.5' d='M0 540 L0 300 L210 180 L380 260 L560 150 L760 250 L940 140 L1140 240 L1320 170 L1440 220 L1440 540Z'/%3E%3Cpath fill='%2326302f' fill-opacity='0.62' d='M0 540 L0 380 L200 290 L420 360 L640 270 L860 360 L1080 290 L1300 360 L1440 320 L1440 540Z'/%3E%3Cpath fill='%23171c1d' fill-opacity='0.72' d='M0 540 L0 440 L260 380 L520 430 L780 370 L1040 430 L1300 380 L1440 410 L1440 540Z'/%3E%3C/svg%3E") no-repeat bottom / 100% 78%;
+}
+
+/* slow ken-burns drift on the home hero */
+@keyframes kenburns { from { transform: scale(1.02); } to { transform: scale(1.1) translateY(-1.5%); } }
+.hero .scene { animation: kenburns 28s ease-in-out infinite alternate; transform-origin: 60% 40%; will-change: transform; }
+.hero::after { background: linear-gradient(180deg, rgba(18,26,32,.30) 0%, rgba(18,26,32,.10) 38%, rgba(16,18,16,.66) 100%); }
+
+/* scroll cue */
+.scroll-cue { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 1; color: #f1ece2; opacity: .85; display: flex; flex-direction: column; align-items: center; gap: 7px; font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; }
+.scroll-cue span { width: 1px; height: 34px; background: linear-gradient(#f1ece2, transparent); animation: cue 2s ease-in-out infinite; }
+@keyframes cue { 0%,100% { opacity: .3; transform: scaleY(.7); } 50% { opacity: 1; transform: scaleY(1); } }
+
+/* subtle hover zoom on image-led cards (WildChina cue) */
+.dest-card .scene, .tour-card .scene, .article-card .scene { transition: transform .7s var(--ease); }
+.dest-card:hover .scene, .tour-card:hover .scene, .article-card:hover .scene { transform: scale(1.045); }
+.dest-card .scene { height: 250px; }
+
+/* --- editorial brand statement (centered serif lede) --- */
+.statement { padding: 104px 0; text-align: center; }
+.statement .wrap-narrow { max-width: 920px; }
+.statement .eyebrow { margin-bottom: 22px; }
+.statement p { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.34; color: var(--charcoal); letter-spacing: -.01em; }
+.statement p em { font-style: italic; color: var(--terracotta); }
+
+/* --- credibility strip (honest, understated) --- */
+.credibility { border-top: 1px solid var(--sand-line); border-bottom: 1px solid var(--sand-line); background: var(--paper); }
+.credibility .wrap { padding-top: 30px; padding-bottom: 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 40px; }
+.credibility .cap { font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.credibility .pillars { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 30px; }
+.credibility .pillars span { font-family: var(--serif); font-size: 1.02rem; color: var(--charcoal-soft); display: inline-flex; align-items: center; gap: 9px; }
+.credibility .pillars span::before { content: ""; width: 6px; height: 6px; background: var(--terracotta); transform: rotate(45deg); }
+
+/* --- full-bleed editorial split (image + text expertise block) --- */
+.editorial { padding: 0; }
+.editorial .grid2 { display: grid; grid-template-columns: 1fr 1fr; min-height: 560px; }
+.editorial .grid2.flip .media { order: 2; }
+.editorial .media { position: relative; overflow: hidden; min-height: 380px; }
+.editorial .media .scene { position: absolute; inset: 0; }
+.editorial .copy { display: flex; flex-direction: column; justify-content: center; padding: 84px clamp(28px, 6vw, 90px); }
+.editorial .copy h2 { margin: 14px 0 18px; }
+.editorial .copy p { font-size: 1.06rem; line-height: 1.7; }
+.editorial .copy .btn, .editorial .copy .txtlink { margin-top: 26px; }
+.editorial.ink .copy { background: var(--teal); }
+.editorial.ink .copy h2 { color: #fbf8f1; }
+.editorial.ink .copy p { color: #d6d8cf; }
+.editorial.ink .copy .eyebrow { color: #e7b98c; }
+
+/* generous whitespace + larger display type, home only */
+.home section { padding: 108px 0; }
+.home h1 { font-size: clamp(2.9rem, 6.4vw, 5rem); letter-spacing: -.02em; }
+.home .hero .sub { font-size: 1.34rem; }
+.home .section-head { margin-bottom: 60px; }
+
+@media (max-width: 880px) {
+  .editorial .grid2 { grid-template-columns: 1fr; }
+  .editorial .grid2.flip .media { order: 0; }
+  .editorial .media { min-height: 300px; }
+  .editorial .copy { padding: 56px 28px; }
+  .statement { padding: 72px 0; }
+}

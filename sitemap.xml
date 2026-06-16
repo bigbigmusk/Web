@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.chinawestjourneys.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/destinations/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/destinations/tibet/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/destinations/xinjiang/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/destinations/sichuan-chengdu/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/destinations/yunnan/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/destinations/qinghai/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/destinations/gansu-silk-road/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/tours/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/tours/xinjiang-silk-road-adventure/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/custom-trips/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/travel-guide/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/about/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/faq/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.chinawestjourneys.com/contact/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.westours.cn/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.westours.cn/destinations/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.westours.cn/destinations/tibet/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.westours.cn/destinations/xinjiang/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.westours.cn/destinations/sichuan-chengdu/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.westours.cn/destinations/yunnan/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.westours.cn/destinations/qinghai/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.westours.cn/destinations/gansu-silk-road/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.westours.cn/tours/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.westours.cn/tours/xinjiang-silk-road-adventure/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.westours.cn/custom-trips/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.westours.cn/travel-guide/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.westours.cn/about/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.westours.cn/faq/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.westours.cn/contact/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>

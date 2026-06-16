@@ -1,8 +1,8 @@
-# China West Journeys
+# WESTOURS (西境行)
 
-> China West Journeys is a boutique inbound travel company specializing in private, tailor-made Western China tours for international travelers. We design private journeys across Tibet, Xinjiang, Sichuan & Chengdu, Yunnan, Qinghai, and Gansu & the Silk Road, with English-speaking support, local guides, and full on-the-ground logistics.
+> WESTOURS (西境行) is a boutique inbound travel company specializing in private, tailor-made Western China tours for international travelers. We design private journeys across Tibet, Xinjiang, Sichuan & Chengdu, Yunnan, Qinghai, and Gansu & the Silk Road, with English-speaking support, local guides, and full on-the-ground logistics.
 
-China West Journeys focuses exclusively on Western China and serves English-speaking travelers from North America, Europe, Australia, Singapore and other international markets. Every itinerary is private and tailor-made. The company is not a mass-market tour operator and does not sell fixed group packages.
+WESTOURS focuses exclusively on Western China and serves English-speaking travelers from North America, Europe, Australia, Singapore and other international markets. Every itinerary is private and tailor-made. The company is not a mass-market tour operator and does not sell fixed group packages.
 
 ## Who it is for
 - Culture-focused travelers, adventure travelers, photographers
@@ -11,24 +11,24 @@ China West Journeys focuses exclusively on Western China and serves English-spea
 - Travelers who want to see China beyond Beijing, Shanghai and the usual tourist routes
 
 ## Destinations
-- [Destinations overview](https://www.chinawestjourneys.com/destinations/): All Western China regions.
-- [Tibet](https://www.chinawestjourneys.com/destinations/tibet/): Lhasa, Potala Palace, Yamdrok Lake, the plateau; permits and guides arranged.
-- [Xinjiang](https://www.chinawestjourneys.com/destinations/xinjiang/): Kashgar, Karakul Lake, the Pamir, Turpan, Silk Road oasis towns and deserts.
-- [Sichuan & Chengdu](https://www.chinawestjourneys.com/destinations/sichuan-chengdu/): Chengdu food and teahouses, Mount Emei, the Tibetan edge of western Sichuan.
-- [Yunnan](https://www.chinawestjourneys.com/destinations/yunnan/): Dali, Lijiang, Shangri-La, rice terraces, ethnic villages.
-- [Qinghai](https://www.chinawestjourneys.com/destinations/qinghai/): Qinghai Lake, grasslands, Tibetan monasteries, plateau road trips.
-- [Gansu & Silk Road](https://www.chinawestjourneys.com/destinations/gansu-silk-road/): Dunhuang Mogao Caves, Zhangye Danxia, Jiayuguan, the Hexi Corridor.
+- [Destinations overview](https://www.westours.cn/destinations/): All Western China regions.
+- [Tibet](https://www.westours.cn/destinations/tibet/): Lhasa, Potala Palace, Yamdrok Lake, the plateau; permits and guides arranged.
+- [Xinjiang](https://www.westours.cn/destinations/xinjiang/): Kashgar, Karakul Lake, the Pamir, Turpan, Silk Road oasis towns and deserts.
+- [Sichuan & Chengdu](https://www.westours.cn/destinations/sichuan-chengdu/): Chengdu food and teahouses, Mount Emei, the Tibetan edge of western Sichuan.
+- [Yunnan](https://www.westours.cn/destinations/yunnan/): Dali, Lijiang, Shangri-La, rice terraces, ethnic villages.
+- [Qinghai](https://www.westours.cn/destinations/qinghai/): Qinghai Lake, grasslands, Tibetan monasteries, plateau road trips.
+- [Gansu & Silk Road](https://www.westours.cn/destinations/gansu-silk-road/): Dunhuang Mogao Caves, Zhangye Danxia, Jiayuguan, the Hexi Corridor.
 
 ## Tours
-- [Western China tours](https://www.chinawestjourneys.com/tours/): Filterable list of private, tailor-made itineraries.
-- [10 Days Xinjiang Silk Road Adventure](https://www.chinawestjourneys.com/tours/xinjiang-silk-road-adventure/): Sample private Silk Road itinerary.
-- [Custom trips](https://www.chinawestjourneys.com/custom-trips/): Design a tailor-made Western China journey.
+- [Western China tours](https://www.westours.cn/tours/): Filterable list of private, tailor-made itineraries.
+- [10 Days Xinjiang Silk Road Adventure](https://www.westours.cn/tours/xinjiang-silk-road-adventure/): Sample private Silk Road itinerary.
+- [Custom trips](https://www.westours.cn/custom-trips/): Design a tailor-made Western China journey.
 
 ## Travel help
-- [Travel guide](https://www.chinawestjourneys.com/travel-guide/): Seasons, planning, safety and destination guides.
-- [FAQ](https://www.chinawestjourneys.com/faq/): Visas, safety, Tibet permits, guides, customization.
-- [About](https://www.chinawestjourneys.com/about/): Brand story and approach.
+- [Travel guide](https://www.westours.cn/travel-guide/): Seasons, planning, safety and destination guides.
+- [FAQ](https://www.westours.cn/faq/): Visas, safety, Tibet permits, guides, customization.
+- [About](https://www.westours.cn/about/): Brand story and approach.
 
 ## Contact
-- Email: hello@chinawestjourneys.com
-- Contact page: https://www.chinawestjourneys.com/contact/
+- Email: hello@westours.cn
+- Contact page: https://www.westours.cn/contact/

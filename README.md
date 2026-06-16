@@ -1,6 +1,6 @@
-# China West Journeys — Private Western China Tours
+# WESTOURS — Private Western China Tours
 
-A premium, editorial website for **China West Journeys**, a boutique inbound
+A premium, editorial website for **WESTOURS**, a boutique inbound
 travel company specializing in **private, tailor-made Western China tours** for
 international travelers. Built as a fast, dependency-free static site
 (HTML + CSS + vanilla JS) — no build step — so it can be hosted anywhere
@@ -43,18 +43,18 @@ international travelers. Built as a fast, dependency-free static site
 
 ## Files
 ```
-index.html        Home (all 10 sections, SEO + structured data)
+index.html        Home (6 core modules, SEO + structured data)
 styles.css        Design system + responsive layout
 script.js         Nav, scroll reveals, FAQ accordions, tour filters, form handling
 sitemap.xml       All page URLs
 robots.txt        Crawl directives + sitemap reference
 llms.txt          AI-search / GEO summary of the brand and site
-assets/favicon.svg  Sun-over-mountain brand mark
+assets/favicon.svg  Mountain-and-halo brand mark
 ```
 
 ## SEO & GEO (AI search)
 - Per-page `<title>`, meta description, canonical, Open Graph + Twitter tags.
-- Entity-based copy throughout (brand entity: *“China West Journeys is a boutique
+- Entity-based copy throughout (brand entity: *“WESTOURS is a boutique
   inbound travel company specializing in private Western China tours for
   international travelers.”*).
 - Structured data (JSON-LD): `TravelAgency` / `Organization`, `WebSite`,
@@ -66,14 +66,14 @@ assets/favicon.svg  Sun-over-mountain brand mark
 ## Forms
 All inquiry forms are static-host friendly. On submit (`form[data-inquiry]`)
 the handler in `script.js` validates required fields and composes a structured
-`mailto:` to `hello@chinawestjourneys.com`. To deliver straight to an inbox
+`mailto:` to `hello@westours.cn`. To deliver straight to an inbox
 (no mail-app popup), point the handler at a form backend such as
 [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com) — replace
 the `mailto:` block in `script.js` with a `fetch()` POST to your endpoint.
 
 ## Customising before launch
-- Replace placeholder contact details: `hello@chinawestjourneys.com`, the
-  WhatsApp number (`wa.me/000000000000` and `+00 0000 000000`).
+- Replace placeholder contact details: `hello@westours.cn` and the
+  phone number `+86 28 1234 5678`.
 - Set the real domain in `sitemap.xml`, `robots.txt`, `llms.txt`, and the
   `canonical` / Open Graph URLs in each page.
 - Add real photography by swapping the `.scene-*` gradient backgrounds.

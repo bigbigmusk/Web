@@ -1,4 +1,4 @@
-/* China West Journeys — site interactions (dependency-free) */
+/* WESTOURS (西境行) — site interactions (dependency-free) */
 (function () {
   "use strict";
 
@@ -91,8 +91,8 @@
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
       var success = form.querySelector(".form-success");
-      var to = form.getAttribute("data-email") || "hello@chinawestjourneys.com";
-      var subject = encodeURIComponent(form.getAttribute("data-subject") || "Trip inquiry — China West Journeys");
+      var to = form.getAttribute("data-email") || "hello@westours.cn";
+      var subject = encodeURIComponent(form.getAttribute("data-subject") || "Trip inquiry — WESTOURS");
       var lines = [];
       new FormData(form).forEach(function (v, k) {
         if (v) lines.push(k.replace(/_/g, " ") + ": " + v);

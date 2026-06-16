@@ -463,3 +463,81 @@ section { padding: 96px 0; }
   .form-card { padding: 26px; }
   .filters .count { margin-left: 0; width: 100%; }
 }
+
+/* =========================================================================
+   WESTOURS 西境行 — brand refresh + simplified homepage modules
+   (appended; later rules intentionally override earlier ones)
+   ========================================================================= */
+
+/* --- bilingual wordmark + mountain mark --- */
+.brand .mark { width: 40px; height: auto; color: var(--teal); }
+.footer-brand .mark { color: #e7b98c; }
+.brand .wordmark { display: inline-flex; align-items: baseline; gap: 9px; line-height: 1; }
+.brand .wordmark b { font-family: var(--serif); font-weight: 600; letter-spacing: .15em; font-size: 1.2rem; color: var(--charcoal); }
+.brand .wordmark i { font-style: normal; font-family: var(--serif); font-size: .98rem; letter-spacing: .14em; color: var(--muted); }
+.footer-brand .wordmark b { color: #fff; }
+.footer-brand .wordmark i { color: #9a948a; }
+
+/* --- centered editorial section header with compass flourish --- */
+.section-head.center { text-align: center; margin-left: auto; margin-right: auto; max-width: 720px; }
+.section-head.center .section-intro { margin-left: auto; margin-right: auto; }
+.divider-mk { display: flex; align-items: center; justify-content: center; gap: 11px; margin: 18px 0 0; }
+.divider-mk::before, .divider-mk::after { content: ""; width: 54px; height: 1px; background: var(--sand-line); }
+.divider-mk span { width: 7px; height: 7px; background: var(--terracotta); transform: rotate(45deg); flex: none; }
+.section-head.center .eyebrow { display: block; }
+
+/* --- destination cards: simplified (image + name + 2-line desc + Explore) --- */
+.dest-card .body { padding: 24px 24px 26px; }
+.dest-card.simple .tag { display: none; }
+.dest-card h3 { font-size: 1.45rem; margin-bottom: 6px; }
+.dest-card.simple p { font-size: .95rem; line-height: 1.55; }
+
+/* --- journey cards: bullet highlights + outline CTA (TourRadar-style) --- */
+.tour-bullets { display: grid; gap: 7px; margin: 4px 0 0; flex: 1; }
+.tour-bullets li { position: relative; padding-left: 16px; font-size: .9rem; color: var(--charcoal-soft); }
+.tour-bullets li::before { content: ""; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--terracotta); }
+.tour-card .btn-view { margin-top: 20px; width: 100%; justify-content: center; }
+
+/* --- trust band: "Why Travel With WESTOURS" --- */
+.trust-band { background: var(--ivory-deep); position: relative; overflow: hidden; }
+.trust-band::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 130px; z-index: 0;
+  background:
+    linear-gradient(115deg, transparent 49%, rgba(31,74,69,.05) 50%, transparent 56%),
+    linear-gradient(60deg, transparent 60%, rgba(31,74,69,.04) 61%, transparent 67%); }
+.trust-band .wrap { position: relative; z-index: 1; }
+.trust-row { display: grid; grid-template-columns: 1.15fr repeat(4, 1fr); gap: 34px; align-items: start; }
+.trust-row .lead h2 { font-size: clamp(1.7rem, 2.6vw, 2.3rem); }
+.trust-row .lead p { margin-top: 14px; font-size: .98rem; }
+.tfeat { text-align: center; }
+.tfeat .ic { width: 38px; height: 38px; color: var(--teal); margin: 0 auto 14px; stroke-width: 1.4; }
+.tfeat h4 { font-family: var(--sans); font-weight: 600; font-size: 1rem; margin-bottom: 7px; }
+.tfeat p { font-size: .85rem; line-height: 1.5; }
+
+/* --- homepage FAQ + Plan My Trip form (side by side) --- */
+.home-plan { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; align-items: start; }
+.home-plan .faq-list { max-width: none; margin: 0; }
+.home-plan .faq-q { font-size: 1.05rem; padding: 20px 40px 20px 0; }
+.home-plan .form-head { margin-bottom: 22px; }
+.home-plan .form-head h2 { margin-bottom: 8px; }
+
+/* --- footer: contact column + socials (replaces newsletter) --- */
+.footer-top { grid-template-columns: 1.7fr 1fr 1.1fr 1.3fr; }
+.footer-contact { display: grid; gap: 12px; }
+.footer-contact li { display: flex; gap: 11px; align-items: flex-start; font-size: .92rem; color: #a39d92; }
+.footer-contact li svg { width: 17px; height: 17px; flex: none; margin-top: 3px; color: #e7b98c; }
+.footer-contact a:hover { color: #fff; }
+.footer-socials { display: flex; gap: 14px; margin-top: 20px; }
+.footer-socials a { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #cbc6bc; transition: all .2s; }
+.footer-socials a:hover { background: var(--terracotta); border-color: var(--terracotta); color: #fff; }
+.footer-socials svg { width: 16px; height: 16px; }
+
+@media (max-width: 980px) {
+  .trust-row { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+  .trust-row .lead { grid-column: 1 / -1; }
+  .home-plan { grid-template-columns: 1fr; gap: 44px; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
+  .trust-row { grid-template-columns: 1fr 1fr; }
+  .brand .wordmark i { display: none; }
+}

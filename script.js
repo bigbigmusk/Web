@@ -1,81 +1,122 @@
 /* ============================================================
-   VANTAIRE — interactions
-   Dependency-free vanilla JS.
+   Concord Trade — interactions
    ============================================================ */
 (function () {
-  "use strict";
+  'use strict';
 
-  var header = document.getElementById("header");
-  var navToggle = document.getElementById("navToggle");
-  var mobileNav = document.getElementById("primaryNav");
+  /* --- Year in footer --- */
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ---- Mobile menu ---- */
-  function setMenu(open) {
-    header.classList.toggle("menu-open", open);
-    navToggle.setAttribute("aria-expanded", String(open));
-    navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    mobileNav.setAttribute("aria-hidden", String(!open));
-  }
-  if (navToggle) {
-    navToggle.addEventListener("click", function () {
-      setMenu(!header.classList.contains("menu-open"));
-    });
-    mobileNav.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () { setMenu(false); });
-    });
-  }
-
-  /* ---- Header scrolled state ---- */
-  var lastScroll = -1;
+  /* --- Header shadow on scroll --- */
+  var header = document.querySelector('.site-header');
   function onScroll() {
-    var y = window.scrollY || window.pageYOffset;
-    if ((y > 8) !== (lastScroll > 8)) {
-      header.classList.toggle("scrolled", y > 8);
-    }
-    lastScroll = y;
+    if (window.scrollY > 8) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
   }
-  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ---- Scroll reveal ---- */
-  var reveals = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window && reveals.length) {
+  /* --- Mobile nav toggle --- */
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('mainNav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  /* --- Reveal on scroll --- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add("in");
+          entry.target.classList.add('in');
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(function (el) { io.observe(el); });
   } else {
-    reveals.forEach(function (el) { el.classList.add("in"); });
+    reveals.forEach(function (el) { el.classList.add('in'); });
   }
 
-  /* ---- Newsletter ---- */
-  var form = document.getElementById("newsForm");
-  var note = document.getElementById("formNote");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var input = document.getElementById("email");
-      var value = (input.value || "").trim();
-      var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  /* --- RFQ form: compose a structured email via mailto --- */
+  var form = document.getElementById('rfqForm');
+  var note = document.getElementById('formNote');
 
-      note.classList.remove("error");
-      if (!valid) {
-        note.textContent = "Please enter a valid email address.";
-        note.classList.add("error");
-        input.focus();
+  function val(id) {
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+
+  // Localised message helper (falls back to English when i18n is absent)
+  function msg(key, fallback) {
+    return (window.I18N && window.I18N.t) ? window.I18N.t(key) : fallback;
+  }
+
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Basic validation on required fields
+      var required = ['name', 'email', 'product'];
+      var ok = true;
+      required.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el || !el.value.trim()) { el && el.classList.add('invalid'); ok = false; }
+        else { el.classList.remove('invalid'); }
+      });
+      var emailEl = document.getElementById('email');
+      if (emailEl && emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+        emailEl.classList.add('invalid'); ok = false;
+      }
+
+      if (!ok) {
+        note.textContent = msg('form_err', 'Please complete the required fields (name, a valid email, and product).');
+        note.className = 'form-note err';
         return;
       }
-      note.textContent = "Thank you. You have entered the air — check your inbox to confirm.";
-      form.reset();
+
+      var lines = [
+        'New RFQ from Concord Trade website', '',
+        'Name: ' + val('name'),
+        'Company: ' + (val('company') || '-'),
+        'Email: ' + val('email'),
+        'Target market: ' + (val('market') || '-'),
+        '',
+        'Product / category: ' + val('product'),
+        'Target quantity: ' + (val('quantity') || '-'),
+        'Target price: ' + (val('price') || '-'),
+        'Packaging needs: ' + (val('packaging') || '-'),
+        'Certification requirements: ' + (val('certification') || '-'),
+        '',
+        'Additional details:',
+        (val('message') || '-')
+      ];
+
+      var subject = 'RFQ — ' + val('product') + (val('company') ? ' (' + val('company') + ')' : '');
+      var mailto = 'mailto:info@concord-trade.com'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(lines.join('\n'));
+
+      window.location.href = mailto;
+
+      note.textContent = msg('form_ok', 'Opening your email app to send this RFQ to info@concord-trade.com. If nothing opens, email us directly.');
+      note.className = 'form-note ok';
+    });
+
+    // Clear invalid state while typing
+    form.addEventListener('input', function (e) {
+      if (e.target.classList.contains('invalid')) e.target.classList.remove('invalid');
     });
   }
-
-  /* ---- Footer year ---- */
-  var year = document.getElementById("year");
-  if (year) { year.textContent = new Date().getFullYear(); }
 })();

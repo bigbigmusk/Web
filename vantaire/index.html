@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VANTAIRE — Leather, Cut With Air</title>
+  <meta name="description" content="VANTAIRE crafts architectural openwork leather footwear for warm cities, long days, and quiet elegance. Black woven lattice shoes, low heels, breathable cut-outs." />
+  <meta name="theme-color" content="#0B0B0B" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="VANTAIRE" />
+  <meta property="og:title" content="VANTAIRE — Leather, Cut With Air" />
+  <meta property="og:description" content="Architectural openwork leather footwear for warm cities, long days, and quiet elegance." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230B0B0B'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' fill='%23F4EFE7' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+  <!-- SVG defs: woven leather patterns reused across product cards -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute" focusable="false">
+    <defs>
+      <!-- Cage: square grid lattice -->
+      <pattern id="weaveCage" width="13" height="13" patternUnits="userSpaceOnUse">
+        <rect width="13" height="13" fill="none"/>
+        <path d="M0 0 H13 M0 6.5 H13 M0 0 V13 M6.5 0 V13" stroke="currentColor" stroke-width="2.4" fill="none"/>
+      </pattern>
+      <!-- Split: wide vertical slats -->
+      <pattern id="weaveSplit" width="20" height="20" patternUnits="userSpaceOnUse">
+        <rect x="2" y="0" width="6" height="20" fill="currentColor"/>
+        <rect x="12" y="0" width="6" height="20" fill="currentColor"/>
+      </pattern>
+      <!-- Knot: interlocking diagonal lattice -->
+      <pattern id="weaveKnot" width="22" height="22" patternUnits="userSpaceOnUse">
+        <path d="M-2 6 L6 -2 M0 22 L22 0 M16 24 L24 16" stroke="currentColor" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+        <path d="M-2 16 L16 -2 M6 24 L24 6" stroke="currentColor" stroke-width="3.4" fill="none" stroke-linecap="round" opacity="0.55"/>
+      </pattern>
+      <!-- Woven: basket weave -->
+      <pattern id="weaveBasket" width="18" height="18" patternUnits="userSpaceOnUse">
+        <rect x="0" y="2" width="7" height="5" fill="currentColor"/>
+        <rect x="9" y="2" width="7" height="5" fill="currentColor" opacity="0.55"/>
+        <rect x="0" y="11" width="7" height="5" fill="currentColor" opacity="0.55"/>
+        <rect x="9" y="11" width="7" height="5" fill="currentColor"/>
+      </pattern>
+      <!-- Ribbon: fine diagonal interlace -->
+      <pattern id="weaveRibbon" width="16" height="16" patternUnits="userSpaceOnUse">
+        <path d="M0 16 L16 0 M-4 4 L4 -4 M12 20 L20 12" stroke="currentColor" stroke-width="2.6" fill="none"/>
+      </pattern>
+    </defs>
+  </svg>
+
+  <!-- Announcement -->
+  <div class="announce" id="announce">
+    <p>Complimentary shipping &amp; returns worldwide — Summer 2026</p>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" id="header">
+    <div class="header-inner">
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+        <span></span><span></span>
+      </button>
+
+      <nav class="nav nav-left" aria-label="Primary">
+        <a href="#collection">Collection</a>
+        <a href="#craft">Craft</a>
+        <a href="#lookbook">Lookbook</a>
+      </nav>
+
+      <a href="#top" class="brand" aria-label="VANTAIRE home">VANTAIRE</a>
+
+      <nav class="nav nav-right" aria-label="Secondary">
+        <a href="#manifesto">House</a>
+        <a href="#newsletter">Contact</a>
+        <a href="#collection" class="nav-cart">Bag <span aria-hidden="true">(0)</span></a>
+      </nav>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="mobile-nav" id="primaryNav" aria-hidden="true">
+      <a href="#collection">Collection</a>
+      <a href="#craft">Craft</a>
+      <a href="#lookbook">Lookbook</a>
+      <a href="#manifesto">The House</a>
+      <a href="#newsletter">Contact</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- 1. HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">The Lattice Collection — SS26</p>
+        <h1 class="hero-title">Leather,<br /><em>Cut&nbsp;With&nbsp;Air.</em></h1>
+        <p class="hero-sub">Architectural leather shoes for warm cities, long days, and quiet elegance.</p>
+        <a href="#collection" class="btn btn-line">Shop The Lattice Collection</a>
+      </div>
+
+      <figure class="hero-visual reveal">
+        <div class="hero-frame">
+          <!-- Black woven leather shoe on warm stone -->
+          <svg class="shoe shoe-hero" viewBox="0 0 400 300" role="img" aria-label="Black woven lattice leather flat resting on warm stone">
+            <ellipse cx="205" cy="248" rx="150" ry="20" class="shoe-shadow"/>
+            <g class="shoe-ink">
+              <!-- sole -->
+              <path d="M58 232 C70 250 150 256 235 252 C300 249 345 240 352 226 C356 218 350 212 338 211 L96 214 C72 215 52 220 58 232 Z" class="ink-fill"/>
+              <!-- low heel -->
+              <path d="M320 232 L348 232 L344 250 L322 250 Z" class="ink-fill"/>
+              <!-- upper body -->
+              <path d="M70 214 C66 150 120 96 196 92 C276 88 330 132 338 196 C340 210 336 214 326 214 Z" class="ink-fill"/>
+              <!-- cut-out cage windows -->
+              <g class="ink-bg">
+                <rect x="96" y="150" width="30" height="26" rx="3"/>
+                <rect x="134" y="140" width="30" height="30" rx="3"/>
+                <rect x="172" y="132" width="32" height="32" rx="3"/>
+                <rect x="212" y="130" width="32" height="34" rx="3"/>
+                <rect x="252" y="134" width="30" height="34" rx="3"/>
+                <rect x="290" y="146" width="26" height="32" rx="3"/>
+                <rect x="110" y="184" width="28" height="20" rx="3"/>
+                <rect x="146" y="180" width="30" height="22" rx="3"/>
+                <rect x="184" y="178" width="32" height="22" rx="3"/>
+                <rect x="224" y="178" width="30" height="22" rx="3"/>
+                <rect x="262" y="182" width="28" height="20" rx="3"/>
+              </g>
+              <!-- topline -->
+              <path d="M150 100 C190 80 250 84 286 108" class="ink-stroke"/>
+            </g>
+          </svg>
+        </div>
+        <figcaption>The Cage Flat — Obsidian, hand-lasted in Italy</figcaption>
+      </figure>
+
+      <a href="#manifesto" class="scroll-cue" aria-label="Scroll">Scroll</a>
+    </section>
+
+    <!-- 2. MANIFESTO -->
+    <section class="manifesto" id="manifesto">
+      <div class="manifesto-inner reveal">
+        <span class="section-index">01 — Manifesto</span>
+        <h2 class="display">The shoe that breathes.</h2>
+        <p class="lede">Between a sandal and a shoe, VANTAIRE creates openwork leather silhouettes designed for movement, heat, and shadow.</p>
+      </div>
+    </section>
+
+    <!-- 3. COLLECTION GRID -->
+    <section class="collection" id="collection">
+      <header class="collection-head reveal">
+        <span class="section-index">02 — The Lattice Collection</span>
+        <h2 class="display">Five studies in air.</h2>
+      </header>
+
+      <div class="product-grid">
+
+        <article class="product reveal">
+          <a class="product-media" href="#" aria-label="The Cage Flat">
+            <svg class="shoe shoe-flat" viewBox="0 0 320 220" role="img" aria-label="The Cage Flat — square-toe lattice flat">
+              <ellipse cx="160" cy="190" rx="118" ry="13" class="shoe-shadow"/>
+              <path d="M40 176 C56 188 120 192 200 188 C256 185 286 178 290 168 C292 162 286 158 276 158 L66 160 C46 161 32 168 40 176 Z" class="ink-fill"/>
+              <path d="M262 176 L286 176 L283 190 L264 190 Z" class="ink-fill"/>
+              <path d="M52 160 C50 110 96 70 162 68 C232 66 278 102 284 152 C285 160 282 160 274 160 Z" fill="url(#weaveCage)" class="weave"/>
+              <path d="M52 160 C50 110 96 70 162 68 C232 66 278 102 284 152 C285 160 282 160 274 160 Z" class="ink-stroke" fill="none"/>
+            </svg>
+          </a>
+          <div class="product-meta">
+            <h3>The Cage Flat</h3>
+            <p class="product-line">Square-toe lattice flat</p>
+            <p class="price">€ 480</p>
+          </div>
+        </article>
+
+        <article class="product reveal">
+          <a class="product-media" href="#" aria-label="The Split Slide">
+            <svg class="shoe shoe-slide" viewBox="0 0 320 220" role="img" aria-label="The Split Slide — open slide with split band">
+              <ellipse cx="160" cy="192" rx="120" ry="12" class="shoe-shadow"/>
+              <path d="M44 178 C60 188 130 190 214 186 C268 183 292 176 294 168 C296 162 288 160 278 160 L70 162 C50 163 36 170 44 178 Z" class="ink-fill"/>
+              <path d="M266 178 L290 178 L287 190 L268 190 Z" class="ink-fill"/>
+              <!-- split band -->
+              <path d="M96 160 C92 128 116 108 156 108 C172 108 176 120 176 132 C176 152 168 160 150 160 Z" fill="url(#weaveSplit)" class="weave"/>
+              <path d="M96 160 C92 128 116 108 156 108 C172 108 176 120 176 132 C176 152 168 160 150 160 Z" class="ink-stroke" fill="none"/>
+              <path d="M186 160 C186 132 206 112 244 116 C262 118 268 134 264 150 C261 160 252 160 240 160 Z" fill="url(#weaveSplit)" class="weave"/>
+              <path d="M186 160 C186 132 206 112 244 116 C262 118 268 134 264 150 C261 160 252 160 240 160 Z" class="ink-stroke" fill="none"/>
+            </svg>
+          </a>
+          <div class="product-meta">
+            <h3>The Split Slide</h3>
+            <p class="product-line">Open slide, split band</p>
+            <p class="price">€ 420</p>
+          </div>
+        </article>
+
+        <article class="product reveal">
+          <a class="product-media" href="#" aria-label="The Knot Mule">
+            <svg class="shoe shoe-mule" viewBox="0 0 320 220" role="img" aria-label="The Knot Mule — braided knot mule with low heel">
+              <ellipse cx="158" cy="192" rx="120" ry="12" class="shoe-shadow"/>
+              <path d="M44 178 C60 188 130 190 214 186 C268 183 292 176 294 168 C296 162 288 160 278 160 L70 162 C50 163 36 170 44 178 Z" class="ink-fill"/>
+              <path d="M270 178 L296 178 L292 192 L272 192 Z" class="ink-fill"/>
+              <!-- knot straps -->
+              <path d="M88 160 C92 120 150 100 204 110 C246 118 262 138 258 156 C256 160 250 160 244 160 Z" fill="url(#weaveKnot)" class="weave"/>
+              <path d="M88 160 C92 120 150 100 204 110 C246 118 262 138 258 156 C256 160 250 160 244 160 Z" class="ink-stroke" fill="none"/>
+            </svg>
+          </a>
+          <div class="product-meta">
+            <h3>The Knot Mule</h3>
+            <p class="product-line">Braided knot, 25mm heel</p>
+            <p class="price">€ 540</p>
+          </div>
+        </article>
+
+        <article class="product reveal">
+          <a class="product-media" href="#" aria-label="The Woven Loafer">
+            <svg class="shoe shoe-loafer" viewBox="0 0 320 220" role="img" aria-label="The Woven Loafer — basket-weave toe loafer">
+              <ellipse cx="160" cy="190" rx="120" ry="13" class="shoe-shadow"/>
+              <path d="M38 174 C54 188 124 192 206 188 C262 185 294 178 298 166 C300 158 292 154 282 156 L64 158 C44 159 30 166 38 174 Z" class="ink-fill"/>
+              <path d="M40 158 C42 116 92 80 158 78 C228 76 276 108 282 156 Z" fill="url(#weaveBasket)" class="weave"/>
+              <path d="M40 158 C42 116 92 80 158 78 C228 76 276 108 282 156 Z" class="ink-stroke" fill="none"/>
+              <!-- loafer collar + saddle -->
+              <path d="M150 90 C188 78 240 90 268 122" class="ink-stroke" fill="none"/>
+              <path d="M120 132 C150 120 196 120 224 134" class="ink-stroke" fill="none"/>
+            </svg>
+          </a>
+          <div class="product-meta">
+            <h3>The Woven Loafer</h3>
+            <p class="product-line">Basket-weave vamp</p>
+            <p class="price">€ 560</p>
+          </div>
+        </article>
+
+        <article class="product reveal">
+          <a class="product-media" href="#" aria-label="The Ribbon Mary Jane">
+            <svg class="shoe shoe-mary" viewBox="0 0 320 220" role="img" aria-label="The Ribbon Mary Jane — bow strap block heel">
+              <ellipse cx="158" cy="192" rx="120" ry="12" class="shoe-shadow"/>
+              <path d="M40 176 C56 188 122 192 202 188 C258 185 290 178 294 168 C296 160 288 156 278 158 L66 160 C46 161 32 168 40 176 Z" class="ink-fill"/>
+              <path d="M262 176 L290 176 L292 192 L266 192 Z" class="ink-fill"/>
+              <path d="M50 158 C50 110 96 72 160 70 C228 68 274 104 280 156 Z" fill="url(#weaveRibbon)" class="weave"/>
+              <path d="M50 158 C50 110 96 72 160 70 C228 68 274 104 280 156 Z" class="ink-stroke" fill="none"/>
+              <!-- mary jane strap -->
+              <path d="M120 150 C150 138 196 138 226 150" class="ink-stroke strap" fill="none"/>
+              <!-- bow -->
+              <path d="M150 96 l-16 -9 v18 z M150 96 l16 -9 v18 z" class="ink-fill"/>
+              <circle cx="150" cy="96" r="4" class="ink-fill"/>
+            </svg>
+          </a>
+          <div class="product-meta">
+            <h3>The Ribbon Mary Jane</h3>
+            <p class="product-line">Bow strap, 40mm heel</p>
+            <p class="price">€ 590</p>
+          </div>
+        </article>
+
+        <article class="product product-cta reveal">
+          <div class="product-cta-inner">
+            <p class="display">View<br />the full<br />atelier.</p>
+            <a href="#" class="btn btn-line btn-ivory">All Styles</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 4. CRAFT -->
+    <section class="craft" id="craft">
+      <div class="craft-grid">
+        <div class="craft-visual reveal" aria-hidden="true">
+          <svg viewBox="0 0 300 360" class="craft-lattice" role="img" aria-label="Detail of openwork lattice leather">
+            <rect width="300" height="360" fill="none"/>
+            <g class="craft-weave">
+              <rect x="0" y="0" width="300" height="360" fill="url(#weaveCage)" />
+            </g>
+          </svg>
+        </div>
+        <div class="craft-copy reveal">
+          <span class="section-index">03 — Craft</span>
+          <h2 class="display">Built from absence.</h2>
+          <p class="lede">Every VANTAIRE shoe is defined as much by what is removed as by what remains. We cut, weave, and lattice full-grain leather into structures that hold their shape while letting light and air pass through.</p>
+
+          <dl class="craft-list">
+            <div class="craft-item">
+              <dt>Lattice leather</dt>
+              <dd>Full-grain hides cut into open lattice panels — architectural, never flimsy.</dd>
+            </div>
+            <div class="craft-item">
+              <dt>Breathable structure</dt>
+              <dd>Cut-outs engineered for airflow, designed for heat and long days on foot.</dd>
+            </div>
+            <div class="craft-item">
+              <dt>Hand-woven feeling</dt>
+              <dd>Each band is hand-set, giving the woven warmth of a craft object.</dd>
+            </div>
+            <div class="craft-item">
+              <dt>Cushioned footbed</dt>
+              <dd>A vegetable-tanned, padded leather footbed that softens with wear.</dd>
+            </div>
+            <div class="craft-item">
+              <dt>Flexible outsole</dt>
+              <dd>A whisper-thin, hand-stitched sole that bends with every step.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. LOOKBOOK -->
+    <section class="lookbook" id="lookbook">
+      <header class="lookbook-head reveal">
+        <span class="section-index">04 — Lookbook</span>
+        <h2 class="display">Worn in shadow &amp; stone.</h2>
+        <p class="lede">SS26 photographed across galleries and quiet hotels — black leather against linen, white cotton, and bare light.</p>
+      </header>
+
+      <div class="lookbook-grid">
+        <figure class="look look-tall reveal" data-scene="oxblood">
+          <div class="look-media"><span class="look-tag">01</span></div>
+          <figcaption>Linen trousers &amp; The Cage Flat — The Gallery</figcaption>
+        </figure>
+        <figure class="look reveal" data-scene="stone">
+          <div class="look-media"><span class="look-tag">02</span></div>
+          <figcaption>White shirt &amp; The Woven Loafer — Morning Atrium</figcaption>
+        </figure>
+        <figure class="look reveal" data-scene="obsidian">
+          <div class="look-media"><span class="look-tag">03</span></div>
+          <figcaption>Black dress &amp; The Knot Mule — Hotel Corridor</figcaption>
+        </figure>
+        <figure class="look look-wide reveal" data-scene="bone">
+          <div class="look-media"><span class="look-tag">04</span></div>
+          <figcaption>Tailored linen &amp; The Split Slide — Stone Terrace</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 6. NEWSLETTER -->
+    <section class="newsletter" id="newsletter">
+      <div class="newsletter-inner reveal">
+        <span class="section-index light">05 — The List</span>
+        <h2 class="display">Enter the air.</h2>
+        <p class="lede">Early access to new openwork silhouettes, private atelier notes, and seasonal arrivals. No noise.</p>
+
+        <form class="news-form" id="newsForm" novalidate>
+          <div class="field">
+            <label for="email" class="sr-only">Email address</label>
+            <input type="email" id="email" name="email" placeholder="Your email address" autocomplete="email" required />
+            <button type="submit" class="btn btn-solid">Join the list</button>
+          </div>
+          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <a href="#top" class="brand brand-footer">VANTAIRE</a>
+      <p class="footer-tag">Leather, cut with air.</p>
+    </div>
+
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="#collection">The Lattice Collection</a>
+        <a href="#collection">Flats</a>
+        <a href="#collection">Slides &amp; Mules</a>
+        <a href="#collection">Loafers</a>
+      </div>
+      <div class="footer-col">
+        <h4>House</h4>
+        <a href="#manifesto">Manifesto</a>
+        <a href="#craft">Craft</a>
+        <a href="#lookbook">Lookbook</a>
+        <a href="#newsletter">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Client Care</h4>
+        <a href="#">Shipping &amp; Returns</a>
+        <a href="#">Leather Care</a>
+        <a href="#">Size Guide</a>
+        <a href="#">Stockists</a>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Pinterest</a>
+        <a href="#">Journal</a>
+      </div>
+    </div>
+
+    <div class="footer-base">
+      <p>&copy; <span id="year"></span> VANTAIRE. Made in Italy.</p>
+      <p class="footer-legal"><a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

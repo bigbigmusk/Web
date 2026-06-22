@@ -184,11 +184,20 @@ function cropMarks(sheet, tw, th) {
   line(pageW - MARK, PAD + th, MARK, HAIR); line(PAD + tw, pageH - MARK, HAIR, MARK);
 }
 
-function imgPH(label, wmm, hmm) {
-  const px = Math.round(wmm / 25.4 * 300), py = Math.round(hmm / 25.4 * 300);
+function imgPH(label, wmm, hmm, key) {
   const d = el('div', 'img-ph');
   Object.assign(d.style, { width: mm(wmm), height: mm(hmm), fontSize: '3mm' });
-  d.innerHTML = `<div>🖼 ${esc(label)}</div><div class="dpi">贴入 AI 生成图<br>建议 ${px}×${py}px @300dpi</div>`;
+  const fill = key && MODEL && MODEL.fills && MODEL.fills[key];
+  if (fill) {
+    Object.assign(d.style, { background: 'none', border: 'none', padding: '0' });
+    const img = el('img'); img.src = fill;
+    Object.assign(img.style, { width: '100%', height: '100%', objectFit: 'cover', display: 'block' });
+    d.appendChild(img);
+  } else {
+    const px = Math.round(wmm / 25.4 * 300), py = Math.round(hmm / 25.4 * 300);
+    d.innerHTML = `<div>🖼 ${esc(label)}</div><div class="dpi">贴入 / AI 生成图<br>建议 ${px}×${py}px @300dpi</div>`;
+  }
+  if (key) d.dataset.fillkey = key;
   return d;
 }
 
@@ -254,7 +263,7 @@ function abPoster(model) {
       bleed.style.background = byRole(palette, 'light');
       t.innerHTML = '';
       const wrap = el('div'); Object.assign(wrap.style, { position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column' });
-      const ph = imgPH('门店主视觉 / AI 模特', 297, 300); ph.style.width = '100%';
+      const ph = imgPH('门店主视觉 / AI 模特', 297, 300, 'poster'); ph.style.width = '100%';
       const bar = el('div'); Object.assign(bar.style, { flex: 1, background: byRole(palette, 'primary'), color: readable(byRole(palette, 'primary')), padding: '14mm', display: 'flex', flexDirection: 'column', justifyContent: 'center' });
       bar.innerHTML = `<div style="font-family:var(--ab-head);font-weight:700;font-size:16mm;line-height:1">${esc((brand.name || 'BRAND').toUpperCase())}</div>
         <div style="font-family:var(--ab-body);font-size:6mm;margin-top:4mm;opacity:.9">${esc(brand.tagline || '')}</div>
@@ -271,7 +280,7 @@ function abRollup(model) {
       bleed.style.background = `linear-gradient(160deg, ${byRole(palette, 'light')}, ${byRole(palette, 'secondary')})`;
       const top = el('div'); Object.assign(top.style, { position: 'absolute', top: '40mm', left: 0, right: 0, textAlign: 'center' });
       top.innerHTML = `<div style="width:160mm;margin:0 auto">${logoSVG(model)}</div>`;
-      const ph = imgPH('全身 AI 模特 / 产品大图', 480, 900); Object.assign(ph.style, { position: 'absolute', left: '60mm', top: '170mm' });
+      const ph = imgPH('全身 AI 模特 / 产品大图', 480, 900, 'rollup'); Object.assign(ph.style, { position: 'absolute', left: '60mm', top: '170mm' });
       const foot = el('div'); Object.assign(foot.style, { position: 'absolute', bottom: '60mm', left: 0, right: 0, textAlign: 'center', color: byRole(palette, 'dark') });
       foot.innerHTML = `<div style="font-family:var(--ab-head);font-weight:700;font-size:30mm">${esc(brand.tagline || brand.name || '')}</div>
         <div style="font-family:var(--ab-body);font-size:9mm;margin-top:6mm;color:${byRole(palette,'accent')}">${esc(brand.product || '')}</div>`;
@@ -375,7 +384,7 @@ async function generate() {
   const persona = inp.persona;
   const fonts = { head: PERSONAS[persona].head, body: PERSONAS[persona].body };
   const palette = buildPalette(seed, persona);
-  MODEL = { ...inp, seed, fonts, palette };
+  MODEL = { ...inp, seed, fonts, palette, fills: {} };
   MODEL.story = buildStory(MODEL);
   MODEL.prompts = buildPrompts(MODEL);
 
@@ -408,17 +417,31 @@ function renderVI() {
 
 function renderPrompts() {
   const pane = $('[data-pane="prompts"]');
-  pane.innerHTML = `<p class="hint">复制到任意文生图工具（Midjourney / Stable Diffusion / Flux / DALL·E）。已写入品牌色与气质，并附负面提示与合规守则。</p>` +
+  pane.innerHTML = `<p class="hint">「生成图」直接调用 OpenAI gpt-image-1（需已部署后端）；也可复制到 Midjourney / SD / Flux 等工具。已写入品牌色与气质，并附负面提示与合规守则。</p>` +
     MODEL.prompts.map((p, i) => `<div class="prompt-card">
-      <div class="ph"><span>${esc(p.title)}</span><span class="ratio">${esc(p.ratio)} <button class="copy" data-i="${i}">复制</button></span></div>
+      <div class="ph"><span>${esc(p.title)}</span><span class="ratio">${esc(p.ratio)}
+        <button class="copy" data-i="${i}">复制</button>
+        <button class="gen" data-i="${i}">🖼 生成图</button></span></div>
       <div class="pb">
         <pre id="pr${i}">${esc(p.prompt)}</pre>
         <div class="neg"><b>Negative:</b> ${esc(p.neg)}</div>
         <div class="warnline">${p.guard}</div>
+        <div class="gen-out" data-out="${i}"></div>
       </div></div>`).join('');
   $$('.copy', pane).forEach(b => b.onclick = () => {
     const t = MODEL.prompts[b.dataset.i].prompt;
     navigator.clipboard?.writeText(t); b.textContent = '已复制 ✓'; setTimeout(() => b.textContent = '复制', 1200);
+  });
+  $$('.gen', pane).forEach(b => b.onclick = async () => {
+    const i = b.dataset.i, p = MODEL.prompts[i], out = $(`[data-out="${i}"]`, pane);
+    const old = b.textContent; b.disabled = true; b.textContent = '生成中…';
+    out.innerHTML = '<span class="muted">⏳ 调用 OpenAI gpt-image-1，约 10–30 秒…</span>';
+    try {
+      const img = await callImageAPI(p.prompt, ratioOrientation(p.ratio));
+      out.innerHTML = `<img class="gen-img" src="${img}" alt="generated"/>
+        <div class="gen-act"><a class="copy" download="${esc((MODEL.brand.name||'brand'))}-${i}.png" href="${img}">下载 PNG</a></div>`;
+    } catch (e) { out.innerHTML = `<div class="warnline">生成失败：${esc(e.message)}</div>`; }
+    finally { b.disabled = false; b.textContent = old; }
   });
 }
 
@@ -444,6 +467,20 @@ function renderPrint() {
     const block = el('div');
     block.innerHTML = `<div class="pp-label">${pageW - 16}×${pageH - 16}mm（+3mm 出血）</div>`;
     block.appendChild(wrap);
+    // fill controls for any image placeholders on this sheet
+    const keys = [...new Set([...sheet.querySelectorAll('[data-fillkey]')].map(n => n.dataset.fillkey))];
+    keys.forEach(key => {
+      const filled = MODEL.fills[key];
+      const ctl = el('div', 'fill-ctl');
+      ctl.innerHTML = `<span>图片占位「${esc(key)}」</span>
+        <button class="gen" data-fk="${esc(key)}">🖼 AI 生成填充</button>
+        <label class="copy upl">上传<input type="file" accept="image/*" hidden></label>
+        ${filled ? `<button class="copy clr" data-clr="${esc(key)}">清除</button>` : ''}`;
+      ctl.querySelector('.gen').onclick = e => generateFill(key, e.currentTarget);
+      ctl.querySelector('.upl input').onchange = e => e.target.files[0] && uploadFill(key, e.target.files[0]);
+      const clr = ctl.querySelector('.clr'); if (clr) clr.onclick = () => { delete MODEL.fills[key]; renderPrint(); };
+      block.appendChild(ctl);
+    });
     prev.appendChild(block);
   });
   const st = el('style'); st.id = styleId; st.textContent = rules.join('\n'); document.head.appendChild(st);
@@ -469,6 +506,47 @@ function exportPrompts() {
   if (!MODEL) return;
   const txt = MODEL.prompts.map(p => `### ${p.title}  (${p.ratio})\n${p.prompt}\nNegative: ${p.neg}\n${p.guard.replace(/<[^>]+>/g, '')}\n`).join('\n');
   download(`${(MODEL.brand.name || 'brand')}-prompts.txt`, txt);
+}
+
+/* ---------- AI image generation (OpenAI gpt-image-1 via /api) ---------- */
+const API_ENDPOINT = 'api/generate-image';
+function ratioOrientation(ratio) {
+  const [w, h] = String(ratio).split(/[:x]/).map(Number);
+  if (!w || !h || w === h) return 'square';
+  return w > h ? 'landscape' : 'portrait';
+}
+async function callImageAPI(prompt, orientation) {
+  let res;
+  try {
+    res = await fetch(API_ENDPOINT, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt, orientation }),
+    });
+  } catch {
+    throw new Error('无法连接后端。请将本工具部署到 Cloudflare Pages 并配置 OPENAI_API_KEY（本地 file:// 直开无法调用）。');
+  }
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+  return data.image;
+}
+// fill-specific prompts for the two image artboards
+function fillSpec(key) {
+  const m = MODEL, name = m.brand.name || 'the brand', prod = m.brand.product || m.brand.category || 'product';
+  const cols = [byRole(m.palette, 'primary'), byRole(m.palette, 'secondary'), byRole(m.palette, 'accent')].join(', ');
+  const adj = PERSONAS[m.persona].adj;
+  if (key === 'rollup') return { orientation: 'portrait', prompt: `full body fashion photo of a model presenting a ${prod} for "${name}", standing, clean studio backdrop in brand colors ${cols}, ${adj}, soft beauty lighting, photorealistic, no other brand logos, no watermark` };
+  return { orientation: 'portrait', prompt: `retail campaign key visual for "${name}" featuring a model with a ${prod}, brand color blocks ${cols}, ${adj}, high-impact poster, empty space at top for headline, photorealistic, no other brand logos, no watermark` };
+}
+function setFill(key, dataURL) { MODEL.fills[key] = dataURL; renderPrint(); }
+async function generateFill(key, btn) {
+  const { prompt, orientation } = fillSpec(key);
+  const old = btn.textContent; btn.disabled = true; btn.textContent = '生成中…';
+  try { setFill(key, await callImageAPI(prompt, orientation)); }
+  catch (e) { alert('生成失败：' + e.message); }
+  finally { btn.disabled = false; btn.textContent = old; }
+}
+function uploadFill(key, file) {
+  const fr = new FileReader(); fr.onload = () => setFill(key, fr.result); fr.readAsDataURL(file);
 }
 
 /* ---------- ref image thumbs ---------- */

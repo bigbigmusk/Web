@@ -15,9 +15,10 @@
   - 字体搭配：按品牌个性自动配对（Google Fonts）。
   - Logo 锁版：浅底版 + 深底版（内联 SVG，矢量无损）。
   - 品牌故事 + 语气关键词。
-- **出图提示词包** — 8 组面向任意文生图工具（Midjourney / SD / Flux / DALL·E）的提示词：
+- **出图提示词包 + 一键出图** — 8 组面向任意文生图工具的提示词：
   商品主图 / 场景 / 微距 / AI 模特棚拍 / AI 模特生活方式 / 包装 3D / 门店 KV / 横版 Banner。
-  每组含画幅比例、负面提示与**商标合规守则**。
+  每组含画幅比例、负面提示与**商标合规守则**。点「🖼 生成图」即调用 **OpenAI gpt-image-1**
+  直接出图、可下载；海报与易拉宝版式还能「AI 生成填充 / 上传」把图直接嵌入印刷版式随 PDF 导出。
 - **印刷版式（印刷级）** — 每页按真实毫米尺寸输出：
   品牌规范 A4 · 门店海报 A3 · 易拉宝 600×1600 · 手提袋 · 吊牌 · 名片 · 不干胶贴。
   含 3mm 出血、四角裁切标记、安全区与 300dpi 像素建议。
@@ -40,7 +41,22 @@ python3 -m http.server 8000   # → http://localhost:8000
   方便印厂校色对位）。
 - 易拉宝 600×1600mm 为大幅面，部分浏览器打印对话框需选「自定义尺寸」或保持「实际大小」。
 
+## 自动出图后端（OpenAI gpt-image-1 · Cloudflare Pages）
+出图通过一个 Pages Function 代理，**API Key 只存服务端，不暴露给前端**：
+- 代码：`functions/api/generate-image.js`（`POST /api/generate-image`）。
+- 部署步骤：
+  1. 在 Cloudflare 新建 **Pages** 项目，连接本仓库；
+  2. **Build output / Root directory 设为 `brand-studio`**（这样 `functions/` 才会被识别）；
+  3. 在项目 **Settings → Environment variables** 添加 `OPENAI_API_KEY`；
+  4. 部署后访问站点，点「生成图」即出图。
+- 画幅自动映射到 gpt-image-1 支持的尺寸：方图 `1024x1024`、竖图 `1024x1536`、横图 `1536x1024`。
+- 默认 `quality: medium`（按量计费，质量越高越贵），可在 Function 中按需调整。
+- 本地预览出图功能需 `npx wrangler pages dev brand-studio`（普通 `file://` / `http.server`
+  打开仅前端可用，「生成图」会提示需后端）。
+
+> 提示词内置「不得包含参考品牌商标 / 原创视觉」守则；生成图会自动避开他人标识，
+> 但请在使用前自检，确保不侵权。
+
 ## 技术
-纯 HTML + CSS + 原生 JS，无构建步骤、无第三方库。可托管在任意静态主机
-（Cloudflare Pages / Netlify / Vercel / GitHub Pages）。所有版式均以 `mm` 排版，
-通过 CSS 命名分页 `@page` 为每个版式输出对应纸张尺寸。
+前端纯 HTML + CSS + 原生 JS，无构建步骤、无第三方库；后端为单个 Cloudflare Pages
+Function。所有版式均以 `mm` 排版，通过 CSS 命名分页 `@page` 为每个版式输出对应纸张尺寸。

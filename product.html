@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product — Monsterpp</title>
+  <meta name="description" content="A Monsterpp product. Playful, wearable, slightly weird." />
+  <meta name="theme-color" content="#f7f3eb" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <meta property="og:image" content="assets/social-card.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="shop">
+  <main class="wrap section--tight">
+    <nav class="crumbs" style="margin-bottom:20px"><a href="index.html">Home</a> / <a href="collection.html">Shop</a> / <span id="crumb-name">Product</span></nav>
+
+    <div class="pdp" id="pdp"><!-- injected --></div>
+
+    <!-- recommendations -->
+    <section class="section--tight" style="margin-top:48px">
+      <div class="shead"><div><span class="eyebrow">More from the cast</span><h2>Other monsters you may like</h2></div></div>
+      <div class="pgrid" id="recs"></div>
+    </section>
+  </main>
+
+  <!-- sticky mobile buy bar -->
+  <div class="sticky-buy" id="sticky-buy"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      const MP = window.MP, $ = (s, r = document) => r.querySelector(s);
+      const id = new URLSearchParams(location.search).get("id") || MP.products[0].id;
+      const p = MP.prodById[id] || MP.products[0];
+      let color = p.colors[0], size = p.sizes[0];
+      document.title = p.name + " — Monsterpp";
+      $("#crumb-name").textContent = p.name;
+
+      const colorNames = { "#ff6bae":"Pink","#c7ff3b":"Acid","#8b5cf6":"Purple","#4cc9f0":"Sky","#ffd93d":"Yellow","#ff7a2f":"Orange","#111111":"Black","#fffdfc":"White" };
+      // some sizes "sold out" for realism
+      const soldOut = new Set(p.tags.includes("almost") ? ["XS","XL"] : []);
+
+      const tags = p.tags.map((t) => `<span class="tag ${MP.tagMeta[t].cls}">${MP.tagMeta[t].label}</span>`).join(" ");
+      const views = ["flat","model","flat","model"];
+
+      function gallery() {
+        return `<div class="gallery">
+          <div class="gallery__thumbs" id="thumbs">
+            ${views.map((v, i) => `<button class="gthumb${i===0?' is-active':''}" data-i="${i}">${MP.productArt(p, v)}</button>`).join("")}
+          </div>
+          <div class="gallery__main" id="gmain">${MP.productArt(p, "flat")}</div>
+        </div>`;
+      }
+      function info() {
+        return `<div class="pdp__info">
+          <div class="row" style="gap:6px;flex-wrap:wrap;margin-bottom:10px">${tags}</div>
+          <h1 style="font-size:var(--t-h2)">${p.name}</h1>
+          <p class="muted">${p.cat}</p>
+          <div class="pdp__price" style="margin:14px 0">${MP.money(p.price)}</div>
+          <p class="lead" style="font-size:1.05rem">${p.story}</p>
+
+          <div style="margin-top:22px">
+            <div class="row between"><span class="eyebrow">Color · <span id="cn">${colorNames[color]}</span></span></div>
+            <div class="opts" id="colors" style="margin-top:8px">
+              ${p.colors.map((c, i) => `<button class="opt opt--color${i===0?' is-active':''}" data-color="${c}" style="background:${c}" aria-label="${colorNames[c]}"></button>`).join("")}
+            </div>
+          </div>
+
+          <div style="margin-top:18px">
+            <div class="row between"><span class="eyebrow">Size</span><a href="#" class="link-underline" style="font-size:.8rem">Size guide</a></div>
+            <div class="opts" id="sizes" style="margin-top:8px">
+              ${p.sizes.map((s, i) => `<button class="opt${i===0&&!soldOut.has(s)?' is-active':''}${soldOut.has(s)?' is-disabled':''}" data-size="${s}" ${soldOut.has(s)?'disabled':''}>${s}</button>`).join("")}
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:24px;gap:12px">
+            <button class="btn btn--lg btn--block" id="add-btn">Add to bag · ${MP.money(p.price)}</button>
+            <button class="iconbtn" id="wish-btn" aria-label="Wishlist" style="border-color:var(--monster-black);width:54px;height:54px;flex:none">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M12 21C-2 12 4 3 12 8c8-5 14 4 0 13Z"/></svg></button>
+          </div>
+
+          <div class="personality" style="margin-top:22px">
+            ${MP.monster(p.char ? p.char.color : MP.C.black, { mood: p.char ? p.char.mood : "happy" })}
+            <div><b style="font-family:var(--font-display)">Character personality</b>
+            <p style="font-size:.95rem">${p.line}</p></div>
+          </div>
+
+          <div class="accordion" style="margin-top:24px">
+            ${[["The story", p.story],
+               ["Materials", "Premium, heavyweight, built to be worn into the ground. Responsibly sourced where we can."],
+               ["Care", "Cold wash inside out. Tumble dry low. Do not iron the monster's face — it doesn't like it."],
+               ["Shipping & returns", "Free shipping over $150. 30-day returns. Your monster ships within 1–3 business days."]
+              ].map(([t, b]) => `<div class="accordion__item"><button class="accordion__btn">${t}<span class="plus">+</span></button><div class="accordion__panel"><p>${b}</p></div></div>`).join("")}
+          </div>
+        </div>`;
+      }
+
+      $("#pdp").innerHTML = gallery() + info();
+
+      // sticky mobile buy
+      $("#sticky-buy").innerHTML = `<div><div style="font-family:var(--font-display);font-weight:800">${MP.money(p.price)}</div><div class="muted" style="font-size:.75rem" id="sticky-meta">${size} · ${colorNames[color]}</div></div><button class="btn" id="add-btn-2">Add to bag</button>`;
+
+      // interactions
+      document.addEventListener("click", (e) => {
+        const c = e.target.closest("[data-color]");
+        if (c) { color = c.dataset.color; document.querySelectorAll("#colors .opt").forEach((o) => o.classList.toggle("is-active", o === c)); $("#cn").textContent = colorNames[color]; refreshArt(); updateSticky(); }
+        const s = e.target.closest("#sizes .opt:not(.is-disabled)");
+        if (s) { size = s.dataset.size; document.querySelectorAll("#sizes .opt").forEach((o) => o.classList.toggle("is-active", o === s)); updateSticky(); }
+        const th = e.target.closest(".gthumb");
+        if (th) { document.querySelectorAll(".gthumb").forEach((t) => t.classList.toggle("is-active", t === th)); $("#gmain").innerHTML = MP.productArt(p, views[+th.dataset.i]); }
+        const acc = e.target.closest(".accordion__btn");
+        if (acc) acc.parentElement.classList.toggle("is-open");
+        if (e.target.closest("#add-btn") || e.target.closest("#add-btn-2")) {
+          MP.app.flyToBag($("#gmain"), p); MP.app.addToCart(p.id, color, size, 1); MP.app.toast("Nom. Added to bag.", "bag");
+        }
+        if (e.target.closest("#wish-btn")) { MP.app.toggleWish(p.id, e.target.closest("#wish-btn")); e.target.closest("#wish-btn").style.background = MP.app.wish.includes(p.id) ? "var(--pink)" : ""; }
+      });
+      function refreshArt() { $("#gmain").innerHTML = MP.productArt(p, "flat"); document.querySelectorAll(".gthumb").forEach((t, i) => t.innerHTML = MP.productArt(p, views[i])); }
+      function updateSticky() { const m = $("#sticky-meta"); if (m) m.textContent = size + " · " + colorNames[color]; }
+
+      // recommendations
+      const recs = MP.products.filter((x) => x.id !== p.id).sort(() => 0.5 - Math.random()).slice(0, 4);
+      $("#recs").innerHTML = recs.map((x) => MP.app.cardHTML(x)).join("");
+      MP.app.hydrateCards($("#recs"));
+    })();
+  </script>
+</body>
+</html>

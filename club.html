@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monsterpp Club — Join us</title>
+  <meta name="description" content="Join the Monsterpp Club for early access, secret drops, character quizzes, birthday surprises and member-only monsters." />
+  <meta name="theme-color" content="#f7f3eb" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <meta property="og:image" content="assets/social-card.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="club">
+  <main>
+    <section class="section wrap">
+      <nav class="crumbs" style="margin-bottom:24px"><a href="index.html">Home</a> / <span>Club</span></nav>
+      <div class="club bg-pink reveal">
+        <div class="doodle seal" style="position:absolute;top:24px;right:24px;width:90px" data-doodle="crown"></div>
+        <div id="club-mon" style="position:absolute;bottom:-20px;right:8%;width:150px"></div>
+        <span class="eyebrow">Members only</span>
+        <h1 style="font-size:var(--t-hero);max-width:14ch;margin-top:8px;line-height:.9">Join the<br>Monsterpp Club</h1>
+        <p class="lead" style="max-width:46ch;margin-top:16px">It's free. It's weird. It's the only club where a small monster remembers your birthday.</p>
+        <form class="mouthfield" style="margin-top:26px" id="club-form">
+          <input type="email" required placeholder="Feed me your email…" aria-label="Email" />
+          <button class="btn" type="submit">Join the club</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section--tight wrap">
+      <div class="valuelist" id="perks"></div>
+    </section>
+
+    <section class="section wrap">
+      <div class="shead reveal"><div><span class="eyebrow">Personality test</span><h2>Which monster are you?</h2></div></div>
+      <div class="grid reveal" style="grid-template-columns:1fr 1fr;align-items:start" id="quiz-wrap">
+        <div class="block bg-white" style="padding:28px">
+          <div id="quiz"></div>
+        </div>
+        <div class="block bg-acid" style="padding:28px;text-align:center" id="quiz-result">
+          <div id="result-mon" style="width:160px;margin:0 auto"></div>
+          <h3 id="result-name" style="font-size:1.8rem;margin-top:8px">Answer to reveal</h3>
+          <p class="muted" id="result-bio">Your inner monster is hiding. Pick some answers and it'll come out.</p>
+          <a class="btn hide" id="result-shop" href="collection.html" style="margin-top:14px">Shop your monster</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="strip"><div class="strip__track" id="strip"></div></div>
+
+    <section class="section wrap center">
+      <h2 style="font-size:var(--t-h2);max-width:20ch;margin:0 auto">Already one of us?</h2>
+      <p class="lead" style="max-width:42ch;margin:10px auto 18px">Members get the drop 24 hours early. The monsters don't wait.</p>
+      <a class="btn btn--lg" href="collection.html?tag=new">Shop new drop</a>
+    </section>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      const MP = window.MP, $ = (s) => document.querySelector(s);
+      $("#club-mon").innerHTML = MP.monster(MP.C.black, { mood: "happy" });
+      $("#result-mon").innerHTML = MP.monster(MP.C.black, { mood: "flat", horns: true });
+
+      const perks = [
+        ["⚡ Early access", "Shop every drop 24 hours before everyone else."],
+        ["🔒 Secret drops", "Member-only colourways that never hit the main shop."],
+        ["🧠 Character quizzes", "Find your monster. Re-find it when your mood changes."],
+        ["🎂 Birthday surprises", "A little monster shows up on your special day."],
+        ["👾 Member-only monsters", "Collect characters you can't get anywhere else."],
+        ["🩷 Good karma", "We plant weird little ideas. Sometimes actual trees."],
+      ];
+      $("#perks").innerHTML = perks.map(([t, b]) => `<div class="value bg-cream"><b style="font-size:1.1rem">${t}</b><p class="muted">${b}</p></div>`).join("");
+
+      const words = ["Early access","Secret drops","Birthday surprises","Member-only monsters"];
+      const line = words.map((w) => `<span>★ ${w}</span>`).join("");
+      $("#strip").innerHTML = line + line + line;
+
+      // mini personality quiz
+      const Q = [
+        { q: "Sunday plan?", a: [["Nap, obviously","lazy"],["Cause mild chaos","chaos"],["Look expensive","fancy"]] },
+        { q: "Group chat energy?", a: [["Mute it","shy"],["Aggressively typing","angry"],["Sending snacks","hungry"]] },
+        { q: "Pick a colour", a: [["Pink","shy"],["Acid green","chaos"],["Gold","fancy"]] },
+      ];
+      const scores = {};
+      $("#quiz").innerHTML = Q.map((item, qi) => `
+        <div style="margin-bottom:18px"><b style="font-family:var(--font-display);display:block;margin-bottom:8px">${qi+1}. ${item.q}</b>
+        <div class="opts">${item.a.map((a) => `<button class="opt" data-q="${qi}" data-c="${a[1]}">${a[0]}</button>`).join("")}</div></div>`).join("");
+      const picks = {};
+      $("#quiz").addEventListener("click", (e) => {
+        const b = e.target.closest("[data-q]"); if (!b) return;
+        document.querySelectorAll(`[data-q="${b.dataset.q}"]`).forEach((x) => x.classList.toggle("is-active", x === b));
+        picks[b.dataset.q] = b.dataset.c;
+        if (Object.keys(picks).length === Q.length) reveal();
+      });
+      function reveal() {
+        const tally = {}; Object.values(picks).forEach((c) => tally[c] = (tally[c] || 0) + 1);
+        const id = Object.entries(tally).sort((a, b) => b[1] - a[1])[0][0];
+        const c = MP.charById[id];
+        $("#result-mon").innerHTML = MP.monster(c.color, { mood: c.mood, lazy: c.lazy });
+        $("#result-name").textContent = "You are " + c.name;
+        $("#result-bio").textContent = c.bio;
+        const shop = $("#result-shop"); shop.classList.remove("hide");
+        const m = MP.moods.find((x) => x.char === id); shop.href = "collection.html?mood=" + (m ? m.id : "");
+        MP.app.toast("The monster sees you.", "heart");
+      }
+
+      $("#club-form").addEventListener("submit", (e) => { e.preventDefault(); e.target.reset(); MP.app.toast("You are officially one of us.", "heart"); });
+      document.querySelectorAll("[data-doodle]").forEach((d) => d.innerHTML = MP.doodle[d.dataset.doodle]());
+    })();
+  </script>
+</body>
+</html>

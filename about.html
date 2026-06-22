@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Monsterpp</title>
+  <meta name="description" content="A brand for people who never fully grew up. Monsterpp keeps curiosity, imagination, humour and a little rebellion alive." />
+  <meta name="theme-color" content="#f7f3eb" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <meta property="og:image" content="assets/social-card.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="about">
+  <main>
+    <section class="section wrap">
+      <nav class="crumbs" style="margin-bottom:24px"><a href="index.html">Home</a> / <span>About</span></nav>
+      <span class="eyebrow reveal">Monster World</span>
+      <h1 class="display reveal" style="font-size:var(--t-h1);max-width:18ch;margin-top:10px">A brand for people who never fully grew up.</h1>
+      <p class="lead reveal" style="max-width:56ch;margin-top:18px">Monsterpp isn't about being childish. It's about keeping the good parts — curiosity, imagination, humour, rebellion, self-expression and a healthy amount of imperfection.</p>
+    </section>
+
+    <section class="section--tight wrap">
+      <div class="about-grid reveal">
+        <div class="cell bg-pink" style="grid-column:span 7;min-height:300px"><div style="width:40%">__MON1__</div>
+          <span class="ed__note" style="bottom:16px;left:18px">campaign 01 ✺</span></div>
+        <div class="cell bg-acid" style="grid-column:span 5"><div style="width:46%">__MON2__</div></div>
+        <div class="cell bg-yellow" style="grid-column:span 5"><div style="width:46%">__MON3__</div></div>
+        <div class="cell bg-sky" style="grid-column:span 7;min-height:260px"><div style="width:38%">__MON4__</div></div>
+      </div>
+    </section>
+
+    <section class="section bg-black" style="border-block:var(--bw) solid var(--monster-black)">
+      <div class="wrap center">
+        <span class="eyebrow" style="color:var(--acid)">Manifesto</span>
+        <p class="manifesto reveal" style="color:var(--soft-white);max-width:20ch;margin:18px auto 0">We believe growing up does not mean becoming boring.</p>
+        <p class="lead reveal" style="color:var(--soft-white);opacity:.85;max-width:60ch;margin:24px auto 0">Monsterpp makes clothes for people who still laugh too loudly, feel too much, and refuse to act normal. Playful but wearable. Cute but not innocent. Weird but well-designed.</p>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="shead reveal"><div><span class="eyebrow">What we keep alive</span><h2>The good parts of not growing up</h2></div></div>
+      <div class="valuelist reveal" id="values"></div>
+    </section>
+
+    <section class="section--tight wrap">
+      <div class="story reveal">
+        <div class="story__visual bg-purple"><div style="width:56%">__MON5__</div></div>
+        <div class="story__copy">
+          <span class="eyebrow">The story</span>
+          <h2>It started with a doodle.</h2>
+          <p class="lead">A black furry blob with two big eyes, drawn in the margin of a very boring notebook. It refused to leave. So we gave it horns, a few friends, and a wardrobe.</p>
+          <p>Today Monsterpp is a small studio obsessed with one question: how do we make everyday things more fun — without making them childish? Every drop is designed in-house, sampled obsessively, and approved by at least one monster.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--tight wrap">
+      <div class="valuelist reveal">
+        <div class="value bg-cream"><b>Designed in-house</b><p class="muted">Every graphic, character and garment starts on paper in our studio.</p></div>
+        <div class="value bg-cream"><b>Made to be worn</b><p class="muted">Heavyweight fabrics, real fits, gender-free sizing. Weird, not flimsy.</p></div>
+        <div class="value bg-cream"><b>Better when we can</b><p class="muted">Responsible materials and small, considered runs over landfill fashion.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      const MP = window.MP;
+      const reps = {
+        __MON1__: MP.monster(MP.C.black, { mood: "happy" }),
+        __MON2__: MP.monster(MP.C.purple, { mood: "ohh" }),
+        __MON3__: MP.monster(MP.C.black, { mood: "bite" }),
+        __MON4__: MP.monster(MP.C.pink, { mood: "shy" }),
+        __MON5__: MP.monster(MP.C.acid, { mood: "angry" }),
+      };
+      document.querySelectorAll(".cell, .story__visual").forEach((el) => {
+        Object.keys(reps).forEach((k) => { if (el.innerHTML.includes(k)) el.innerHTML = el.innerHTML.replace(k, reps[k]); });
+      });
+      const values = [
+        ["Curiosity", "We open the box, press the button, ask the dumb question."],
+        ["Imagination", "Everyday objects deserve to become characters."],
+        ["Humour", "If it doesn't make us laugh in the studio, it doesn't ship."],
+        ["Rebellion", "A little bad. A little weird. Never mean."],
+        ["Self-expression", "Wear the monster that matches your mood today."],
+        ["Imperfection", "Wobbly lines on purpose. Perfect is boring."],
+      ];
+      document.querySelector("#values").innerHTML = values.map(([t, b]) => `<div class="value"><b>${t}</b><p class="muted">${b}</p></div>`).join("");
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Characters — Monsterpp</title>
+  <meta name="description" content="Meet the monsters. Lazy PP, Angry PP, Shy PP, Fancy PP, Hungry PP and Chaos PP — the little monsters living inside you." />
+  <meta name="theme-color" content="#f7f3eb" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <meta property="og:image" content="assets/social-card.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="characters">
+  <main>
+    <section class="section--tight wrap">
+      <nav class="crumbs" style="margin-bottom:16px"><a href="index.html">Home</a> / <span>Characters</span></nav>
+      <div class="collbanner bg-purple reveal" style="color:#fff">
+        <div class="doodle" style="top:18px;right:18px;width:54px" data-doodle="bolt"></div>
+        <span class="eyebrow">The cast</span>
+        <h1>Meet the monsters</h1>
+        <p class="lead" style="color:#fff;opacity:.92;max-width:48ch;margin-top:8px">There's a little monster living inside everyone. These are ours. Pick the one that feels suspiciously accurate.</p>
+      </div>
+    </section>
+
+    <section class="section--tight wrap">
+      <div class="charwheel" id="cast"></div>
+    </section>
+
+    <div class="strip strip--purple"><div class="strip__track" id="strip"></div></div>
+
+    <!-- character detail blocks -->
+    <section class="section wrap" id="detail"></section>
+
+    <section class="section--tight wrap">
+      <div class="club bg-acid reveal center">
+        <h2 style="font-size:var(--t-h1)">Which monster are you?</h2>
+        <p class="lead" style="max-width:42ch;margin:10px auto 20px">Take the quiz, find your monster, unlock its collection. (It already knows the answer.)</p>
+        <a class="btn btn--lg" href="club.html">Take the quiz</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      const MP = window.MP, $ = (s) => document.querySelector(s);
+      $("#cast").innerHTML = MP.characters.map((c) => `
+        <a class="charcard bg-white" href="#${c.id}">
+          ${MP.monster(c.color, { mood: c.mood, lazy: c.lazy })}
+          <span class="role">${c.role}</span><h3>${c.name}</h3>
+          <p class="muted">${c.bio}</p></a>`).join("");
+
+      const words = ["Lazy PP","Angry PP","Shy PP","Fancy PP","Hungry PP","Chaos PP"];
+      const line = words.map((w) => `<span>${w} ✺</span>`).join("");
+      $("#strip").innerHTML = line + line + line;
+
+      $("#detail").innerHTML = MP.characters.map((c, i) => `
+        <div id="${c.id}" class="story reveal" style="margin-bottom:28px;${i%2? 'direction:rtl':''}">
+          <div class="story__visual" style="background:${c.color};direction:ltr">
+            <div style="width:60%">${MP.monster(c.color === MP.C.black ? MP.C.black : c.color, { mood: c.mood, lazy: c.lazy })}</div>
+          </div>
+          <div class="story__copy" style="direction:ltr">
+            <span class="eyebrow">${c.role}</span>
+            <h2>${c.name}</h2>
+            <p class="lead">${c.bio}</p>
+            <ul class="pilllist">
+              <li class="perk">Mood: ${c.mood}</li>
+              <li class="perk">Energy: chaotic-cozy</li>
+              <li class="perk">Spirit color</li>
+            </ul>
+            <div class="row" style="margin-top:8px">
+              <a class="btn" href="collection.html?mood=${MP.moods.find((m)=>m.char===c.id)?.id || ''}">Shop ${c.name}</a>
+            </div>
+          </div>
+        </div>`).join("");
+
+      document.querySelectorAll("[data-doodle]").forEach((d) => d.innerHTML = MP.doodle[d.dataset.doodle]());
+    })();
+  </script>
+</body>
+</html>

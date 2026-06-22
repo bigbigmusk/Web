@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lost monster — Monsterpp</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#f7f3eb" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <meta property="og:image" content="assets/social-card.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="404">
+  <main class="wrap notfound">
+    <div>
+      <div id="lost" style="width:220px;margin:0 auto 10px"></div>
+      <span class="eyebrow">Error 404</span>
+      <h1>Lost monster.</h1>
+      <p class="lead" style="max-width:40ch;margin:12px auto 22px">This page wandered off. One of our monsters probably ate it. It happens.</p>
+      <div class="row" style="justify-content:center;gap:12px;flex-wrap:wrap">
+        <a class="btn btn--lg" href="index.html">Take me home</a>
+        <a class="btn btn--ghost btn--lg" href="collection.html">Go shopping</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    document.querySelector("#lost").innerHTML = window.MP.monster(window.MP.C.purple, { mood: "ohh" });
+  </script>
+</body>
+</html>

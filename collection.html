@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop — Monsterpp</title>
+  <meta name="description" content="Shop all Monsterpp — hoodies, knits, tees, hats, bags, eyewear, footwear and jewelry. Filter by category, color, character, mood and price." />
+  <meta name="theme-color" content="#f7f3eb" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <meta property="og:image" content="assets/social-card.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="shop">
+  <main class="wrap section--tight">
+    <nav class="crumbs" style="margin-bottom:16px"><a href="index.html">Home</a> / <span>Shop</span></nav>
+
+    <div class="collbanner bg-pink reveal" style="margin-bottom:32px">
+      <div class="doodle" style="top:18px;right:18px;width:60px" data-doodle="star"></div>
+      <div id="banner-mon" style="position:absolute;bottom:-18px;right:6%;width:140px;opacity:.95"></div>
+      <span class="eyebrow">Drop 001</span>
+      <h1 id="coll-title">Shop everything</h1>
+      <p class="lead" style="max-width:40ch;margin-top:8px" id="coll-sub">Something is living inside me. Probably good taste.</p>
+    </div>
+
+    <div class="shoplayout">
+      <!-- FILTERS -->
+      <aside class="filters" id="filters" aria-label="Filters">
+        <div class="row between" style="margin-bottom:8px">
+          <h3 style="font-size:1.2rem">Filters</h3>
+          <button class="link-underline" id="clear-filters" style="font-size:.85rem">Clear</button>
+        </div>
+        <div id="filter-groups"></div>
+      </aside>
+
+      <!-- RESULTS -->
+      <section>
+        <div class="toolbar">
+          <button class="btn btn--ghost filter-toggle" id="filter-toggle">☰ Filters</button>
+          <span class="muted" id="result-count"></span>
+          <label class="row" style="gap:8px">
+            <span class="eyebrow">Sort</span>
+            <select class="select" id="sort" style="width:auto;padding:8px 12px">
+              <option value="featured">Featured</option>
+              <option value="low">Price ↑</option>
+              <option value="high">Price ↓</option>
+              <option value="name">A–Z</option>
+            </select>
+          </label>
+        </div>
+        <div class="fchips" id="active-chips" style="margin-bottom:16px"></div>
+        <div class="pgrid" id="shop-grid"></div>
+        <div id="empty" class="center hide" style="padding:64px 0">
+          <div id="empty-mon" style="width:140px;margin:0 auto 16px"></div>
+          <h3>No monsters match that.</h3>
+          <p class="muted">Try clearing a filter.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      const MP = window.MP, $ = (s) => document.querySelector(s), $$ = (s) => Array.from(document.querySelectorAll(s));
+      const params = new URLSearchParams(location.search);
+      const state = { Category: new Set(), Color: new Set(), Character: new Set(), Mood: new Set(), Size: new Set(), Price: new Set(), tag: params.get("tag") };
+
+      if (params.get("mood")) state.Mood.add(params.get("mood"));
+
+      // banner copy
+      if (params.get("tag") === "new") { $("#coll-title").textContent = "New In"; $("#coll-sub").textContent = "Fresh monsters, barely out of the studio."; }
+      if (params.get("mood")) { const m = MP.moods.find((x) => x.id === params.get("mood")); if (m) { $("#coll-title").textContent = m.label; $("#coll-sub").textContent = "Curated for exactly this energy."; } }
+      $("#banner-mon").innerHTML = MP.monster(MP.C.black, { mood: "bite" });
+      $("#empty-mon").innerHTML = MP.monster(MP.C.orange, { mood: "ohh" });
+
+      // build filter facets
+      const cats = [...new Set(MP.products.map((p) => p.cat))].sort();
+      const sizes = ["XS","S","M","L","XL","One Size"];
+      const colorNames = { "#ff6bae":"Pink","#c7ff3b":"Acid","#8b5cf6":"Purple","#4cc9f0":"Sky","#ffd93d":"Yellow","#ff7a2f":"Orange","#111111":"Black","#fffdfc":"White" };
+      const colors = [...new Set(MP.products.flatMap((p) => p.colors))];
+      const prices = [["0-50","Under $50"],["50-100","$50–$100"],["100-999","$100+"]];
+
+      function group(title, items) {
+        return `<div class="fgroup"><h4>${title}</h4>${items.map((it) => `
+          <label class="fopt"><input type="checkbox" data-grp="${title}" value="${it.v}"/>
+          ${it.sw ? `<span class="swatch" style="background:${it.sw}"></span>` : ""}<span>${it.l}</span></label>`).join("")}</div>`;
+      }
+      $("#filter-groups").innerHTML = [
+        group("Category", cats.map((c) => ({ v: c, l: c }))),
+        group("Mood", MP.moods.map((m) => ({ v: m.id, l: m.label }))),
+        group("Character", MP.characters.map((c) => ({ v: c.id, l: c.name }))),
+        group("Color", colors.map((c) => ({ v: c, l: colorNames[c] || c, sw: c }))),
+        group("Size", sizes.map((s) => ({ v: s, l: s }))),
+        group("Price", prices.map((p) => ({ v: p[0], l: p[1] }))),
+      ].join("");
+
+      // restore mood param into checkbox
+      $$('input[data-grp="Mood"]').forEach((i) => { if (state.Mood.has(i.value)) i.checked = true; });
+
+      function matches(p) {
+        if (state.tag === "new" && !p.tags.includes("new")) return false;
+        if (state.Category.size && !state.Category.has(p.cat)) return false;
+        if (state.Mood.size && !state.Mood.has(p.mood)) return false;
+        if (state.Character.size && !(p.char && state.Character.has(p.char.id))) return false;
+        if (state.Color.size && !p.colors.some((c) => state.Color.has(c))) return false;
+        if (state.Size.size && !p.sizes.some((s) => state.Size.has(s))) return false;
+        if (state.Price.size) {
+          const ok = [...state.Price].some((r) => { const [a, b] = r.split("-").map(Number); return p.price >= a && p.price <= b; });
+          if (!ok) return false;
+        }
+        return true;
+      }
+
+      function render() {
+        let list = MP.products.filter(matches);
+        const sort = $("#sort").value;
+        if (sort === "low") list.sort((a, b) => a.price - b.price);
+        if (sort === "high") list.sort((a, b) => b.price - a.price);
+        if (sort === "name") list.sort((a, b) => a.name.localeCompare(b.name));
+        $("#shop-grid").innerHTML = list.map((p) => MP.app.cardHTML(p)).join("");
+        MP.app.hydrateCards($("#shop-grid"));
+        $("#result-count").textContent = list.length + " monster" + (list.length === 1 ? "" : "s");
+        $("#empty").classList.toggle("hide", list.length > 0);
+        // active chips
+        const chips = [];
+        Object.keys(state).forEach((k) => { if (state[k] instanceof Set) state[k].forEach((v) => chips.push([k, v])); });
+        if (state.tag) chips.push(["tag", state.tag]);
+        $("#active-chips").innerHTML = chips.map(([k, v]) => `<button class="tag" data-chip="${k}|${v}">${v} ✕</button>`).join("");
+      }
+
+      document.addEventListener("change", (e) => {
+        const cb = e.target.closest("input[data-grp]");
+        if (cb) { const g = cb.dataset.grp; cb.checked ? state[g].add(cb.value) : state[g].delete(cb.value); render(); }
+        if (e.target.id === "sort") render();
+      });
+      document.addEventListener("click", (e) => {
+        const chip = e.target.closest("[data-chip]");
+        if (chip) { const [k, v] = chip.dataset.chip.split("|"); if (k === "tag") state.tag = null; else state[k].delete(v);
+          $$(`input[data-grp="${k}"]`).forEach((i) => { if (i.value === v) i.checked = false; }); render(); }
+        if (e.target.id === "clear-filters") { ["Category","Color","Character","Mood","Size","Price"].forEach((k) => state[k].clear()); state.tag = null; $$("input[data-grp]").forEach((i) => i.checked = false); render(); }
+        if (e.target.id === "filter-toggle") $("#filters").classList.toggle("is-open");
+      });
+
+      document.querySelectorAll("[data-doodle]").forEach((d) => d.innerHTML = MP.doodle[d.dataset.doodle]());
+      render();
+    })();
+  </script>
+</body>
+</html>

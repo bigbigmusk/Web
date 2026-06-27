@@ -1,5 +1,6 @@
 /* ============================================================
-   Concord Trade — interactions
+   GOGO CHINA TRIPS — interactions
+   Dependency-free vanilla JS
    ============================================================ */
 (function () {
   'use strict';
@@ -11,8 +12,8 @@
   /* --- Header shadow on scroll --- */
   var header = document.querySelector('.site-header');
   function onScroll() {
-    if (window.scrollY > 8) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
+    if (!header) return;
+    header.classList.toggle('scrolled', window.scrollY > 8);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -33,9 +34,9 @@
     });
   }
 
-  /* --- Reveal on scroll --- */
+  /* --- Scroll reveal --- */
   var reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
+  if ('IntersectionObserver' in window && reveals.length) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -49,74 +50,41 @@
     reveals.forEach(function (el) { el.classList.add('in'); });
   }
 
-  /* --- RFQ form: compose a structured email via mailto --- */
-  var form = document.getElementById('rfqForm');
-  var note = document.getElementById('formNote');
-
-  function val(id) {
-    var el = document.getElementById(id);
-    return el ? el.value.trim() : '';
+  /* --- Hero search → would route to /trips with params (MVP demo) --- */
+  var searchForm = document.getElementById('searchForm');
+  if (searchForm) {
+    searchForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var data = new FormData(searchForm);
+      var params = new URLSearchParams();
+      ['city', 'date', 'need'].forEach(function (k) {
+        var v = data.get(k);
+        if (v) params.set(k, v);
+      });
+      // In production this navigates to the product list (WEB-LIST) with filters in the URL.
+      var trips = document.getElementById('trips');
+      if (trips) trips.scrollIntoView({ behavior: 'smooth' });
+      if (window.history && history.replaceState) {
+        history.replaceState(null, '', params.toString() ? '#trips?' + params.toString() : '#trips');
+      }
+    });
   }
 
-  // Localised message helper (falls back to English when i18n is absent)
-  function msg(key, fallback) {
-    return (window.I18N && window.I18N.t) ? window.I18N.t(key) : fallback;
-  }
-
-  if (form) {
+  /* --- Demo lead/booking forms: friendly inline confirmation --- */
+  document.querySelectorAll('.card-form').forEach(function (form) {
+    if (form.tagName !== 'FORM') return;
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-
-      // Basic validation on required fields
-      var required = ['name', 'email', 'product'];
-      var ok = true;
-      required.forEach(function (id) {
-        var el = document.getElementById(id);
-        if (!el || !el.value.trim()) { el && el.classList.add('invalid'); ok = false; }
-        else { el.classList.remove('invalid'); }
-      });
-      var emailEl = document.getElementById('email');
-      if (emailEl && emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
-        emailEl.classList.add('invalid'); ok = false;
-      }
-
-      if (!ok) {
-        note.textContent = msg('form_err', 'Please complete the required fields (name, a valid email, and product).');
-        note.className = 'form-note err';
-        return;
-      }
-
-      var lines = [
-        'New RFQ from Concord Trade website', '',
-        'Name: ' + val('name'),
-        'Company: ' + (val('company') || '-'),
-        'Email: ' + val('email'),
-        'Target market: ' + (val('market') || '-'),
-        '',
-        'Product / category: ' + val('product'),
-        'Target quantity: ' + (val('quantity') || '-'),
-        'Target price: ' + (val('price') || '-'),
-        'Packaging needs: ' + (val('packaging') || '-'),
-        'Certification requirements: ' + (val('certification') || '-'),
-        '',
-        'Additional details:',
-        (val('message') || '-')
-      ];
-
-      var subject = 'RFQ — ' + val('product') + (val('company') ? ' (' + val('company') + ')' : '');
-      var mailto = 'mailto:info@concord-trade.com'
-        + '?subject=' + encodeURIComponent(subject)
-        + '&body=' + encodeURIComponent(lines.join('\n'));
-
-      window.location.href = mailto;
-
-      note.textContent = msg('form_ok', 'Opening your email app to send this RFQ to info@concord-trade.com. If nothing opens, email us directly.');
-      note.className = 'form-note ok';
+      var btn = form.querySelector('button[type="submit"]');
+      if (!btn) return;
+      var original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = '✓ Request received — we\'ll be in touch';
+      setTimeout(function () {
+        btn.disabled = false;
+        btn.textContent = original;
+        form.reset();
+      }, 2600);
     });
-
-    // Clear invalid state while typing
-    form.addEventListener('input', function (e) {
-      if (e.target.classList.contains('invalid')) e.target.classList.remove('invalid');
-    });
-  }
+  });
 })();

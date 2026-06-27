@@ -1,102 +1,106 @@
-# Concord Trade — B2B Sourcing & Trade Website
+# GOGO CHINA TRIPS — C-end website
 
-International sourcing & trade partner showcase site. Built as a fast,
-dependency-free static website (HTML + CSS + vanilla JS) so it can be hosted
-anywhere — GitHub Pages, Netlify, Vercel, or any static host.
+Customer-facing marketing & booking site for **GOGO CHINA TRIPS**, a platform that
+makes it easy for foreign travellers and business visitors to discover, book and
+enjoy local experiences in China.
 
-**Positioning:** not a product marketplace — a sourcing & trade execution partner.
-> *Tell us what you need. We help you find, compare, verify, and source the right products from reliable suppliers.*
+Built as a fast, dependency-free static website (HTML + CSS + vanilla JS) so it can
+be hosted anywhere — Cloudflare Pages/Workers, GitHub Pages, Netlify, Vercel, or any
+static host.
 
-## Brand & visual system
-- **Colors:** navy `#16335a` + silver `#8f99a5` on clean white / light-grey (`#f4f7fb`).
-- **Style:** corporate, global, procurement-led. Abstract global-trade network graphics
-  and clean SVG iconography instead of ship/container/plane stock photos or 1688-style product dumps.
-- **Typography:** Inter (Google Fonts).
-- All graphics are inline SVG — crisp on every screen, no image assets to manage.
+> **Positioning (PRD):** not a traditional travel-agency brochure — a *standard
+> China-travel product marketplace + human service desk + partner distribution
+> network*. The C-end builds trust and takes the order.
+
+**Core claim:** *China, made easy. — 让来中国这件事，变简单。*
+
+## Implements the PRD
+
+This site implements the C-end scope of the GOGO CHINA TRIPS PRD v1.0:
+
+- **Information architecture (§5.1):** Trips · Destinations · Private Guides ·
+  Business Travel · Plan My Trip · Help · Order lookup, plus a partner entry near
+  the footer.
+- **Homepage requirements (§7.1):** first-screen search (`WEB-HOME-001`), quick
+  entries (`-002`), popular/hero products (`-003`), browse-by-purpose (`-004`),
+  trust module (`-005`), dark business module (`-006`), city entries (`-007`) and a
+  low-prominence partner entry (`-008`).
+- **Hero products (§4.3):** First Day in China, Private Guide 4H / 8H, Trade Fair
+  Companion, with honest *“request to confirm” / project quote* labelling and real
+  “from” prices (§10.2 — no fake inventory or bait pricing).
+- **Booking flow (§6.1):** a four-step “choose & pay → we confirm → trip card →
+  enjoy & review” explainer, including the no-order-left-waiting rule.
+- **Lead capture (§7.5):** business and custom-trip request forms with attribution
+  (partner invite code) and separate consent.
+- **Design system (§12):** brand tokens, type and radii applied exactly (see below).
+- **Content rules (§12.3):** no fabricated star ratings, reviewer counts or partner
+  logos — trust is built from real support, transparent pricing and the confirmation
+  process instead.
+- **Accessibility (§12.4):** skip link, keyboard-operable nav/forms, status conveyed
+  with text (not colour alone), 44px-friendly targets, `prefers-reduced-motion`.
+
+## Brand & visual system (PRD §12.1)
+
+| Token | Name | Value | Use |
+|---|---|---|---|
+| Primary | GoGo Orange | `#FF5A36` | Main CTAs, prices, active state |
+| Dark | China Night | `#13233A` | Titles, nav, business module |
+| Background | Rice White | `#FFF8F0` | Warm main background |
+| Accent | Jade Mint | `#32B6A5` | Confirmation, reliable, local service |
+| Highlight | Electric Yellow | `#FFD84D` | Small highlights |
+| Neutral | Cloud Grey / Border | `#F3F5F6` / `#DDE2E5` | Surfaces, lines |
+
+- **Type:** Sora (headings) + Inter (body) + Noto Sans SC (Chinese) via Google Fonts.
+- **Radii:** Card 16px / Button 12px.
+- **Graphics:** brand mark and icons are inline SVG / emoji and CSS gradients — crisp
+  on every screen, no image assets to manage. Replace the gradient product/city
+  panels with licensed photography per §12.3 (record source, licence and expiry).
 
 ## Page structure
-1. **Hero** — Global Sourcing & Trade Solutions (+ RFQ / View Categories CTAs, animated world-network background)
-2. **About** — who we are + capability stats
-3. **What We Do** — Product Sourcing · Supplier Coordination · OEM/ODM · Quality & Sample Follow-up · Import & Export · Supply Chain Solutions
-4. **Product Categories We Source** — Pet Care · Home Hygiene & Odor Control · Medical Disposables & PPE · Bags & Travel Accessories · Athleisure & Wearables
-5. **How We Work** — 6-step sourcing workflow (Requirement → Long-term Supply)
-6. **Why Concord Trade** — key advantages
-7. **Trust & Execution** — Supplier Verification · Quality Control · Packaging Customization · Export Documentation
-8. **RFQ form** — structured request for quotation
-9. **Footer** — contact, LinkedIn, mission
 
-## Contact
-- Sales: `tj@concord-trade.com`
-- General: `info@concord-trade.com`
-- LinkedIn: https://www.linkedin.com/company/concord-trade/
+1. **Utility bar** — claim, Help, Order lookup, Partners, language.
+2. **Header / nav** — IA navigation + Explore trips CTA + mobile menu.
+3. **Hero** — “China, made easy.” + first-screen search + quick-start chips.
+4. **Trust bar** — English support · transparent prices · secure payment · real guides.
+5. **Browse by purpose** — First Day in China, Private Guides, Food, Culture, Family, Business.
+6. **Popular / hero products** — First Day in China, Private Guide 4H / 8H, Trade Fair Companion.
+7. **Destinations** — Beijing / Shanghai / Guangzhou (+ coming-soon cities).
+8. **Business module** (dark) — services + project-quote request form.
+9. **How booking works** — 4-step reliable booking flow.
+10. **Why GoGo** — Easy · Local · Reliable · Human · Scalable.
+11. **Plan My Trip** — custom-trip request form.
+12. **Help & order lookup** — FAQ + order-number/email lookup.
+13. **Partner CTA** — become a partner (near footer).
+14. **Footer** — explore / support / company links.
 
-## RFQ form
-The form is static-host friendly: on submit it validates the required fields and
-composes a structured email to `info@concord-trade.com` via `mailto:`.
+## Forms
 
-**To upgrade to direct inbox delivery** (no email app popup), point the form at a
-form backend such as [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com):
-in `script.js`, replace the `mailto:` handler with a `fetch()` POST to your endpoint.
-
-## Languages (i18n)
-The site ships in **English · 简体中文 · Español · Français** via a header language
-switcher (EN / 中文 / ES / FR). Implementation is dependency-free:
-- `translations.js` — all copy for the four languages, keyed by short ids.
-- `i18n.js` — applies translations to `[data-i18n]` / `[data-i18n-html]` /
-  `[data-i18n-ph]` elements, keeps `<html lang>`, `<title>` and the meta
-  description in sync, and remembers the choice in `localStorage`.
-- Language is auto-selected on first visit from `?lang=xx`, then the saved
-  choice, then the browser language (fallback English). `hreflang` alternates
-  are declared in `<head>`.
-
-## SEO & social sharing
-- **Open Graph + Twitter Card** meta so links shared on LinkedIn / X / chat render a
-  branded preview card (`assets/social-card.png`, 1200×630).
-- **JSON-LD `Organization`** structured data (logo, slogan, product focus areas,
-  LinkedIn `sameAs`, and `sales` / `customer service` contact emails) for richer
-  search-engine results.
-- Canonical URL + `theme-color`.
-
-## Brand assets
-The logo is the customer's official artwork (`assets/7BAC…PNG` master). The header /
-footer / favicon / share card are cropped straight from it — no redrawn approximation:
-```
-assets/logo-mark.png          # emblem, transparent (header + JSON-LD logo)
-assets/logo-wordmark.png      # "CONCORD TRADE" wordmark, transparent (header)
-assets/logo-mark-white.png    # white emblem for the dark footer
-assets/logo-wordmark-white.png# white wordmark for the dark footer
-assets/favicon.png            # emblem on a white rounded tile
-assets/social-card.svg        # source for the 1200×630 share card
-assets/social-card.png        # Open Graph / Twitter share image (uses the real emblem)
-```
+Forms are static-host friendly: on submit they validate and show an inline
+confirmation. To deliver to an inbox, point them at a form backend (Formspree,
+Web3Forms) or the real API/checkout (`WEB-CHK`, `WEB-BIZ`, `WEB-CUS`) in `script.js`.
+The hero search currently scrolls to Trips and writes filters to the URL; in
+production it routes to the product list (`WEB-LIST`) with the filters preserved.
 
 ## Files
+
 ```
-index.html              # all sections / markup + i18n hooks + SEO + structured data
-styles.css              # design system + responsive layout
-script.js               # nav, scroll reveals, RFQ form handler
-translations.js         # EN / ZH / ES / FR copy
-i18n.js                 # language switcher engine
+index.html    # all sections / markup + SEO + structured data
+styles.css    # design system (brand tokens) + responsive layout
+script.js     # nav, scroll reveals, search routing, form handlers
+sitemap.xml   # sitemap
+robots.txt    # crawl rules
+llms.txt      # LLM-readable site summary
 ```
 
 ## Run locally
-Just open `index.html`, or serve the folder:
+
 ```bash
-python3 -m http.server 8000
-# → http://localhost:8000
+python3 -m http.server 8000   # → http://localhost:8000
 ```
 
-## Deployment (Cloudflare Pages)
-Static site, no build step. Hosted on **Cloudflare Pages**, connected to this
-repo and auto-deploying on every push to **`main`**.
+## Deployment (Cloudflare)
 
-Cloudflare Pages project settings:
-- Production branch: `main`
-- Framework preset: `None`
-- Build command: *(empty)*
-- Build output directory: `/`
-
-`_headers` (Cloudflare syntax) applies the security headers and asset caching.
-The custom domain `www.concord-trade.com` is configured in the Cloudflare Pages
-dashboard (Custom domains), not via a repo file.
-
+Static site, no build step. `wrangler.toml` keeps the existing Worker name so the
+custom domain stays attached. `_headers` applies security headers and asset caching.
+Point the production custom domain to `www.gogochinatrips.com` in the Cloudflare
+dashboard.

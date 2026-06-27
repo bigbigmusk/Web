@@ -1,23 +1,27 @@
-# Concord Trade
+# GOGO CHINA TRIPS
 
-> Concord Trade is a B2B international sourcing and trade solutions company helping global buyers source reliable manufacturers, compare supplier options, manage OEM/ODM projects, coordinate samples and orders, and reduce sourcing risks from China and Asia.
+> GOGO CHINA TRIPS makes it easy for foreign travellers and business visitors to
+> discover, book and enjoy understandable, reliable local experiences in China —
+> with English support, transparent pricing and real local guides.
+> Tagline: "China, made easy."
 
-## Services
-- [China Product Sourcing](https://www.concord-trade.com/services/china-product-sourcing/): Find and compare reliable Chinese manufacturers, collect quotes, manage samples.
-- [Supplier Verification](https://www.concord-trade.com/services/supplier-verification/): Verify suppliers before ordering to reduce sourcing risk.
-- [OEM / ODM Sourcing](https://www.concord-trade.com/services/oem-odm-sourcing/): Private label, custom packaging, product development, MOQ negotiation, production follow-up.
+## Experiences
+- First Day in China: on-arrival assistance — SIM & payment setup, getting around, a smooth day one.
+- Private Guides (4H / 8H): English-speaking local guides, by language or by city.
+- Business Travel: trade-fair companions, factory visits, interpreters, transport and market research — quoted as one project.
+- Plan My Trip: custom China trips planned around your dates, cities, group and interests.
 
-## Industries
-- [Pet Product Sourcing](https://www.concord-trade.com/industries/pet-product-sourcing/)
-- [Medical Consumables & PPE Sourcing](https://www.concord-trade.com/industries/medical-consumables-sourcing/)
-- [Bags, Apparel & Home Goods Sourcing](https://www.concord-trade.com/industries/bags-apparel-home-goods-sourcing/)
+## First-launch cities
+- Beijing, Shanghai, Guangzhou (more cities — Chengdu, Shenzhen, Xi'an — rolling out).
 
-## Company
-- [About](https://www.concord-trade.com/about/)
-- [Insights](https://www.concord-trade.com/insights/)
-- [Contact](https://www.concord-trade.com/contact/)
+## How booking works
+- Choose and pay with full price, inclusions and cancellation policy shown up front.
+- Many experiences are "request to confirm": we confirm the guide and resources, usually within 4 hours.
+- You receive a bilingual trip card (meeting point, English + Chinese address, guide, emergency contact).
+- If a supplier can't confirm, you get an alternative or a full refund.
 
-## Contact
-- Sales: tj@concord-trade.com
-- General: info@concord-trade.com
-- LinkedIn: https://www.linkedin.com/company/concord-trade/
+## For partners
+- Hotels, schools, communities and individuals can refer travellers with a unique link or invite code, with transparent order attribution and commission: https://partners.gogochinatrips.com
+
+## Site
+- Home: https://www.gogochinatrips.com/

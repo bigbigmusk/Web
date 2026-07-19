@@ -1,0 +1,161 @@
+{
+  "meta": {
+    "account": "Concord Trade — personal profile via Zapier 'share' action, company page via 'create_company_update' once page admin is connected",
+    "site": "https://www.concord-trade.com",
+    "cadence": "Mon / Wed / Fri, 13:00 UTC (≈ 北京时间 21:00, 欧洲下午, 美东上午)",
+    "language": "English (target audience: overseas B2B buyers, contractors, NGOs, procurement managers)",
+    "rules": [
+      "Post the first item where status = 'queued', in array order.",
+      "After a successful post, set status = 'posted' and fill posted_at (UTC ISO date), then commit and push the change to this file.",
+      "If LinkedIn auth is not connected yet, do nothing and do not mark anything posted.",
+      "Case-study posts are process walkthroughs, NOT claims about named clients. Do not add fake client names or invented result numbers when editing.",
+      "Avoid parentheses ( ) in post text — LinkedIn's API treats them as reserved formatting characters."
+    ]
+  },
+  "posts": [
+    {
+      "id": "w1-1",
+      "pillar": "company",
+      "title_internal": "定位帖：我们是谁",
+      "status": "queued",
+      "posted_at": null,
+      "visibility": "anyone",
+      "text": "Most sourcing companies sell products.\nWe deliver projects.\n\nWhen a flood hits, a mine expands, or a construction site needs temporary power, nobody has time to vet 15 suppliers across 5 categories.\n\nThat is what Concord Trade does from China:\n\n— Emergency response supply: PPE, flood control, dewatering\n— Industrial safety equipment\n— Temporary power and lighting\n— Water-management equipment\n\nOne coordination partner. Verified factories. Export documentation handled. Consolidated shipping.\n\nTell us what your project needs — we find, compare, verify and deliver it.\n\n#ProjectSupply #EmergencyResponse #ChinaSourcing #IndustrialSafety #SupplyChain",
+      "link": "https://www.concord-trade.com",
+      "link_title": "Concord Trade | Emergency & Industrial Project Supply from China",
+      "link_description": "China sourcing and export coordination for emergency response, industrial safety, temporary infrastructure and water-management projects."
+    },
+    {
+      "id": "w1-2",
+      "pillar": "insight",
+      "title_internal": "行业洞察：应急采购为什么会失败",
+      "status": "queued",
+      "posted_at": null,
+      "visibility": "anyone",
+      "text": "Emergency procurement fails for one reason: speed and verification pull in opposite directions.\n\nWhen the deadline is 2 weeks, buyers skip the checks they would normally run:\n\n1. Factory or trader? Nobody asks.\n2. Certificates? Taken at face value.\n3. Production capacity? Assumed, not confirmed.\n4. QC before loading? Skipped to save 3 days.\n\nThen the shipment arrives: wrong specs, missing certs stuck at customs, or half the quantity.\n\nThe fix is not slowing down. It is having the verification done BEFORE the emergency:\n\n— A pre-vetted supplier pool for critical categories\n— Standard spec sheets ready to send\n— A partner on the ground who can walk the factory floor this week, not next month\n\nSpeed is a system, not a sprint.\n\n#Procurement #EmergencyResponse #SupplierVerification #ChinaSourcing #RiskManagement",
+      "link": "https://www.concord-trade.com/services/supplier-verification/",
+      "link_title": "Supplier Verification — Concord Trade",
+      "link_description": "How we verify Chinese factories before your order is at risk."
+    },
+    {
+      "id": "w1-3",
+      "pillar": "case",
+      "title_internal": "案例走查：72小时排水泵应急采购流程",
+      "status": "queued",
+      "posted_at": null,
+      "visibility": "anyone",
+      "text": "What does it actually take to source 40 dewatering pumps from China in 2 weeks?\n\nHere is the timeline we run when a flood-response request lands on a Friday:\n\nDay 1 — Lock the spec. Flow rate, head, power supply, hose couplings. Vague specs are the #1 cause of delay.\nDay 1-2 — Shortlist from pre-vetted pump factories. Confirm real inventory vs production time. Many quote from stock they do not have.\nDay 3 — Compare landed cost, not unit price. Air vs sea-air, voltage adapters, spare impellers.\nDay 4-5 — Factory check and load test on sample units. Video-verified.\nWeek 2 — QC at loading, export docs, consolidated shipment with the PPE and lighting that the same project usually needs.\n\nThe hard part is never finding A pump. It is verifying THE pumps, in quantity, that will run on day one.\n\nThis is the work we do so response teams can focus on the response.\n\n#Dewatering #FloodResponse #EmergencyProcurement #ChinaSourcing #ProjectLogistics",
+      "link": "https://www.concord-trade.com",
+      "link_title": "Concord Trade | Emergency & Industrial Project Supply from China",
+      "link_description": "One coordination partner for urgent project supply from China."
+    },
+    {
+      "id": "w2-1",
+      "pillar": "insight",
+      "title_internal": "行业洞察：如何验证中国供应商",
+      "status": "queued",
+      "posted_at": null,
+      "visibility": "anyone",
+      "text": "5 checks that expose a weak Chinese supplier in under a week — before your money is on the table:\n\n1. Business licence vs reality. The licence says manufacturer. Does the registered address match the factory you were shown?\n\n2. Export record. Ask which markets they ship to today. A factory that has never exported to your region will learn compliance on your order.\n\n3. Certificates, verified at the source. CE, ISO, test reports — call the issuing body or check the database. Photoshopped certs are a real industry.\n\n4. Production evidence. Live video walk-through of YOUR product line, not a showroom reel.\n\n5. References that answer. One buyer who takes the call is worth ten logos on a website.\n\nWe wrote up the full process, including the questions that make traders posing as factories go quiet.\n\n#SupplierVerification #ChinaSourcing #Procurement #QualityControl #ImportExport",
+      "link": "https://www.concord-trade.com/insights/how-to-verify-a-chinese-supplier/",
+      "link_title": "How to Verify a Chinese Supplier — Concord Trade Insights",
+      "link_description": "The step-by-step verification process we run before any order."
+    },
+    {
+      "id": "w2-2",
+      "pillar": "insight",
+      "title_internal": "行业洞察：OEM vs ODM",
+      "status": "queued",
+      "posted_at": null,
+      "visibility": "anyone",
+      "text": "OEM or ODM? Most buyers choose wrong because nobody explains the real trade-off.\n\nOEM — the factory builds YOUR design.\nYou own the spec, the tooling, sometimes the mold. Higher control, higher upfront cost, and you carry the design risk.\n\nODM — you brand THEIR design.\nFast to market, low upfront cost. But your 'unique' product may be on 6 other brands' shelves, and the factory owns the IP.\n\nThe questions that actually decide it:\n\n— Is the product a differentiator or a commodity in your line?\n— Do you have the volume to justify tooling?\n— Who owns the mold if you switch factories?\n— What is written about IP in the contract — in the Chinese version?\n\nFor project supply — safety gear, pumps, lighting — ODM with a tight spec sheet is usually the right call. For brand-building consumer lines, OEM earns its cost.\n\nFull breakdown on our site.\n\n#OEM #ODM #ChinaSourcing #ProductDevelopment #Manufacturing",
+      "link": "https://www.concord-trade.com/insights/oem-vs-odm-sourcing/",
+      "link_title": "OEM vs ODM Sourcing — Concord Trade Insights",
+      "link_description": "How to choose the right manufacturing model for your product."
+    },
+    {
+      "id": "w2-3",
+      "pillar": "insight",
+      "title_internal": "行业洞察：PPE标准 CE vs ANSI",
+      "status": "queued",
+      "posted_at": null,
+      "visibility": "anyone",
+      "text": "A container of safety helmets that clears Chinese customs can still be illegal to sell in your market.\n\nPPE is one of the most regulation-dense categories we handle. The traps we see most:\n\n— CE is not a sticker. For Category III PPE — respirators, fall protection — you need a Notified Body number and an EU Declaration of Conformity. A 'CE' logo alone means nothing.\n\n— EN vs ANSI are not interchangeable. EN 397 helmets and ANSI Z89.1 helmets pass different impact tests. US buyers importing EN-only stock inherit the liability.\n\n— Test reports expire in practice. A 2019 report on a product 'unchanged since' will not survive a serious audit.\n\n— The factory's best cert may not cover YOUR SKU. Certification is per model, not per factory.\n\nBefore any PPE order, we map the destination market's standard first, then shortlist factories that already hold the right certs for that exact product.\n\nCompliance is cheaper than a rejected container.\n\n#PPE #SafetyEquipment #CEMarking #Compliance #ImportExport #IndustrialSafety",
+      "link": "https://www.concord-trade.com/industries/medical-consumables-sourcing/",
+      "link_title": "Medical Consumables & PPE Sourcing — Concord Trade",
+      "link_description": "Certified PPE and medical disposables from verified Chinese factories."
+    },
+    {
+      "id": "w3-1",
+      "pillar": "insight",
+      "title_internal": "行业洞察：汛期前的设备采购窗口",
+      "status": "queued",
+      "posted_at": null,
+      "visibility": "anyone",
+      "text": "Flood season is predictable. Flood-equipment lead times are not — unless you order before the rain.\n\nEvery year the same curve repeats:\n\n— 3 months before peak season: pumps, barriers and generators ship at normal prices, normal lead times.\n— During the first major event: factory order books fill in days. Lead times double. Air freight is the only option left.\n— Mid-season: even stock units are gone, and quality drops as workshops rush.\n\nFor agencies, contractors and NGOs in flood-exposed regions, the cheapest emergency response is the one procured in the dry season:\n\n1. Pre-agree specs for pumps, mobile barriers, lighting towers and PPE.\n2. Pre-verify 2-3 factories per category.\n3. Hold framework pricing so an emergency order is a phone call, not a tender.\n\nWe help teams set this up before they need it. The best time was last quarter. The second-best time is now.\n\n#FloodControl #EmergencyPreparedness #WaterManagement #Procurement #Resilience",
+      "link": "https://www.concord-trade.com",
+      "link_title": "Concord Trade | Emergency & Industrial Project Supply from China",
+      "link_description": "Water-management and flood-control equipment, coordinated from China."
+    },
+    {
+      "id": "w3-2",
+      "pillar": "company",
+      "title_internal": "公司帖：六步工作流",
+      "status": "queued",
+      "posted_at": null,
+      "visibility": "anyone",
+      "text": "How a project-supply order actually runs — our 6-step workflow:\n\n1. Requirement. You send specs, quantities, destination, deadline. Rough is fine — we help lock it down.\n\n2. Sourcing and comparison. We shortlist from verified factories and quote landed cost, not just FOB.\n\n3. Verification. Licences, certificates, production capacity, references. Before any deposit moves.\n\n4. Samples and QC plan. Sample sign-off, then inspection points agreed in writing: pre-production, in-line, pre-shipment.\n\n5. Production follow-up and loading QC. We are the eyes on the floor so you do not fly 10,000 km for a container check.\n\n6. Export and long-term supply. Documentation, consolidation, shipping — and a re-order path that takes days, not months.\n\nNo marketplace. No catalogue. Just execution against your requirement.\n\nWhat category is hardest for your team to source right now? Tell me in the comments.\n\n#Sourcing #SupplyChain #Procurement #ChinaSourcing #QualityControl",
+      "link": "https://www.concord-trade.com/services/china-product-sourcing/",
+      "link_title": "China Product Sourcing — Concord Trade",
+      "link_description": "Our end-to-end sourcing and trade execution workflow."
+    },
+    {
+      "id": "w3-3",
+      "pillar": "insight",
+      "title_internal": "行业洞察：紧急货运 空运vs海运",
+      "status": "queued",
+      "posted_at": null,
+      "visibility": "anyone",
+      "text": "'Just air-freight it' is how urgent projects go over budget by 40%.\n\nWhen a deadline is tight, freight mode is a portfolio decision, not a binary one. The options between full air and full sea:\n\n— Split shipment. Air the 10% that unblocks the site — control panels, couplings, critical PPE — and sea the bulk.\n— Sea-air via hubs. Often 30-40% faster than pure sea at a fraction of pure air cost.\n— Express rail for some corridors. Worth checking for Europe-bound cargo.\n— LCL priority loading. For partial containers, the right consolidator saves a week.\n\nAnd the step that beats all freight math: compress the pre-shipment timeline. A supplier who has your specs, certs and QC plan ready ships a week earlier at zero extra cost.\n\nFreight buys back days. Preparation buys back weeks.\n\n#Logistics #FreightForwarding #ProjectLogistics #SupplyChain #ImportExport",
+      "link": "https://www.concord-trade.com",
+      "link_title": "Concord Trade | Emergency & Industrial Project Supply from China",
+      "link_description": "Import, export and consolidated shipping for urgent project supply."
+    },
+    {
+      "id": "w4-1",
+      "pillar": "case",
+      "title_internal": "案例走查：工地临时电力照明打包方案",
+      "status": "queued",
+      "posted_at": null,
+      "visibility": "anyone",
+      "text": "A construction site asked us for lighting towers. We quoted them a power ecosystem instead. Here is why.\n\nA typical remote-site request starts with one line: 'Need 8 mobile lighting towers, diesel, ASAP.'\n\nThe questions that follow decide whether the site runs or stalls:\n\n— What voltage and plug standard is the destination? Wrong sockets idle a full shipment.\n— Diesel quality on site? It changes the engine spec.\n— Who maintains them? That decides spare-part kits and filter counts.\n— What else draws power? Often the real need is towers PLUS a generator PLUS distribution boxes PLUS cabling — and buying them separately from 4 suppliers means 4 lead times and zero compatibility guarantees.\n\nSo we package: one consolidated, compatibility-checked shipment with spares and manuals in the right language.\n\nThe cheapest equipment is the equipment that works on arrival.\n\n#TemporaryPower #ConstructionLogistics #SiteEquipment #ChinaSourcing #ProjectSupply",
+      "link": "https://www.concord-trade.com",
+      "link_title": "Concord Trade | Emergency & Industrial Project Supply from China",
+      "link_description": "Temporary power, lighting and site equipment — packaged and verified."
+    },
+    {
+      "id": "w4-2",
+      "pillar": "insight",
+      "title_internal": "行业洞察：整合采购 vs 十家供应商",
+      "status": "queued",
+      "posted_at": null,
+      "visibility": "anyone",
+      "text": "Buying a project's supply list from 10 separate Chinese suppliers looks cheaper on paper. Here is what the spreadsheet hides:\n\n— 10 payment flows, 10 contracts, 10 sets of banking fees\n— 10 QC visits or 10 uninspected shipments\n— 10 sets of export docs that must not contradict each other at customs\n— 10 delivery dates that will never align — so your 'complete' system arrives 80% complete\n— And when something fails on site: 10 vendors pointing at each other\n\nConsolidated project supply flips the math:\n\n— One coordinator accountable for the whole list\n— One QC plan across categories\n— One consolidated container — often saving more in freight than the coordination costs\n— One party to call when anything goes wrong\n\nFor one-off commodity buys, go direct. For multi-category project supply on a deadline, coordination IS the product.\n\n#Procurement #SupplyChainManagement #ProjectManagement #ChinaSourcing #Consolidation",
+      "link": "https://www.concord-trade.com/about/",
+      "link_title": "About Concord Trade",
+      "link_description": "A sourcing and trade execution partner, not a marketplace."
+    },
+    {
+      "id": "w4-3",
+      "pillar": "company",
+      "title_internal": "公司帖：一份好的RFQ长什么样",
+      "status": "queued",
+      "posted_at": null,
+      "visibility": "anyone",
+      "text": "The quality of your quote is decided before any supplier sees it — by the quality of your RFQ.\n\nAfter years of quoting project supply from China, the pattern is clear. Vague RFQ, padded price: suppliers price in their uncertainty. Sharp RFQ, sharp price.\n\nA sharp RFQ has 6 lines:\n\n1. Product and spec — standard, grade, certification required. 'EN 397 safety helmets, vented, chin strap' beats 'safety helmets'.\n2. Quantity and tolerance — and whether partial shipment is acceptable.\n3. Destination and Incoterm — the same pump is a different price CIF Mombasa vs FOB Shanghai.\n4. Deadline — the real one, on site. Not 'ASAP'.\n5. Quality gate — what inspection you expect and who pays for it.\n6. Decision date — suppliers prioritise buyers who commit to a timeline.\n\nSend us those 6 lines and we come back with verified options, not guesses.\n\nRFQ form is on the site — link below.\n\n#RFQ #Procurement #Sourcing #ChinaSourcing #B2B",
+      "link": "https://www.concord-trade.com/contact/",
+      "link_title": "Request a Quotation — Concord Trade",
+      "link_description": "Send your project requirement and get verified sourcing options."
+    }
+  ]
+}
